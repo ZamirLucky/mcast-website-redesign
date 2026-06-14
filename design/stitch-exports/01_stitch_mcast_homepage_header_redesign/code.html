@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MCAST - Designed to Shape Your Future</title>
+<!-- Google Fonts: Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="./code.js"></script>
+<link rel="stylesheet" href="./code.css"/>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Header Area -->
+<div class="fixed top-0 left-0 w-full z-50">
+<!-- Utility TopAppBar (Small) -->
+<header class="bg-mcast-blue h-10 flex items-center w-full">
+<div class="flex justify-between items-center w-full px-grid-margin max-w-7xl mx-auto">
+<div class="flex items-center gap-6">
+<a class="font-label-md text-label-md text-white opacity-90 hover:text-royal-gold transition-colors" href="#">Staff Intranet</a>
+<a class="font-label-md text-label-md text-white opacity-90 hover:text-royal-gold transition-colors" href="#">Students Online System</a>
+</div>
+
+<div class="relative flex items-center gap-4 text-white">
+
+  <!-- Search -->
+  <button
+    id="searchToggle"
+    class="hover:text-royal-gold transition-colors"
+    aria-label="Open search"
+    aria-expanded="false"
+    type="button"
+  >
+    <span class="material-symbols-outlined" data-icon="search">search</span>
+  </button>
+
+  <div
+  id="searchPanel"
+  class="hidden absolute right-16 top-1/2 -translate-y-1/2 z-[80]"
+>
+  <div class="flex items-center w-[460px] h-6 rounded-full overflow-hidden bg-white shadow-xl ring-1 ring-white/20 focus-within:ring-2 focus-within:ring-royal-gold transition-all">
+    
+    <input
+      id="siteSearch"
+      type="text"
+      placeholder="Search courses, services, opportunities..."
+      class="flex-1 h-full bg-white text-mcast-blue px-2 font-body-md text-body-md outline-none placeholder:text-on-surface-variant/70"
+    />
+
+    <button
+    class="h-full w-14 bg-royal-gold text-mcast-blue flex items-center justify-center hover:bg-gold-hover transition-colors"
+    type="button"
+    aria-label="Search"
+    >
+      <span class="material-symbols-outlined text-[22px]">search</span>
+    </button>
+
+  </div>
+</div>
+
+  <!-- Accessibility -->
+  <button
+    id="accessibilityToggle"
+    class="hover:text-royal-gold transition-colors"
+    aria-label="Open accessibility tools"
+    aria-expanded="false"
+    type="button"
+  >
+    <span class="material-symbols-outlined" data-icon="accessibility">accessibility</span>
+  </button>
+
+  <div
+    id="accessibilityPanel"
+    class="hidden absolute right-0 top-10 w-[310px] bg-mcast-blue border border-royal-gold/60 shadow-2xl p-5 z-[80]"
+  >
+    <h3 class="text-white font-title-lg text-title-lg mb-4">
+      Accessibility Tools
+    </h3>
+
+    <ul class="space-y-3 text-white">
+      <li><button class="accessibility-item" type="button"><span class="material-symbols-outlined">zoom_in</span> Increase Text</button></li>
+      <li><button class="accessibility-item" type="button"><span class="material-symbols-outlined">zoom_out</span> Decrease Text</button></li>
+      <li><button class="accessibility-item" type="button"><span class="material-symbols-outlined">contrast</span> High Contrast</button></li>
+      <li><button class="accessibility-item" type="button"><span class="material-symbols-outlined">visibility</span> Negative Contrast</button></li>
+      <li><button class="accessibility-item" type="button"><span class="material-symbols-outlined">format_underlined</span> Links Underline</button></li>
+      <li><button class="accessibility-item" type="button"><span class="material-symbols-outlined">font_download</span> Readable Font</button></li>
+      <li><button class="accessibility-item" type="button"><span class="material-symbols-outlined">restart_alt</span> Reset</button></li>
+    </ul>
+  </div>
+
+</div>
+
+</div>
+</header>
+<!-- Main Navigation TopAppBar (Large) -->
+<nav class="relative bg-mcast-blue h-28 flex items-center w-full border-b border-white/10 before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-royal-gold before:to-transparent before:content-['']">
+<div class="flex justify-between items-center w-full px-grid-margin max-w-7xl mx-auto">
+<a class="flex-shrink-0" href="/">
+<img alt="MCAST Logo" class="h-auto w-[260px] md:w-[300px] max-h-[76px] object-contain brightness-0 invert" src="https://lh3.googleusercontent.com/aida/AP1WRLsXwzG0jUN8-snHVZ6uZDPmhS4w5_3dNtNKgEsZEpOtnBsh5AeREC692hOJF2O7n752eGiwMcpADWaM-G9SPsw-usOHuU54Wsz4q5ELFee04RWRzrQXKRGP2qdh3ev8PIRO6BX15IhPzlkRUjnfDJVR4sLUapSF2MsAQXgoJvf73PGFGefrKVzfQB7DRzh-J4ZjKZR3vORYk8WQG4ty_xPTIhprixO_ikxa02ICPiOmxkWEmscDe7B4G3_-"/>
+</a>
+<ul class="hidden md:flex items-center gap-6">
+<li><a class="font-title-lg text-title-lg text-white border-b-2 border-royal-gold pb-1 transition-all active:scale-95" href="#">Study</a></li>
+<li><a class="font-title-lg text-title-lg text-white/80 hover:text-white transition-all active:scale-95" href="#">Services</a></li>
+<li><a class="font-title-lg text-title-lg text-white/80 hover:text-white transition-all active:scale-95" href="#">Research</a></li>
+<li><a class="font-title-lg text-title-lg text-white/80 hover:text-white transition-all active:scale-95" href="#">About</a></li>
+<li><a class="font-title-lg text-title-lg text-white/80 hover:text-white transition-all active:scale-95" href="#">Students’ Info Page</a></li>
+</ul>
+</div>
+</nav>
+</div>
+<main class="pt-[152px]">
+<!-- Hero Section -->
+<section class="relative overflow-hidden py-section-gap min-h-[600px] flex items-center bg-mcast-blue">
+<div class="hero-video-wrap" aria-hidden="true">
+  <iframe
+    title="MCAST background video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    src="https://www.youtube.com/embed/Hds3Yd5Z6CE?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=Hds3Yd5Z6CE&amp;playsinline=1&amp;rel=0">
+  </iframe>
+</div>
+
+<!-- Overlay -->
+<div class="absolute inset-0 bg-mcast-blue/45 z-10"></div>
+<div class="relative z-20 max-w-7xl mx-auto px-grid-margin w-full">
+<div class="max-w-2xl">
+<h1 class="font-display-lg text-display-lg text-white mb-6">Designed to shape your future</h1>
+<p class="font-body-lg text-body-lg text-white opacity-90 mb-10">Explore vocational education, training, research, and student opportunities at MCAST. Join a community dedicated to excellence and practical innovation.</p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-gold-hover transition-colors inline-block uppercase tracking-wider" href="#">Explore Courses</a>
+<a class="border-2 border-white text-white px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-white/10 transition-colors inline-block uppercase tracking-wider" href="#">Student Services</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Highlights Section (Bento Grid) -->
+<section class="py-section-gap max-w-7xl mx-auto px-grid-margin">
+<div class="mb-12">
+<span class="text-secondary font-label-md text-label-md uppercase tracking-widest mb-2 block">MCAST Excellence</span>
+<h2 class="font-headline-md text-headline-md text-primary">A World of Opportunities</h2>
+</div>
+<div class="asymmetric-grid">
+<!-- Large Highlight Card -->
+<div class="col-span-12 md:col-span-8 group relative h-[500px] overflow-hidden rounded-xl bg-surface-container border border-outline-variant transition-all hover:shadow-xl">
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A wide-angle professional architectural photograph of the modern MCAST campus at dusk. The building features sleek glass facades and warm interior lighting that spills onto a clean, paved plaza. Students are seen walking in small groups, contributing to a vibrant yet academic atmosphere. The lighting is soft and golden, contrasting beautifully with the deep blue evening sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiYZxmhQkmkMRVlmb3-TkEhynfTJ6ScFnMZbKVeq7Kqiz1ZS_Wg4NZt6-otbjdG53KXWVA-_uzoozIoPsW9Zg_vaAA30Z4plKgQkRhJUEwHyJFmpfPQkQgtbcB7eT4ENVmrEMD1wc4Mv8kQW-c4pP292l4gunfjEOPEJIpVLrw_dtLKRISQxYqiYSZMbltMyKOhLMlIAlqef__kCLwNcciEvVSWu6w6psvHGV2yhYKGmEL9aNOlqe55C3n_dmjD8p73NJgJ_Ijd3Sn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+</div>
+<div class="absolute bottom-0 p-8 text-white">
+<h3 class="font-headline-sm text-headline-sm mb-2">Community &amp; Culture</h3>
+<p class="font-body-md text-body-md opacity-90 max-w-md mb-6">Experience a vibrant campus life that blends technical learning with a rich multicultural environment.</p>
+<button class="flex items-center gap-2 font-label-md text-label-md hover:translate-x-2 transition-transform">
+                            Learn More <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Secondary Highlight Card -->
+<div class="col-span-12 md:col-span-4 bg-white border border-outline-variant p-8 rounded-xl flex flex-col justify-between hover:border-secondary transition-colors">
+<div>
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">science</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4">Research Excellence</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Leading the way in applied research and industrial innovation across various technical fields.</p>
+</div>
+<a class="text-primary font-label-md text-label-md border-b-2 border-secondary self-start pb-1 mt-8" href="#">View Projects</a>
+</div>
+<!-- Small Grid Items -->
+<div class="col-span-12 md:col-span-4 bg-primary text-white p-8 rounded-xl hover:bg-on-primary-fixed-variant transition-colors group">
+<h3 class="font-title-lg text-title-lg mb-4">Admissions 2024</h3>
+<p class="font-body-md text-body-md opacity-80 mb-6">Applications are now open for all vocational programs starting this autumn.</p>
+<span class="material-symbols-outlined text-3xl group-hover:rotate-45 transition-transform">north_east</span>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container-low border border-outline-variant p-8 rounded-xl hover:shadow-md transition-shadow">
+<h3 class="font-title-lg text-title-lg text-primary mb-2">Student Support</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">From career guidance to wellbeing services, we are here for you.</p>
+<div class="flex gap-2">
+<div class="h-1 w-12 bg-secondary"></div>
+<div class="h-1 w-4 bg-outline-variant"></div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 group relative overflow-hidden rounded-xl bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A clean, bright, and modern engineering workshop at MCAST. In the center, a group of diverse students in protective gear is working collaboratively around a high-tech robotic arm. The space is filled with professional-grade tools and white cabinetry, emphasizing a state-of-the-art learning environment. The lighting is cool and clinical, yet welcoming, reflecting a professional industrial setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGrTWo1URNin0xWhsbp-lZjeSWsXrPr82pjySSfhzP1rY7K14PUAyMliIRFpm8Q5FGrxOgPhOfGmjWaqNQsXFpv_a-FrAt-6BR2nrpe7MCMJLF4WdJF29zOCU0_r1IfWxaQ6QaZi636SXpDUmjOPf0Gb-HTjhIKCFB4IIZgqLrauTdGRclbqvCOHTrckE3PYydqt8mQinI_LbJBfH3oUcOts-CTzcGo8Gu0I6Lp3WVxvb2P-3Wd8gtBQU5SXYlG2EPEGgWH0pzIwOu"/>
+<div class="absolute inset-0 bg-secondary/10 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute top-4 left-4 bg-white px-3 py-1 rounded text-primary font-label-md text-label-md">Workshops</div>
+</div>
+</div>
+</section>
+<!-- Academic Calendar & News -->
+<section class="bg-surface-container-low py-section-gap">
+<div class="max-w-7xl mx-auto px-grid-margin">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">News &amp; Updates</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">The latest from the College campus</p>
+</div>
+<button class="font-label-md text-label-md text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition-colors">See All News</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- News Item 1 -->
+<article class="bg-white rounded-lg overflow-hidden border border-outline-variant group cursor-pointer">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A medium shot of an academic award ceremony at MCAST. A smiling student in graduation attire is receiving a gold-embossed certificate from a professional faculty member. The background is a soft-focus blue institutional banner. The lighting is bright and festive, capturing a moment of pride and academic achievement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPQR7WqvOPDDCE0yoohLQz9abKla8lvVwP3SoZoydu-t7zLJOMaXRsts0YFTkv-StfwI8lt_JybrtLig5Ycshh-fuext-28Nc0_2dVIIF7wcvtSBB57wI71GUTXDNtB631EH7jAYihaPZtUVzl12obDQfMqqB6N2HG1Uw6TIH5EBqLUs1Mx7cif96PuGn4-c1EIDleRM0We_mJOPiKtNfENQj-1MRoXR68fCAODINd2l7PzCjwTZFGT4mPATxbzFnmCj4w7IWmdwQ1"/>
+</div>
+<div class="p-6">
+<span class="text-caption font-caption text-on-surface-variant">OCTOBER 15, 2024</span>
+<h4 class="font-title-lg text-title-lg text-primary mt-2 group-hover:text-secondary transition-colors">MCAST Celebrates Student Achievement at Annual Awards</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3 line-clamp-3">Over 500 students were recognized for their outstanding contributions to the college community and academic excellence.</p>
+</div>
+</article>
+<!-- News Item 2 -->
+<article class="bg-white rounded-lg overflow-hidden border border-outline-variant group cursor-pointer">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A wide shot of a modern computer laboratory at MCAST. Rows of high-end dual-monitor workstations are occupied by students engaged in a coding seminar. The room features industrial-chic exposed ceilings and vibrant blue accent walls. The atmosphere is one of intense focus and collaborative learning under cool, balanced LED lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJQAaaEz2cGF3Sg7jeTn2UMaLEdB_YrZRwFvgxLZv0OKoBS6sDQW3Lztj6lFqsOcH61es2tEqZSVQFCCkgSZzsSe9XADe__euXdUe0TJfIzevXTDj0tXIegDcBDj2SUYewes7RnC8OU9KdZSfyIBDzCSW8c88N2FFuyP7xFU8tmQkCdOLZXMEbmERz_KJeLJgOUCPmaqZGvUEs86au7yjv2ndC8nA2yvhyPy1MM6u85LtrhrOoCEUVjzS6y2AWnFUXNSyIsskWMLZf"/>
+</div>
+<div class="p-6">
+<span class="text-caption font-caption text-on-surface-variant">OCTOBER 12, 2024</span>
+<h4 class="font-title-lg text-title-lg text-primary mt-2 group-hover:text-secondary transition-colors">New ICT Laboratories Launched for Advanced Diploma</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3 line-clamp-3">The Institute of Information and Communication Technology has unveiled three state-of-the-art labs equipped with the latest server technology.</p>
+</div>
+</article>
+<!-- News Item 3 -->
+<article class="bg-white rounded-lg overflow-hidden border border-outline-variant group cursor-pointer">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An atmospheric photograph of an outdoor art exhibition in the MCAST campus courtyard. Large-scale sculptures and digital art panels are displayed under the afternoon sun. The scene is bright and airy, with soft shadows and a sense of creative freedom. Diverse students are milling about, interacting with the art pieces in a vibrant, artistic environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP5lmVM_avJrwXAMURHmPDU1-xHg9fz86YxCyq9eT5Z9MApMTRiNCBOaTAR16RKr_AXcFJYg78IVKqrDIYWkof0eCxx1nQ4Eo14FXJd8-6-j6FbrG9p-GL0VgLd_DjgZRMm8GezdvfvmgCkwkLhnD6gdq0QA-lIhNXZL0lgiFcvBf3_uJANs9Vt4hr2aLzQUqnd5m1K_cgNGPItvTaiYKTYhOyTeGLMNwUQbQz5MB3A2CRBx6Y8aBJXO6H01dkPe5zYyrOGN9BVjL5"/>
+</div>
+<div class="p-6">
+<span class="text-caption font-caption text-on-surface-variant">OCTOBER 10, 2024</span>
+<h4 class="font-title-lg text-title-lg text-primary mt-2 group-hover:text-secondary transition-colors">Creative Arts Festival 2024 Call for Submissions</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3 line-clamp-3">The Institute for the Creative Arts is inviting all current students to submit their portfolio for the upcoming spring exhibition.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-surface-container-high full-width py-section-gap mt-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-grid-margin py-section-gap max-w-7xl mx-auto">
+<div class="col-span-1">
+<img alt="MCAST Logo" class="h-10 w-auto invert brightness-0 mb-6" src="https://lh3.googleusercontent.com/aida/AP1WRLsXwzG0jUN8-snHVZ6uZDPmhS4w5_3dNtNKgEsZEpOtnBsh5AeREC692hOJF2O7n752eGiwMcpADWaM-G9SPsw-usOHuU54Wsz4q5ELFee04RWRzrQXKRGP2qdh3ev8PIRO6BX15IhPzlkRUjnfDJVR4sLUapSF2MsAQXgoJvf73PGFGefrKVzfQB7DRzh-J4ZjKZR3vORYk8WQG4ty_xPTIhprixO_ikxa02ICPiOmxkWEmscDe7B4G3_-"/>
+<p class="font-body-md text-body-md text-surface-variant mb-6">Malta College of Arts, Science and Technology. Your gateway to excellence in vocational education.</p>
+<div class="flex gap-4">
+<a class="text-surface-variant hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">face_nod</span>
+</a>
+<a class="text-surface-variant hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+</a>
+<a class="text-surface-variant hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">link</span>
+</a>
+</div>
+</div>
+<div class="col-span-1">
+<h5 class="font-title-lg text-title-lg text-white mb-6">Quick Links</h5>
+<ul class="space-y-3">
+<li><a class="font-body-md text-body-md text-surface-variant hover:text-white transition-all" href="#">Admissions</a></li>
+<li><a class="font-body-md text-body-md text-surface-variant hover:text-white transition-all" href="#">Study at MCAST</a></li>
+<li><a class="font-body-md text-body-md text-surface-variant hover:text-white transition-all" href="#">Student Services</a></li>
+<li><a class="font-body-md text-body-md text-surface-variant hover:text-white transition-all" href="#">Research at MCAST</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h5 class="font-title-lg text-title-lg text-white mb-6">Resources</h5>
+<ul class="space-y-3">
+<li><a class="font-body-md text-body-md text-surface-variant hover:text-white transition-all" href="#">Contact Info</a></li>
+<li><a class="font-body-md text-body-md text-surface-variant hover:text-white transition-all" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-body-md text-surface-variant hover:text-white transition-all" href="#">Equality &amp; Diversity</a></li>
+<li><a class="font-body-md text-body-md text-surface-variant hover:text-white transition-all" href="#">Vacancies</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h5 class="font-title-lg text-title-lg text-white mb-6">Contact Us</h5>
+<p class="font-body-md text-body-md text-surface-variant">MCAST Main Campus,<br/>Triq Kordin, Paola PLA 9032,<br/>Malta</p>
+<p class="font-body-md text-body-md text-surface-variant mt-4">Tel: +356 2398 7100</p>
+</div>
+</div>
+<div class="border-t border-white/10 mt-12 pt-8 px-grid-margin max-w-7xl mx-auto">
+<p class="font-body-md text-body-md text-surface-variant text-center opacity-60">© 2024 MCAST. All rights reserved.</p>
+</div>
+</footer>
+</body></html>
