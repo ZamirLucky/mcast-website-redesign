@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Navigation interaction logic
-          const navLinks = document.querySelectorAll('nav ul li a');
+          const navLinks = document.querySelectorAll('nav > div ul > li > a');
           navLinks.forEach(link => {
               link.addEventListener('click', (e) => {
                   navLinks.forEach(l => {
@@ -159,6 +159,123 @@ document.addEventListener('DOMContentLoaded', () => {
                   });
                   link.classList.remove('text-white/80');
                   link.classList.add('text-white', 'border-b-2', 'border-royal-gold');
+              });
+          });
+
+          const dropdownMenus = {
+              Study: [
+                  'Academic Calendar',
+                  'Apply Online',
+                  'Late Applications',
+                  'Full-Time Courses Important Dates 2025/2026',
+                  'Full-time courses',
+                  'Part-time courses',
+                  'Master Courses',
+                  'Doctoral Programme DRes',
+                  'Online Learning',
+                  'Continuous Professional Development',
+                  'International Students'
+              ],
+              Services: [
+                  'Apprenticeships',
+                  'Career Guidance',
+                  'Chaplaincy',
+                  'Childcare Centre',
+                  'Community Social Responsibility (CSR)',
+                  'CLE',
+                  'ERASMUS+ Projects & Mobility Office',
+                  'Grievance Office',
+                  'Hair and Beauty Salon',
+                  'IEU',
+                  'Sports and Fitness',
+                  'Stipends Office',
+                  'Student Liaison',
+                  'Wellbeing Hub',
+                  'Youth Hub'
+              ],
+              Research: [
+                  'Applied Research Journal',
+                  'Research Themes',
+                  'Postdoctoral Fellowship',
+                  'MCAST Monograph Series',
+                  'Library',
+                  'Research Fellowship Scheme',
+                  'Research Framework',
+                  'Research Conferences',
+                  'Research Procedures',
+                  'Innovation'
+              ],
+              About: [
+                  'Mission Statement',
+                  'MCAST Act',
+                  'Board of Governors',
+                  "Principal's Office",
+                  'Corporate Services',
+                  'Institutes',
+                  'Regulatory Services',
+                  'Research and Student Academic Management',
+                  'Student Experience',
+                  'IT Systems and Data Securities',
+                  'Publications',
+                  'Statutory Meetings',
+                  'Graduation Pass Rates'
+              ]
+          };
+
+          navLinks.forEach(link => {
+              const menuItems = dropdownMenus[link.textContent.trim()];
+              if (!menuItems) {
+                  return;
+              }
+
+              const navItem = link.closest('li');
+              if (!navItem) {
+                  return;
+              }
+
+              navItem.classList.add('nav-item-has-dropdown');
+              link.setAttribute('aria-haspopup', 'true');
+              link.setAttribute('aria-expanded', 'false');
+
+              const dropdown = document.createElement('div');
+              dropdown.className = 'nav-dropdown';
+              dropdown.setAttribute('aria-hidden', 'true');
+
+              const dropdownList = document.createElement('ul');
+              dropdownList.className = 'nav-dropdown-list';
+
+              menuItems.forEach(itemText => {
+                  const item = document.createElement('li');
+                  const itemLink = document.createElement('a');
+                  itemLink.className = 'nav-dropdown-link';
+                  itemLink.href = '#';
+                  itemLink.textContent = itemText;
+                  item.appendChild(itemLink);
+                  dropdownList.appendChild(item);
+              });
+
+              dropdown.appendChild(dropdownList);
+              navItem.appendChild(dropdown);
+
+              const showDropdown = () => {
+                  dropdown.classList.add('is-open');
+                  dropdown.setAttribute('aria-hidden', 'false');
+                  link.setAttribute('aria-expanded', 'true');
+              };
+
+              const hideDropdown = () => {
+                  dropdown.classList.remove('is-open');
+                  dropdown.setAttribute('aria-hidden', 'true');
+                  link.setAttribute('aria-expanded', 'false');
+              };
+
+              navItem.addEventListener('mouseenter', showDropdown);
+              navItem.addEventListener('mouseleave', hideDropdown);
+              navItem.addEventListener('focusin', showDropdown);
+              navItem.addEventListener('focusout', (event) => {
+                  if (!navItem.contains(event.relatedTarget)) {
+                      hideDropdown();
+                  }
               });
           });
 
@@ -236,4 +353,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
