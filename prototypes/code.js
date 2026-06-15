@@ -102,38 +102,51 @@ tailwind.config = {
         },
       }
 
+function loadInclude(mountId, includePath, errorLabel, fallbackHtml) {
+  const mount = document.getElementById(mountId);
+  if (!mount) {
+    return;
+  }
+
+  fetch(includePath)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Unable to load ${includePath}: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then((html) => {
+      mount.innerHTML = html;
+    })
+    .catch((error) => {
+      console.error(`[${mountId}] ${errorLabel} failed to load:`, error);
+      mount.innerHTML = fallbackHtml;
+    });
+}
+
 // Site interactions
 document.addEventListener('DOMContentLoaded', () => {
-  // Load the main body from the external partial file.
+  // Load the page partials from the external HTML files.
   // Use VS Code Live Server, because fetch() may fail from a direct file:// path.
-  const mainBodyMount = document.getElementById('mainBodyMount');
-  if (mainBodyMount) {
-    const includePath = mainBodyMount.dataset.include || './code_main_section.html';
+  loadInclude('mainBodyMount', './code_main_section.html', 'Main section', `
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-grid-margin">
+        <div class="border border-red-300 bg-red-50 p-6 text-red-800">
+          <h2 class="font-bold text-xl mb-2">Main section could not load</h2>
+          <p>Open this project using VS Code Live Server. Loading an external HTML partial usually does not work with a direct file:// browser path.</p>
+        </div>
+      </div>
+    </section>
+  `);
 
-    fetch(includePath)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Unable to load ${includePath}: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then((html) => {
-        mainBodyMount.innerHTML = html;
-      })
-      .catch((error) => {
-        console.error('[mainBodyMount] Main section failed to load:', error);
-        mainBodyMount.innerHTML = `
-          <section class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-grid-margin">
-              <div class="border border-red-300 bg-red-50 p-6 text-red-800">
-                <h2 class="font-bold text-xl mb-2">Main section could not load</h2>
-                <p>Open this project using VS Code Live Server. Loading an external HTML partial usually does not work with a direct file:// browser path.</p>
-              </div>
-            </div>
-          </section>
-        `;
-      });
-  }
+  loadInclude('footerMount', './code_footer.html', 'Footer', `
+    <footer class="bg-inverse-surface dark:bg-surface-container-high full-width py-section-gap mt-section-gap">
+      <div class="max-w-7xl mx-auto px-grid-margin text-white">
+        <p class="font-bold">Footer could not load</p>
+        <p>Open this project using VS Code Live Server. Loading an external HTML partial usually does not work with a direct file:// browser path.</p>
+      </div>
+    </footer>
+  `);
 
 
   // Navigation interaction logic
