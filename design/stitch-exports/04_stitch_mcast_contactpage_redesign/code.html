@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1a1c1c",
+                        "secondary-fixed": "#ffdf9c",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "primary-fixed": "#e0e0ff",
+                        "secondary-container": "#fdce65",
+                        "tertiary": "#000000",
+                        "on-primary-container": "#7a7ebf",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e2e2e2",
+                        "surface": "#f9f9f9",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "outline-variant": "#c7c5d1",
+                        "background": "#f9f9f9",
+                        "surface-bright": "#f9f9f9",
+                        "surface-container": "#eeeeee",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#251a00",
+                        "tertiary-container": "#3a0a05",
+                        "primary-container": "#0f134f",
+                        "on-surface-variant": "#464650",
+                        "on-tertiary-fixed": "#3a0a05",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "inverse-primary": "#bfc2ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-primary-fixed": "#0f134f",
+                        "surface-tint": "#555996",
+                        "on-tertiary-fixed-variant": "#72342b",
+                        "on-primary-fixed-variant": "#3d417d",
+                        "surface-dim": "#dadada",
+                        "outline": "#777681",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#edc058",
+                        "deep-blue-light": "#1A1A56",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdad4",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "gold-hover": "#C29B3F",
+                        "white": "#FFFFFF",
+                        "on-tertiary-container": "#bc6f63",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-secondary-container": "#755700",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary": "#785a00",
+                        "primary": "#000000",
+                        "error": "#ba1a1a",
+                        "on-background": "#1a1c1c",
+                        "inverse-surface": "#2f3131",
+                        "mcast-blue": "#000043",
+                        "mcast-gold": "#D7AC46"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "section-gap": "5rem",
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem",
+                        "grid-margin": "2rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Montserrat"],
+                        "title-lg": ["Montserrat"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "label-md": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-sm": ["Montserrat"],
+                        "caption": ["Montserrat"],
+                        "body-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .custom-input:focus {
+            border-color: #000043;
+            box-shadow: 0 0 0 2px rgba(0, 0, 67, 0.1);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-mcast-gold selection:text-white">
+<main class="w-full">
+<!-- 1. Contact Hero -->
+<section class="relative bg-mcast-blue min-h-[400px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="MCAST Campus Hero" class="w-full h-full object-cover opacity-30" src="https://lh3.googleusercontent.com/aida/AP1WRLugqmGHTXDB5meFy4k-Bn1zJSQkC92j-X9wEkO_X8OpQsxIwYr4k_qBQ7Q-fPl0W1z_Giq41qeyd92e86TgxFkFp6B7YWBV2IXHN10_AlFAarND9BfNH4BdoPJFuwjqfA4CXqsjc9kLVFk7uW3Y1HFuaClAg3DIAgfW3SOUXVKLOWYZ6G7cXzJys4-EevJYVXtU0Ne0L_b_qOKPX4S4q17j-8mmTFpKtGetZdNFsS7Ar4KfDOqNH5vB6Ged"/>
+</div>
+<div class="relative z-10 px-grid-margin py-section-gap max-w-7xl mx-auto w-full text-white">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg mb-stack-md">Contact MCAST</h1>
+<p class="font-body-lg text-body-lg max-w-2xl opacity-90 leading-relaxed">
+                    Have questions about our vocational programs, admissions process, or student life? Our dedicated support teams are here to guide you toward your academic goals.
+                </p>
+<div class="mt-stack-lg flex flex-wrap gap-stack-md">
+<span class="inline-flex items-center gap-2 bg-mcast-gold text-mcast-blue font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-gold-hover transition-colors cursor-pointer">
+                        Our Courses
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+<span class="inline-flex items-center gap-2 border-2 border-white text-white font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-white hover:text-mcast-blue transition-all cursor-pointer">
+                        Admissions
+                    </span>
+</div>
+</div>
+</section>
+<!-- 2. Contact Form Section -->
+<section class="bg-surface py-section-gap px-grid-margin">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+<!-- Left Column -->
+<div class="space-y-stack-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-mcast-blue mb-stack-md">Send Us a Message</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Whether you're a prospective student, a current learner, or an industry partner, your enquiries are important to us. Select the appropriate category so we can route your message to the right department.
+                        </p>
+</div>
+<div class="aspect-video rounded-lg overflow-hidden border border-outline-variant bg-surface-container-low">
+<img alt="Student Support Staff" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLsiyHbPiXo9qu5EACA0imrcM3GDgglTFaHX1mp3fz7ejDN2ISf2WFmmE6zup1NBukNn8QYuVb7Ky73ReqE5hmiqsCGKorGTvI2zvvVSVaRzCZ9k7ya2NkjXzFzaKS7VSPnr6ne3vGn_YpfDbIGDVqnZNFB1kS2aCHdu0Fy-e_E3zoPG0EryK9lraDs2pH3Yxr8kyHbDXdESwtL5OCFJ2IuyXgJROFEN5x8dDSBPEkCSid4egsy4vs558_I"/>
+</div>
+<div class="p-stack-lg bg-surface-container-low border border-outline-variant rounded-lg">
+<h4 class="font-title-lg text-title-lg text-mcast-blue mb-stack-sm">Direct Support</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Office Hours: Monday - Friday, 08:00 - 17:00</p>
+<div class="mt-stack-md space-y-2">
+<a class="flex items-center gap-3 text-mcast-blue font-label-md hover:underline" href="tel:+35623987100">
+<span class="material-symbols-outlined text-mcast-gold">call</span> +356 2398 7100
+                            </a>
+<a class="flex items-center gap-3 text-mcast-blue font-label-md hover:underline" href="mailto:information@mcast.edu.mt">
+<span class="material-symbols-outlined text-mcast-gold">mail</span> information@mcast.edu.mt
+                            </a>
+</div>
+</div>
+</div>
+<!-- Right Column (Form) -->
+<div class="bg-white p-8 md:p-10 border border-outline-variant rounded-xl shadow-sm">
+<form action="#" class="space-y-6" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-mcast-blue">Full Name</label>
+<input class="w-full p-3 border border-outline-variant rounded-lg custom-input font-body-md" placeholder="John Doe" required="" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-mcast-blue">Email Address</label>
+<input class="w-full p-3 border border-outline-variant rounded-lg custom-input font-body-md" placeholder="john@example.com" required="" type="email"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-mcast-blue">Phone Number</label>
+<input class="w-full p-3 border border-outline-variant rounded-lg custom-input font-body-md" placeholder="+356 0000 0000" type="tel"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-mcast-blue">Subject</label>
+<select class="w-full p-3 border border-outline-variant rounded-lg custom-input font-body-md">
+<option>General Enquiry</option>
+<option>Admissions &amp; Applications</option>
+<option>Student Support Services</option>
+<option>International Students</option>
+<option>IT Support</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-mcast-blue">Preferred Campus</label>
+<select class="w-full p-3 border border-outline-variant rounded-lg custom-input font-body-md">
+<option>Main Campus, Paola</option>
+<option>Institute for the Creative Arts, Mosta</option>
+<option>Institute of Applied Sciences, Qormi</option>
+<option>Gozo Campus, Ghajnsielem</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-mcast-blue">Message</label>
+<textarea class="w-full p-3 border border-outline-variant rounded-lg custom-input font-body-md" placeholder="How can we help you today?" required="" rows="4"></textarea>
+</div>
+<button class="w-full bg-mcast-blue text-white font-label-md text-label-md py-4 rounded-lg hover:bg-primary-container transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+                            Submit Message
+                            <span class="material-symbols-outlined text-mcast-gold">send</span>
+</button>
+</form>
+</div>
+</div>
+</section>
+<!-- 3. Campus Locations -->
+<section class="bg-surface-container-low py-section-gap px-grid-margin border-y border-outline-variant">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-md text-headline-md text-mcast-blue mb-stack-sm">Our Campuses</h2>
+<div class="w-20 h-1 bg-mcast-gold mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Campus 1 -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row group hover:border-mcast-gold transition-colors duration-300">
+<div class="p-8 flex-1 space-y-4">
+<h3 class="font-title-lg text-title-lg text-mcast-blue">Main Campus</h3>
+<div class="space-y-2 font-body-md text-on-surface-variant">
+<p class="flex items-start gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg mt-1">location_on</span>
+                                    Triq Kordin, Paola, PLA 9032, Malta
+                                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg">call</span>
+                                    +356 2398 7100
+                                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg">mail</span>
+                                    maincampus@mcast.edu.mt
+                                </p>
+</div>
+<button class="mt-stack-md flex items-center gap-2 text-mcast-blue font-label-md group-hover:text-mcast-gold transition-colors">
+                                Go to Maps
+                                <span class="material-symbols-outlined text-mcast-gold group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="w-full md:w-48 h-48 md:h-auto bg-surface-container relative">
+<img alt="Map Location" class="w-full h-full object-cover" data-location="Paola, Malta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArdUQQuPiMa8qzEz7rzn1xnZZ5ci0D53u_Zu6zgdTa-7CIk64AANFEjBqJ9rW-jNJcFKQFcvMPWb3zxtUZdCTEmvS2sQpd_mW_Gf8wjoYfOC-1IdVEWTVcM7mLG3CVRLZNC2y778m6kudPLBYUBwM6P9fx6bAgOUz-W7KiASZubHKHWo74DqcCr1Ij26hD7udPhSzIytBzU-Ci1Pf6YgUFwNF_MEy7sMNXJbOSf7gSVoDsAMhPVKL-oBrP-1rEuyzw9cKfZtVEDgN8"/>
+<div class="absolute inset-0 bg-mcast-blue/10 pointer-events-none"></div>
+</div>
+</div>
+<!-- Campus 2 -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row group hover:border-mcast-gold transition-colors duration-300">
+<div class="p-8 flex-1 space-y-4">
+<h3 class="font-title-lg text-title-lg text-mcast-blue">Creative Arts</h3>
+<div class="space-y-2 font-body-md text-on-surface-variant">
+<p class="flex items-start gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg mt-1">location_on</span>
+                                    Misraħ it-Għonoq, Mosta, MST 1735, Malta
+                                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg">call</span>
+                                    +356 2398 7750
+                                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg">mail</span>
+                                    creativearts@mcast.edu.mt
+                                </p>
+</div>
+<button class="mt-stack-md flex items-center gap-2 text-mcast-blue font-label-md group-hover:text-mcast-gold transition-colors">
+                                Go to Maps
+                                <span class="material-symbols-outlined text-mcast-gold group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="w-full md:w-48 h-48 md:h-auto bg-surface-container relative">
+<img alt="Map Location" class="w-full h-full object-cover" data-location="Mosta, Malta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG2PPhGXnbQ1xC6DYE-gJh5pAHrpD4BqQnN3kw7Zq09CcYRhoeBoqdtk9zt-M_wjpI4_hnwFwuaFT5DdxaRCI2MRs89OIPPBnG_Dz__q-OPiCW2FfehTuySZBo80oygYrKONCXeoiv2wxVf698hA3j58KKLqQyPDIcuFtpwWBIhfMRAeFY5ZznVGFi2XEZjj5F76tkc3Laa-ptmCf3XrIw5e_YGbRyhZnm3nbPMRv0ru5HwtWbuPZZi-d7JAv1eewZdS8PqDOqiBds"/>
+<div class="absolute inset-0 bg-mcast-blue/10 pointer-events-none"></div>
+</div>
+</div>
+<!-- Campus 3 -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row group hover:border-mcast-gold transition-colors duration-300">
+<div class="p-8 flex-1 space-y-4">
+<h3 class="font-title-lg text-title-lg text-mcast-blue">Applied Sciences</h3>
+<div class="space-y-2 font-body-md text-on-surface-variant">
+<p class="flex items-start gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg mt-1">location_on</span>
+                                    Triq l-Imdina, Qormi, QRM 9010, Malta
+                                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg">call</span>
+                                    +356 2398 7800
+                                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg">mail</span>
+                                    appliedsciences@mcast.edu.mt
+                                </p>
+</div>
+<button class="mt-stack-md flex items-center gap-2 text-mcast-blue font-label-md group-hover:text-mcast-gold transition-colors">
+                                Go to Maps
+                                <span class="material-symbols-outlined text-mcast-gold group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="w-full md:w-48 h-48 md:h-auto bg-surface-container relative">
+<img alt="Map Location" class="w-full h-full object-cover" data-location="Qormi, Malta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACfkn9WLG4NOF1Fsk0asVFMcO1oaT_piR7eRmE_AHcZh467t7kOxlf4NnRAf6PVfcuRKA9A518Io5U9MPS3OPwvFhwluHgeYNpPZM7b6_wRSG6vadAgjaWc76g7cHSBgrrPQp7ow5TdsoMOhUCl745uz_WKpCUAUWpTEM_HQ-4HorUuhAq6gi4Wa-ckmbRP1WA51YjKLq4805agux78ITFfdhWlQ6J8BparqqEQGKpyndyFaEmzXlYtpinVOzGjqA-GqBg9KvbKTHk"/>
+<div class="absolute inset-0 bg-mcast-blue/10 pointer-events-none"></div>
+</div>
+</div>
+<!-- Campus 4 -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row group hover:border-mcast-gold transition-colors duration-300">
+<div class="p-8 flex-1 space-y-4">
+<h3 class="font-title-lg text-title-lg text-mcast-blue">Gozo Campus</h3>
+<div class="space-y-2 font-body-md text-on-surface-variant">
+<p class="flex items-start gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg mt-1">location_on</span>
+                                    J.F. De Chambray Street, Għajnsielem, Gozo
+                                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg">call</span>
+                                    +356 2398 7600
+                                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-mcast-gold text-lg">mail</span>
+                                    gozocampus@mcast.edu.mt
+                                </p>
+</div>
+<button class="mt-stack-md flex items-center gap-2 text-mcast-blue font-label-md group-hover:text-mcast-gold transition-colors">
+                                Go to Maps
+                                <span class="material-symbols-outlined text-mcast-gold group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="w-full md:w-48 h-48 md:h-auto bg-surface-container relative">
+<img alt="Map Location" class="w-full h-full object-cover" data-location="Ghajnsielem, Gozo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaV2IdfZfyXEJTy_IxQcjmvQfmdMMqxXTr7jeNY4upqrrt0trcAMDdvOMPeIHBr9HadtDF1QGwT4T7hh42HRO_sF-N8b86AlxsrIzL5b_ITAdPKSutqxIxNtcQbp9IgDO8mn3NAvRWpIwzTMohCh3YmQMa8tSrsGlOintG_vpaIVsT0WJmyTLTS7fR0FLBKHkXxfcstPw0buVRz4wOk1IfJpcA00Xng4mFvBDCH6hKyQHMQzYzeGgoCJnY2weo2y9TN7t6XvEZhc1P"/>
+<div class="absolute inset-0 bg-mcast-blue/10 pointer-events-none"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Help Center (FAQ) -->
+<section class="bg-surface py-section-gap px-grid-margin">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-12">
+<h2 class="font-headline-md text-headline-md text-mcast-blue">Help Centre</h2>
+<p class="font-body-md text-on-surface-variant mt-2">Frequently Asked Questions</p>
+</div>
+<div class="space-y-4">
+<!-- FAQ 1 -->
+<div class="accordion-item border border-outline-variant rounded-lg bg-white overflow-hidden active">
+<button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion(this)">
+<span class="font-title-lg text-mcast-blue">How do I apply for a course?</span>
+<span class="material-symbols-outlined accordion-icon transition-transform duration-300">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="font-body-md text-on-surface-variant">
+                                Applications are submitted online via our admissions portal during the intake period. You will need to provide digital copies of your qualifications and identification documents.
+                            </p>
+</div>
+</div>
+<!-- FAQ 2 -->
+<div class="accordion-item border border-outline-variant rounded-lg bg-white overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion(this)">
+<span class="font-title-lg text-mcast-blue">Guidance appointments?</span>
+<span class="material-symbols-outlined accordion-icon transition-transform duration-300">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="font-body-md text-on-surface-variant">
+                                Prospective students can book a one-on-one session with our Career Guidance team to discuss course options and career paths. Sessions can be booked through our website.
+                            </p>
+</div>
+</div>
+<!-- FAQ 3 -->
+<div class="accordion-item border border-outline-variant rounded-lg bg-white overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion(this)">
+<span class="font-title-lg text-mcast-blue">What are the entry requirements?</span>
+<span class="material-symbols-outlined accordion-icon transition-transform duration-300">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="font-body-md text-on-surface-variant">
+                                Requirements vary by course level. Foundation courses typically require school-leaving certificates, while degree courses require specific A-Level or Diploma qualifications.
+                            </p>
+</div>
+</div>
+<!-- FAQ 4 -->
+<div class="accordion-item border border-outline-variant rounded-lg bg-white overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion(this)">
+<span class="font-title-lg text-mcast-blue">Is there financial support available?</span>
+<span class="material-symbols-outlined accordion-icon transition-transform duration-300">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="font-body-md text-on-surface-variant">
+                                Most MCAST students are eligible for stipends and grants through the national student support scheme. Specialized scholarships are also available for specific programs.
+                            </p>
+</div>
+</div>
+<!-- FAQ 5 -->
+<div class="accordion-item border border-outline-variant rounded-lg bg-white overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleAccordion(this)">
+<span class="font-title-lg text-mcast-blue">How can I contact IT Support?</span>
+<span class="material-symbols-outlined accordion-icon transition-transform duration-300">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="font-body-md text-on-surface-variant">
+                                Current students can reach out to the IT helpdesk via the student portal or by emailing itsupport@mcast.edu.mt for issues related to accounts, Moodle, or campus Wi-Fi.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Newsletter Strip -->
+<section class="bg-mcast-blue py-12 px-grid-margin">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="text-white text-center md:text-left">
+<h3 class="font-headline-sm text-headline-sm">Get updates</h3>
+<p class="font-body-md opacity-80 mt-1">Stay informed about admissions and college events.</p>
+</div>
+<div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+<input class="w-full md:w-80 p-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-white/50 focus:outline-none focus:border-mcast-gold focus:ring-1 focus:ring-mcast-gold font-body-md" placeholder="Your email address" type="email"/>
+<button class="bg-mcast-gold text-mcast-blue font-label-md text-label-md px-8 py-3 rounded-lg hover:bg-gold-hover transition-all whitespace-nowrap">
+                        Subscribe
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<script>
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all items
+            document.querySelectorAll('.accordion-item').forEach(accItem => {
+                accItem.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't already active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body></html>

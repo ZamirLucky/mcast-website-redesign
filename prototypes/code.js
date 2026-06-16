@@ -124,6 +124,49 @@ function loadInclude(mountId, includePath, errorLabel, fallbackHtml) {
     });
 }
 
+function ensurePageStylesheet(href) {
+  if (document.querySelector(`link[href="${href}"]`)) {
+    return;
+  }
+
+  const stylesheet = document.createElement('link');
+  stylesheet.rel = 'stylesheet';
+  stylesheet.href = href;
+  document.head.appendChild(stylesheet);
+}
+
+function ensurePageScript(src) {
+  if (document.querySelector(`script[src="${src}"]`)) {
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.src = src;
+  script.defer = true;
+  document.head.appendChild(script);
+}
+
+function loadContactPage() {
+  ensurePageStylesheet('./contact/contact.css');
+  ensurePageScript('./contact/contact.js');
+
+  loadInclude('mainBodyMount', './contact/contact.html', 'Contact section', `
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-grid-margin">
+        <div class="border border-red-300 bg-red-50 p-6 text-red-800">
+          <h2 class="font-bold text-xl mb-2">Contact section could not load</h2>
+          <p>Open this project using VS Code Live Server. Loading an external HTML partial usually does not work with a direct file:// browser path.</p>
+        </div>
+      </div>
+    </section>
+  `);
+
+  const mainContent = document.getElementById('mainBodyMount');
+  if (mainContent) {
+    mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 // Site interactions
 document.addEventListener('DOMContentLoaded', () => {
   // Load the page partials from the external HTML files.
@@ -206,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   'Innovation'
               ],
               About: [
+                  'Contact Us',
                   'Mission Statement',
                   'MCAST Act',
                   'Board of Governors',
@@ -250,6 +294,15 @@ document.addEventListener('DOMContentLoaded', () => {
                   itemLink.className = 'nav-dropdown-link';
                   itemLink.href = '#';
                   itemLink.textContent = itemText;
+
+                  if (link.textContent.trim() === 'About' && itemText === 'Contact Us') {
+                      itemLink.addEventListener('click', (event) => {
+                          event.preventDefault();
+                          loadContactPage();
+                          hideDropdown();
+                      });
+                  }
+
                   item.appendChild(itemLink);
                   dropdownList.appendChild(item);
               });
