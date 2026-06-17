@@ -175,8 +175,8 @@
     return keywordMatch && tabMatch && modeMatch && instituteMatch && levelMatch && campusMatch;
   }
 
-  function renderCourseAreas() {
-    const grid = document.querySelector('#courseAreaGrid');
+  function renderCourseAreas(page) {
+    const grid = page.querySelector('#courseAreaGrid');
     if (!grid) {
       return;
     }
@@ -196,8 +196,8 @@
     `).join('');
   }
 
-  function renderInstitutes() {
-    const grid = document.querySelector('#instituteGrid');
+  function renderInstitutes(page) {
+    const grid = page.querySelector('#instituteGrid');
     if (!grid) {
       return;
     }
@@ -254,36 +254,36 @@
     `;
   }
 
-  function applyFilters() {
-    document.querySelectorAll('.course-card').forEach((card, index) => {
+  function applyFilters(page) {
+    page.querySelectorAll('.course-card').forEach((card, index) => {
       card.classList.toggle('is-hidden', !matchesFilters(courseAreas[index]));
     });
 
-    document.querySelectorAll('[data-institute-index]').forEach((card) => {
+    page.querySelectorAll('[data-institute-index]').forEach((card) => {
       const institute = institutes[Number(card.dataset.instituteIndex)];
       card.classList.toggle('is-hidden', !matchesFilters(institute));
     });
 
-    document.querySelectorAll('.institute-directory-column').forEach((column) => {
+    page.querySelectorAll('.institute-directory-column').forEach((column) => {
       const visibleItems = column.querySelectorAll('.institute-directory-item:not(.is-hidden)');
       column.classList.toggle('is-hidden', visibleItems.length === 0);
     });
   }
 
-  function bindEvents() {
-    const form = document.querySelector('#catalogueSearch');
-    const keyword = document.querySelector('#catalogueKeyword');
-    const level = document.querySelector('#catalogueLevel');
-    const institute = document.querySelector('#catalogueInstitute');
-    const mode = document.querySelector('#catalogueMode');
-    const campus = document.querySelector('#catalogueCampus');
+  function bindEvents(page) {
+    const form = page.querySelector('#catalogueSearch');
+    const keyword = page.querySelector('#catalogueKeyword');
+    const level = page.querySelector('#catalogueLevel');
+    const institute = page.querySelector('#catalogueInstitute');
+    const mode = page.querySelector('#catalogueMode');
+    const campus = page.querySelector('#catalogueCampus');
 
-    document.querySelectorAll('.catalogue-tab').forEach((tab) => {
+    page.querySelectorAll('.catalogue-tab').forEach((tab) => {
       tab.addEventListener('click', () => {
-        document.querySelectorAll('.catalogue-tab').forEach((item) => item.classList.remove('is-active'));
+        page.querySelectorAll('.catalogue-tab').forEach((item) => item.classList.remove('is-active'));
         tab.classList.add('is-active');
         state.filter = tab.dataset.filter || 'all';
-        applyFilters();
+        applyFilters(page);
       });
     });
 
@@ -298,23 +298,56 @@
         state.institute = institute.value;
         state.mode = mode.value;
         state.campus = campus.value;
-        applyFilters();
+        applyFilters(page);
       });
     });
 
     if (form) {
       form.addEventListener('submit', (event) => {
         event.preventDefault();
-        applyFilters();
+        applyFilters(page);
       });
     }
   }
 
+  function resetState() {
+    state.filter = 'all';
+    state.keyword = '';
+    state.level = '';
+    state.institute = '';
+    state.mode = '';
+    state.campus = '';
+  }
+
+  function initCataloguePage(root) {
+    const pages = root.querySelectorAll
+      ? root.querySelectorAll('.catalogue-page:not([data-catalogue-ready])')
+      : [];
+
+    pages.forEach((page) => {
+      page.dataset.catalogueReady = 'true';
+      resetState();
+      renderCourseAreas(page);
+      renderInstitutes(page);
+      bindEvents(page);
+      applyFilters(page);
+    });
+  }
+
   function bootCatalogue() {
-    renderCourseAreas();
-    renderInstitutes();
-    bindEvents();
-    applyFilters();
+    initCataloguePage(document);
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            initCataloguePage(node.matches('.catalogue-page') ? node.parentNode : node);
+          }
+        });
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   if (document.readyState === 'loading') {

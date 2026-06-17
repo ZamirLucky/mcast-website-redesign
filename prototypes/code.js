@@ -167,6 +167,27 @@ function loadContactPage() {
   }
 }
 
+function loadCataloguePage() {
+  ensurePageStylesheet('./full-catalogue/catalogue.css');
+  ensurePageScript('./full-catalogue/catalogue.js');
+
+  loadInclude('mainBodyMount', './full-catalogue/catalogue.html', 'Catalogue section', `
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-grid-margin">
+        <div class="border border-red-300 bg-red-50 p-6 text-red-800">
+          <h2 class="font-bold text-xl mb-2">Catalogue section could not load</h2>
+          <p>Open this project using VS Code Live Server. Loading an external HTML partial usually does not work with a direct file:// browser path.</p>
+        </div>
+      </div>
+    </section>
+  `);
+
+  const mainContent = document.getElementById('mainBodyMount');
+  if (mainContent) {
+    mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 // Site interactions
 document.addEventListener('DOMContentLoaded', () => {
   // Load the page partials from the external HTML files.
@@ -190,6 +211,16 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </footer>
   `);
+
+  document.addEventListener('click', (event) => {
+    const catalogueTrigger = event.target.closest('[data-page-target="catalogue"]');
+    if (!catalogueTrigger) {
+      return;
+    }
+
+    event.preventDefault();
+    loadCataloguePage();
+  });
 
 
   // Navigation interaction logic
@@ -299,6 +330,14 @@ document.addEventListener('DOMContentLoaded', () => {
                       itemLink.addEventListener('click', (event) => {
                           event.preventDefault();
                           loadContactPage();
+                          hideDropdown();
+                      });
+                  }
+
+                  if (link.textContent.trim() === 'Study' && itemText === 'Full-time courses') {
+                      itemLink.addEventListener('click', (event) => {
+                          event.preventDefault();
+                          loadCataloguePage();
                           hideDropdown();
                       });
                   }

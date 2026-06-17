@@ -1,43 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MCAST Full Course Catalogue</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script>
-    window.tailwind = window.tailwind || {};
-    window.tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            mcast: {
-              blue: '#000043',
-              gold: '#D7AC46',
-              ink: '#11124A',
-              mist: '#F4F5F7',
-              line: '#E2E5EA'
-            }
-          },
-          fontFamily: {
-            sans: ['Montserrat', 'sans-serif']
-          }
-        }
-      }
-    };
-  </script>
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-  <link rel="stylesheet" href="./catalogue.css" />
-</head>
-<body class="bg-mcast-mist font-sans text-mcast-ink">
-  <main class="catalogue-page">
+<section class="catalogue-page" aria-labelledby="catalogue-page-title">
     <section class="catalogue-hero">
       <div class="catalogue-container catalogue-hero__inner">
         <div class="catalogue-hero__copy">
           <p class="catalogue-kicker catalogue-kicker--light">Course Catalogue</p>
-          <h1>Full Course Catalogue</h1>
+          <h1 id="catalogue-page-title">Full Course Catalogue</h1>
           <p class="catalogue-hero__lead">Search and browse MCAST courses by keyword, MQF level, institute, study mode, and campus.</p>
         </div>
 
@@ -198,8 +164,4 @@
         </section>
       </div>
     </section>
-  </main>
-
-  <script src="./catalogue.js"></script>
-</body>
-</html>
+</section>
