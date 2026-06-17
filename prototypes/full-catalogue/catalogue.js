@@ -60,85 +60,98 @@
     {
       code: 'IET',
       name: 'Institute of Engineering and Transport',
-      details: '61 courses - 8 departments',
-      accent: '#ef533f',
+      courses: 61,
+      departments: 8,
+      description: 'Engineering, transport, aviation, maritime and technical workshop pathways.',
       tags: ['iet', 'full-time', 'apprenticeship'],
-      campus: 'malta'
+      campus: 'malta',
+      featured: true,
+      theme: 'deep'
     },
     {
       code: 'IAS',
       name: 'Institute of Applied Sciences',
-      details: '40 courses - 2 departments',
-      accent: '#4caf6d',
+      courses: 40,
+      departments: 2,
+      description: 'Applied science routes across laboratories, health, sustainability and research.',
       tags: ['ias', 'full-time'],
-      campus: 'malta'
-    },
-    {
-      code: 'ICA',
-      name: 'Institute for the Creative Arts',
-      details: '32 courses',
-      accent: '#dc4687',
-      tags: ['ica', 'full-time', 'part-time'],
-      campus: 'malta'
-    },
-    {
-      code: 'ICS',
-      name: 'Institute of Community Services',
-      details: '29 courses',
-      accent: '#7a58b3',
-      tags: ['ics', 'full-time', 'part-time'],
-      campus: 'malta'
+      campus: 'malta',
+      featured: true,
+      theme: 'light'
     },
     {
       code: 'ICT',
       name: 'Institute of Information and Communication Technology',
-      details: '18 courses',
-      accent: '#6e47ae',
+      courses: 18,
+      description: 'Computing, networks, software, cyber, data and digital infrastructure courses.',
       tags: ['ict', 'full-time', 'part-time', 'international'],
-      campus: 'malta'
+      campus: 'malta',
+      featured: true,
+      theme: 'light'
+    },
+    {
+      code: 'ICA',
+      name: 'Institute for the Creative Arts',
+      courses: 32,
+      tags: ['ica', 'full-time', 'part-time'],
+      campus: 'malta',
+      group: 'Creative and Community'
+    },
+    {
+      code: 'ICS',
+      name: 'Institute of Community Services',
+      courses: 29,
+      tags: ['ics', 'full-time', 'part-time'],
+      campus: 'malta',
+      group: 'Creative and Community'
     },
     {
       code: 'IBMC',
       name: 'Institute of Business Management and Commerce',
-      details: '13 courses',
-      accent: '#ef4564',
+      courses: 13,
       tags: ['ibmc', 'full-time', 'short'],
-      campus: 'malta'
-    },
-    {
-      code: 'GOZO',
-      name: 'Gozo Campus',
-      details: '23 courses',
-      accent: '#36bad7',
-      tags: ['full-time', 'part-time', 'short'],
-      campus: 'gozo'
-    },
-    {
-      code: 'TRD',
-      name: 'Institute for the Trades',
-      details: '3 courses',
-      accent: '#6975c6',
-      tags: ['apprenticeship', 'short'],
-      campus: 'malta'
-    },
-    {
-      code: 'CLE',
-      name: 'Centre for Learning and Employability',
-      details: '3 courses',
-      accent: '#d7ac46',
-      tags: ['short', 'part-time'],
       campus: 'malta',
-      wide: true
+      group: 'Business and Research'
     },
     {
       code: 'ARIC',
       name: 'Applied Research and Innovation Centre',
-      details: '4 courses',
-      accent: '#4d63c7',
+      courses: 4,
       tags: ['international', 'part-time'],
       campus: 'malta',
-      wide: true
+      group: 'Business and Research'
+    },
+    {
+      code: 'GOZO',
+      name: 'Gozo Campus',
+      courses: 23,
+      tags: ['full-time', 'part-time', 'short'],
+      campus: 'gozo',
+      group: 'Campuses and Trades'
+    },
+    {
+      code: 'TRD',
+      name: 'Institute for the Trades',
+      courses: 3,
+      tags: ['apprenticeship', 'short'],
+      campus: 'malta',
+      group: 'Campuses and Trades'
+    },
+    {
+      code: 'CLE',
+      name: 'Centre for Learning and Employability',
+      courses: 3,
+      tags: ['short', 'part-time'],
+      campus: 'malta',
+      group: 'Access and Employability'
     }
+  ];
+
+  const instituteGroups = [
+    'Creative and Community',
+    'Business and Research',
+    'Campuses and Trades',
+    'Access and Employability'
   ];
 
   const state = {
@@ -151,7 +164,7 @@
   };
 
   function matchesFilters(item) {
-    const haystack = `${item.title || item.name} ${item.description || ''} ${item.details || ''}`.toLowerCase();
+    const haystack = `${item.title || item.name} ${item.description || ''} ${item.group || ''}`.toLowerCase();
     const keywordMatch = !state.keyword || haystack.includes(state.keyword);
     const tabMatch = state.filter === 'all' || item.tags.includes(state.filter);
     const modeMatch = !state.mode || item.tags.includes(state.mode);
@@ -189,16 +202,56 @@
       return;
     }
 
-    grid.innerHTML = institutes.map((institute) => `
-      <article class="institute-card${institute.wide ? ' institute-card--wide' : ''}" data-name="${institute.name}" style="--accent: ${institute.accent}">
-        <div class="institute-card__head">
-          <span class="institute-badge">${institute.code}</span>
+    const featuredCards = institutes
+      .map((institute, index) => ({ ...institute, index }))
+      .filter((institute) => institute.featured)
+      .map((institute) => `
+        <article class="institute-feature-card institute-feature-card--${institute.theme}" data-institute-index="${institute.index}">
+          <div class="institute-feature-card__top">
+            <span class="institute-badge">${institute.code}</span>
+            <span class="institute-feature-card__arrow" aria-hidden="true">-&gt;</span>
+          </div>
           <h3>${institute.name}</h3>
-        </div>
-        <p>${institute.details}</p>
-        <button class="text-link" type="button">View courses +</button>
-      </article>
-    `).join('');
+          <p>${institute.description}</p>
+          <div class="institute-feature-card__meta">
+            <span><strong>${institute.courses}</strong> courses</span>
+            ${institute.departments ? `<span><strong>${institute.departments}</strong> departments</span>` : ''}
+          </div>
+          <button class="text-link" type="button">View courses -&gt;</button>
+        </article>
+      `).join('');
+
+    const directoryColumns = instituteGroups.map((group) => {
+      const groupItems = institutes
+        .map((institute, index) => ({ ...institute, index }))
+        .filter((institute) => institute.group === group)
+        .map((institute) => `
+          <article class="institute-directory-item" data-institute-index="${institute.index}">
+            <span class="institute-directory-item__dot" aria-hidden="true"></span>
+            <div>
+              <h4>${institute.name}</h4>
+              <p>${institute.courses} courses</p>
+              <button class="text-link text-link--micro" type="button">View courses</button>
+            </div>
+          </article>
+        `).join('');
+
+      return `
+        <section class="institute-directory-column" aria-label="${group}">
+          <h3>${group}</h3>
+          ${groupItems}
+        </section>
+      `;
+    }).join('');
+
+    grid.innerHTML = `
+      <div class="institute-feature-grid">
+        ${featuredCards}
+      </div>
+      <div class="institute-directory">
+        ${directoryColumns}
+      </div>
+    `;
   }
 
   function applyFilters() {
@@ -206,8 +259,14 @@
       card.classList.toggle('is-hidden', !matchesFilters(courseAreas[index]));
     });
 
-    document.querySelectorAll('.institute-card').forEach((card, index) => {
-      card.classList.toggle('is-hidden', !matchesFilters(institutes[index]));
+    document.querySelectorAll('[data-institute-index]').forEach((card) => {
+      const institute = institutes[Number(card.dataset.instituteIndex)];
+      card.classList.toggle('is-hidden', !matchesFilters(institute));
+    });
+
+    document.querySelectorAll('.institute-directory-column').forEach((column) => {
+      const visibleItems = column.querySelectorAll('.institute-directory-item:not(.is-hidden)');
+      column.classList.toggle('is-hidden', visibleItems.length === 0);
     });
   }
 
