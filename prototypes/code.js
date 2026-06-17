@@ -227,6 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
           const navLinks = document.querySelectorAll('nav > div ul > li > a');
           navLinks.forEach(link => {
               link.addEventListener('click', (e) => {
+                  if (link.textContent.trim() === 'Support') {
+                      e.preventDefault();
+                      loadContactPage();
+                  }
+
                   navLinks.forEach(l => {
                       l.classList.remove('text-white', 'border-b-2', 'border-royal-gold');
                       l.classList.add('text-white/80');
@@ -280,7 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
                   'Innovation'
               ],
               About: [
-                  'Contact Us',
                   'Mission Statement',
                   'MCAST Act',
                   'Board of Governors',
@@ -325,14 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
                   itemLink.className = 'nav-dropdown-link';
                   itemLink.href = '#';
                   itemLink.textContent = itemText;
-
-                  if (link.textContent.trim() === 'About' && itemText === 'Contact Us') {
-                      itemLink.addEventListener('click', (event) => {
-                          event.preventDefault();
-                          loadContactPage();
-                          hideDropdown();
-                      });
-                  }
 
                   if (link.textContent.trim() === 'Study' && itemText === 'Full-time courses') {
                       itemLink.addEventListener('click', (event) => {
