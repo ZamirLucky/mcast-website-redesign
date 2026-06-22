@@ -431,25 +431,44 @@
   transform: rotate(4deg);
 }
 
-.campus-map__route {
-  position: absolute;
-  width: 82%;
-  height: 1px;
-  top: 56%;
-  left: 8%;
-  background: rgba(215, 172, 70, 0.52);
-  transform: rotate(-16deg);
+.campus-map--real {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 164px;
+  height: 100%;
+  max-height: none;
+  border: 1px solid #D6E7EC;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--mcast-soft);
 }
 
-.campus-map__dot {
-  position: absolute;
-  top: 50%;
-  left: 58%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--mcast-gold);
-  box-shadow: 0 0 0 5px rgba(215, 172, 70, 0.18);
+.campus-map--real::before,
+.campus-map--real::after {
+  content: none;
+}
+
+.campus-map--real .gm-style {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.campus-map--ready {
+  display: block;
+}
+
+.campus-map__fallback {
+  margin: 0;
+  padding: 18px;
+  color: var(--mcast-muted);
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.campus-map--ready .campus-map__fallback {
+  display: none;
 }
 
 .contact-faq {
@@ -739,6 +758,11 @@
     min-height: 72px;
     height: 92px;
     max-height: none;
+  }
+
+  .campus-map--real {
+    min-height: 180px;
+    height: 180px;
   }
 
   .campus-card__map-link {
