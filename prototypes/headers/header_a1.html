@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCAST Header Concept A - Split Institutional Masthead</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..600,0..1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mcastBlue: "#000043",
+            mcastGold: "#D7AC46",
+            mcastLight: "#F9F9F9",
+            mcastGrey: "#F3F3F3",
+            mcastBorder: "#E2E2E2",
+            mcastMuted: "#464650"
+          },
+          fontFamily: {
+            sans: ["Montserrat", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 450, "GRAD" 0, "opsz" 24;
+    }
+
+    .header-search {
+      position: relative;
+      z-index: 30;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .header-search__toggle,
+    .header-search__submit {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border-radius: 2px;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    .header-search__toggle {
+      color: #FFFFFF;
+    }
+
+    .header-search__toggle:hover,
+    .header-search__toggle:focus {
+      color: #D7AC46;
+      outline: none;
+    }
+
+    .header-search__panel {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      display: flex;
+      align-items: center;
+      width: clamp(420px, 42vw, 520px);
+      height: 46px;
+      overflow: hidden;
+      border: 1px solid #D7AC46;
+      border-radius: 2px;
+      background: #FFFFFF;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-50%) scaleX(0.98);
+      transform-origin: right center;
+      transition: opacity 150ms ease, transform 180ms ease;
+      z-index: 30;
+    }
+
+    .header-search__input {
+      flex: 1 1 auto;
+      min-width: 0;
+      height: 100%;
+      padding: 0 14px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #000043;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .header-search__input::placeholder {
+      color: rgba(0, 0, 67, 0.62);
+    }
+
+    .header-search__submit {
+      flex: 0 0 44px;
+      color: #000043;
+    }
+
+    .header-search__submit:hover,
+    .header-search__submit:focus {
+      color: #D7AC46;
+      outline: none;
+    }
+
+    .header-search.is-open .header-search__toggle {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .header-search.is-open .header-search__panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%) scaleX(1);
+    }
+
+    .nav-dropdown { position: relative; display: flex; align-items: stretch; }
+    .nav-dropdown__trigger { display: flex; align-items: center; }
+    .nav-dropdown__panel {
+      position: absolute; top: 100%; left: 0; z-index: 30; width: 320px; padding: 8px 0;
+      border: 1px solid rgba(0, 0, 67, 0.16); border-top: 3px solid #D7AC46;
+      background: #FFFFFF; box-shadow: 0 8px 18px rgba(0, 0, 67, 0.12);
+      opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(6px);
+      transition: opacity 150ms ease, transform 150ms ease, visibility 0s linear 150ms;
+    }
+    .nav-dropdown:last-child .nav-dropdown__panel { right: 0; left: auto; }
+    .nav-dropdown--services .nav-dropdown__panel { width: 340px; }
+    .nav-dropdown--about .nav-dropdown__panel { width: 360px; }
+    .nav-dropdown:hover .nav-dropdown__panel,
+    .nav-dropdown:focus-within .nav-dropdown__panel {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s;
+    }
+    .nav-dropdown__link {
+      display: block; padding: 10px 16px; border-left: 3px solid transparent; color: #000043;
+      font-size: 12px; font-weight: 600; line-height: 1.35; text-transform: none; letter-spacing: 0.01em;
+      transition: border-color 150ms ease, color 150ms ease, background-color 150ms ease;
+    }
+    .nav-dropdown__link:hover,
+    .nav-dropdown__link:focus {
+      border-left-color: #D7AC46; background: rgba(215, 172, 70, 0.08); color: #D7AC46; outline: none;
+    }
+  </style>
+</head>
+<body class="bg-mcastLight font-sans text-mcastBlue antialiased">
+  <div class="min-h-screen">
+    <header class="mx-auto max-w-7xl border-b border-mcastBorder bg-white">
+      <div class="grid lg:grid-cols-[360px_minmax(0,1fr)]">
+        <a class="flex min-h-[108px] items-center justify-center border-b border-mcastGold bg-mcastBlue px-5 py-5 lg:min-h-[124px] lg:border-b-0 lg:border-r" href="#" aria-label="MCAST home">
+          <img class="h-[88px] w-auto max-w-[320px] object-contain lg:h-[104px] lg:max-w-[380px]" src="../mcast_logo.png" alt="MCAST logo" />
+        </a>
+
+        <div class="flex flex-col bg-mcastBlue text-white">
+          <div class="hidden items-center justify-end gap-5 px-8 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white/80 lg:flex">
+            <a class="flex items-center gap-1.5 transition hover:text-mcastGold focus:text-mcastGold" href="#">
+              <span class="material-symbols-outlined text-[17px]" aria-hidden="true">badge</span>
+              Staff Intranet
+            </a>
+            <span class="h-4 w-px bg-white/20" aria-hidden="true"></span>
+            <a class="flex items-center gap-1.5 transition hover:text-mcastGold focus:text-mcastGold" href="#">
+              <span class="material-symbols-outlined text-[17px]" aria-hidden="true">computer</span>
+              Students Online System
+            </a>
+          </div>
+
+          <div class="relative flex min-h-[76px] items-center justify-between gap-4 px-5 lg:px-8">
+            <nav class="hidden min-w-0 flex-1 items-stretch lg:flex" aria-label="Primary navigation">
+              <div class="nav-dropdown"><a class="nav-dropdown__trigger relative px-2 text-sm font-bold uppercase tracking-[0.08em] text-white" href="#">Study<span class="absolute inset-x-2 bottom-0 h-[3px] bg-mcastGold"></span></a><div class="nav-dropdown__panel"><a class="nav-dropdown__link" href="#">Academic Calendar</a><a class="nav-dropdown__link" href="#">Apply Online</a><a class="nav-dropdown__link" href="#">Late Applications</a><a class="nav-dropdown__link" href="#">Full-Time Courses Important Dates 2025/2026</a><a class="nav-dropdown__link" href="#">Full-time courses</a><a class="nav-dropdown__link" href="#">Part-time courses</a><a class="nav-dropdown__link" href="#">Master Courses</a><a class="nav-dropdown__link" href="#">Doctoral Programme DRes</a><a class="nav-dropdown__link" href="#">Online Learning</a><a class="nav-dropdown__link" href="#">Continuous Professional Development</a><a class="nav-dropdown__link" href="#">International Students</a></div></div>
+              <div class="nav-dropdown nav-dropdown--services"><a class="nav-dropdown__trigger px-2 text-sm font-semibold uppercase tracking-[0.08em] text-white/86 transition hover:text-white hover:shadow-[inset_0_-3px_0_#D7AC46]" href="#">Services</a><div class="nav-dropdown__panel"><a class="nav-dropdown__link" href="#">Apprenticeships</a><a class="nav-dropdown__link" href="#">Career Guidance</a><a class="nav-dropdown__link" href="#">Chaplaincy</a><a class="nav-dropdown__link" href="#">Childcare Centre</a><a class="nav-dropdown__link" href="#">Community Social Responsibility (CSR)</a><a class="nav-dropdown__link" href="#">CLE</a><a class="nav-dropdown__link" href="#">ERASMUS+Projects &amp; Mobility Office</a><a class="nav-dropdown__link" href="#">Grievance Office</a><a class="nav-dropdown__link" href="#">Hair and Beauty Salon</a><a class="nav-dropdown__link" href="#">IEU</a><a class="nav-dropdown__link" href="#">Sports and Fitness</a><a class="nav-dropdown__link" href="#">Stipends Office</a><a class="nav-dropdown__link" href="#">Student Liaison</a><a class="nav-dropdown__link" href="#">Wellbeing Hub</a><a class="nav-dropdown__link" href="#">Youth Hub</a></div></div>
+              <div class="nav-dropdown"><a class="nav-dropdown__trigger px-2 text-sm font-semibold uppercase tracking-[0.08em] text-white/86 transition hover:text-white hover:shadow-[inset_0_-3px_0_#D7AC46]" href="#">Research</a><div class="nav-dropdown__panel"><a class="nav-dropdown__link" href="#">Applied Research Journal</a><a class="nav-dropdown__link" href="#">Research Themes</a><a class="nav-dropdown__link" href="#">Postdoctoral Fellowship</a><a class="nav-dropdown__link" href="#">MCAST Monograph Series</a><a class="nav-dropdown__link" href="#">Library</a><a class="nav-dropdown__link" href="#">Research Fellowship Scheme</a><a class="nav-dropdown__link" href="#">Research Framework</a><a class="nav-dropdown__link" href="#">Research Conferences</a><a class="nav-dropdown__link" href="#">Research Procedures</a><a class="nav-dropdown__link" href="#">Innovation</a></div></div>
+              <div class="nav-dropdown nav-dropdown--about"><a class="nav-dropdown__trigger px-2 text-sm font-semibold uppercase tracking-[0.08em] text-white/86 transition hover:text-white hover:shadow-[inset_0_-3px_0_#D7AC46]" href="#">About</a><div class="nav-dropdown__panel"><a class="nav-dropdown__link" href="#">Mission Statement</a><a class="nav-dropdown__link" href="#">MCAST Act</a><a class="nav-dropdown__link" href="#">Board of Governors</a><a class="nav-dropdown__link" href="#">Principal&#8217;s Office</a><a class="nav-dropdown__link" href="#">Corporate Services</a><a class="nav-dropdown__link" href="#">Institutes</a><a class="nav-dropdown__link" href="#">Regulatory Services</a><a class="nav-dropdown__link" href="#">Research and Student Academic Management</a><a class="nav-dropdown__link" href="#">Student Experience</a><a class="nav-dropdown__link" href="#">IT Systems and Data Securities</a><a class="nav-dropdown__link" href="#">Publications</a><a class="nav-dropdown__link" href="#">Statutory Meetings</a><a class="nav-dropdown__link" href="#">Graduation Pass Rates</a></div></div>
+              <a class="flex items-center px-2 text-sm font-semibold uppercase tracking-[0.08em] text-white/86 transition hover:text-white hover:shadow-[inset_0_-3px_0_#D7AC46]" href="#">Support</a>
+              <a class="flex items-center px-2 text-sm font-semibold uppercase tracking-[0.08em] text-white/86 transition hover:text-white hover:shadow-[inset_0_-3px_0_#D7AC46]" href="#">Students' Info Page</a>
+            </nav>
+
+            <div class="ml-auto flex items-center gap-2 border-white/15 lg:border-l lg:pl-5">
+              <div class="header-search" data-header-search>
+                <button class="header-search__toggle" type="button" aria-label="Open search" aria-expanded="false" data-search-toggle>
+                  <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                </button>
+                <form class="header-search__panel" action="#" role="search">
+                  <input
+                    class="header-search__input"
+                    type="search"
+                    name="search"
+                    placeholder="Search courses or info"
+                    aria-label="Search courses or information"
+                  />
+                  <button class="header-search__submit" type="submit" aria-label="Search">
+                    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                  </button>
+                </form>
+              </div>
+              <button class="grid h-10 w-10 place-items-center rounded-sm text-white transition hover:bg-white/10 hover:text-mcastGold" type="button" aria-label="Accessibility">
+                <span class="material-symbols-outlined">accessibility_new</span>
+              </button>
+              <button class="grid h-10 w-10 place-items-center rounded-sm text-white lg:hidden" type="button" aria-label="Open menu">
+                <span class="material-symbols-outlined">menu</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+      <div class="border border-mcastBorder bg-white px-6 py-10 text-center text-sm font-semibold uppercase tracking-[0.16em] text-mcastMuted">
+        Header concept preview
+      </div>
+    </main>
+  </div>
+  <script>
+    const headerSearch = document.querySelector("[data-header-search]");
+
+    if (headerSearch) {
+      const searchForm = headerSearch.querySelector("form");
+      const searchInput = headerSearch.querySelector("input");
+      const searchButton = headerSearch.querySelector("button");
+
+      const setSearchOpen = (isOpen) => {
+        headerSearch.classList.toggle("is-open", isOpen);
+        searchButton.setAttribute("aria-expanded", String(isOpen));
+
+        if (isOpen) {
+          window.requestAnimationFrame(() => searchInput.focus());
+        }
+      };
+
+      searchButton.addEventListener("click", () => {
+        setSearchOpen(!headerSearch.classList.contains("is-open"));
+      });
+
+      searchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && headerSearch.classList.contains("is-open")) {
+          setSearchOpen(false);
+          searchButton.focus();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!headerSearch.contains(event.target)) {
+          setSearchOpen(false);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
