@@ -110,6 +110,29 @@ tailwind.config = {
 
 const FOOTER_BREAKPOINT = '(min-width: 768px)';
 let footerLoadRequestId = 0;
+let headerLoadRequestId = 0;
+let headerConceptCSearchState = null;
+let accessibilityWidgetState = null;
+
+const ACCESSIBILITY_BODY_CLASSES = [
+  'accessibility-text-large',
+  'accessibility-text-small',
+  'accessibility-grayscale',
+  'accessibility-high-contrast',
+  'accessibility-negative-contrast',
+  'accessibility-light-background',
+  'accessibility-underline-links',
+  'accessibility-readable-font'
+];
+
+const HEADER_CONCEPT_C_CLASS_TOKEN_REPLACEMENTS = [
+  ['mcastGold', 'royal-gold'],
+  ['mcastBlue', 'mcast-blue'],
+  ['mcastBorder', 'mcast-border'],
+  ['mcastMuted', 'mcast-text-dim'],
+  ['mcastLight', 'background'],
+  ['mcastGrey', 'mcast-grey']
+];
 
 function loadInclude(mountId, includePath, errorLabel, fallbackHtml) {
   const mount = document.getElementById(mountId);
@@ -153,6 +176,404 @@ function ensurePageScript(src) {
   script.src = src;
   script.defer = true;
   document.head.appendChild(script);
+}
+
+function getHeaderConceptCPaths() {
+  const isPrototypePage = window.location.pathname.includes('/prototypes/');
+
+  if (isPrototypePage) {
+    return ['./headers/header_c.html', './prototypes/headers/header_c.html'];
+  }
+
+  return ['./prototypes/headers/header_c.html', './headers/header_c.html'];
+}
+
+function fetchHeaderConceptC(paths) {
+  let currentIndex = 0;
+  let lastError = null;
+
+  function tryNextPath() {
+    if (currentIndex >= paths.length) {
+      return Promise.reject(lastError || new Error('Unable to load Header Concept C.'));
+    }
+
+    const headerPath = paths[currentIndex];
+    currentIndex += 1;
+
+    return fetch(headerPath)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Unable to load ${headerPath}: ${response.status}`);
+        }
+
+        return response.text().then((html) => ({ html, headerPath }));
+      })
+      .catch((error) => {
+        lastError = error;
+        return tryNextPath();
+      });
+  }
+
+  return tryNextPath();
+}
+
+function replaceHeaderConceptCClassTokens(className) {
+  return HEADER_CONCEPT_C_CLASS_TOKEN_REPLACEMENTS.reduce(
+    (updatedClassName, [fromToken, toToken]) => updatedClassName.replaceAll(fromToken, toToken),
+    className
+  );
+}
+
+function removeHeaderConceptCAccessibilityButton(header) {
+  const interactiveElements = [...header.querySelectorAll('button, a')];
+
+  interactiveElements.forEach((element) => {
+    const ariaLabel = (element.getAttribute('aria-label') || '').trim().toLowerCase();
+    const hasAccessibilityIcon = [...element.querySelectorAll('.material-symbols-outlined')].some(
+      (icon) => {
+        const iconName = icon.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
+        return iconName === 'accessibility_new' || iconName === 'accessibility';
+      }
+    );
+
+    if (ariaLabel.includes('accessibility') || hasAccessibilityIcon) {
+      element.remove();
+    }
+  });
+}
+
+function normaliseHeaderConceptCMarkup(header) {
+  const headerElements = [header, ...header.querySelectorAll('*')];
+  const classNameReplacements = new Map([
+    ['nav-dropdown', 'header-c-dropdown'],
+    ['nav-dropdown__trigger', 'header-c-dropdown__trigger'],
+    ['nav-dropdown__panel', 'header-c-dropdown__panel'],
+    ['nav-dropdown__link', 'header-c-dropdown__link'],
+    ['nav-dropdown--services', 'header-c-dropdown--services'],
+    ['nav-dropdown--about', 'header-c-dropdown--about']
+  ]);
+
+  header.dataset.headerConcept = 'c';
+  removeHeaderConceptCAccessibilityButton(header);
+
+  headerElements.forEach((element) => {
+    if (element.hasAttribute('class')) {
+      element.setAttribute(
+        'class',
+        replaceHeaderConceptCClassTokens(element.getAttribute('class'))
+      );
+    }
+
+    classNameReplacements.forEach((replacement, original) => {
+      if (element.classList.contains(original)) {
+        element.classList.replace(original, replacement);
+      }
+    });
+  });
+
+  const logo = header.querySelector('img[alt*="MCAST"]');
+  if (logo) {
+    logo.setAttribute('src', './images/mcast_logo.png');
+  }
+
+  const homeLink = header.querySelector('a[aria-label="MCAST home"]');
+  if (homeLink) {
+    homeLink.dataset.pageTarget = 'home';
+    homeLink.setAttribute('href', '#');
+  }
+
+  const supportLink = [...header.querySelectorAll('a')].find(
+    (link) => link.textContent.trim() === 'Support'
+  );
+  if (supportLink) {
+    supportLink.dataset.pageTarget = 'contact';
+  }
+
+  const fullTimeCoursesLink = [...header.querySelectorAll('a')].find(
+    (link) => link.textContent.trim() === 'Full-time courses'
+  );
+  if (fullTimeCoursesLink) {
+    fullTimeCoursesLink.dataset.pageTarget = 'catalogue';
+  }
+
+  const searchForm = header.querySelector('[data-header-search] form');
+  if (searchForm) {
+    searchForm.setAttribute('action', '#');
+  }
+
+  return header;
+}
+
+function setHeaderConceptCSearchOpen(isOpen) {
+  if (!headerConceptCSearchState) {
+    return;
+  }
+
+  const { headerSearch, searchInput, searchToggle } = headerConceptCSearchState;
+  headerSearch.classList.toggle('is-open', isOpen);
+  searchToggle.setAttribute('aria-expanded', String(isOpen));
+
+  if (isOpen) {
+    window.requestAnimationFrame(() => {
+      searchInput.focus();
+    });
+  }
+}
+
+function setAccessibilityWidgetOpen(isOpen) {
+  if (!accessibilityWidgetState) {
+    return;
+  }
+
+  const { widget, toggle, panel } = accessibilityWidgetState;
+
+  widget.classList.toggle('is-open', isOpen);
+  toggle.setAttribute('aria-expanded', String(isOpen));
+  panel.setAttribute('aria-hidden', String(!isOpen));
+}
+
+function resetAccessibilityModes() {
+  document.body.classList.remove(...ACCESSIBILITY_BODY_CLASSES);
+}
+
+function toggleAccessibilityMode(className, classesToClear = []) {
+  const body = document.body;
+  const shouldEnable = !body.classList.contains(className);
+
+  body.classList.remove(...classesToClear);
+
+  if (shouldEnable) {
+    body.classList.add(className);
+  } else {
+    body.classList.remove(className);
+  }
+}
+
+function handleAccessibilityAction(action) {
+  switch (action) {
+    case 'increase-text':
+      toggleAccessibilityMode('accessibility-text-large', ['accessibility-text-small']);
+      break;
+    case 'decrease-text':
+      toggleAccessibilityMode('accessibility-text-small', ['accessibility-text-large']);
+      break;
+    case 'grayscale':
+      toggleAccessibilityMode('accessibility-grayscale');
+      break;
+    case 'high-contrast':
+      toggleAccessibilityMode('accessibility-high-contrast', [
+        'accessibility-negative-contrast',
+        'accessibility-light-background'
+      ]);
+      break;
+    case 'negative-contrast':
+      toggleAccessibilityMode('accessibility-negative-contrast', [
+        'accessibility-high-contrast',
+        'accessibility-light-background'
+      ]);
+      break;
+    case 'light-background':
+      toggleAccessibilityMode('accessibility-light-background', [
+        'accessibility-high-contrast',
+        'accessibility-negative-contrast'
+      ]);
+      break;
+    case 'underline-links':
+      toggleAccessibilityMode('accessibility-underline-links');
+      break;
+    case 'readable-font':
+      toggleAccessibilityMode('accessibility-readable-font');
+      break;
+    case 'reset':
+      resetAccessibilityModes();
+      break;
+    default:
+      break;
+  }
+}
+
+function initAccessibilityWidget() {
+  const mount = document.getElementById('accessibilityWidgetMount');
+  const widget = mount ? mount.querySelector('[data-accessibility-widget]') : null;
+  const toggle = widget ? widget.querySelector('[data-accessibility-toggle]') : null;
+  const panel = widget ? widget.querySelector('[data-accessibility-panel]') : null;
+  const actionButtons = widget
+    ? [...widget.querySelectorAll('[data-accessibility-action]')]
+    : [];
+
+  if (!widget || !toggle || !panel) {
+    accessibilityWidgetState = null;
+    return;
+  }
+
+  accessibilityWidgetState = { widget, toggle, panel };
+
+  if (widget.dataset.initialized === 'true') {
+    return;
+  }
+
+  widget.dataset.initialized = 'true';
+
+  toggle.addEventListener('click', (event) => {
+    event.preventDefault();
+    setAccessibilityWidgetOpen(!widget.classList.contains('is-open'));
+  });
+
+  actionButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      handleAccessibilityAction(button.dataset.accessibilityAction || '');
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (
+      accessibilityWidgetState &&
+      !accessibilityWidgetState.widget.contains(event.target)
+    ) {
+      setAccessibilityWidgetOpen(false);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (
+      event.key === 'Escape' &&
+      accessibilityWidgetState &&
+      accessibilityWidgetState.widget.classList.contains('is-open')
+    ) {
+      setAccessibilityWidgetOpen(false);
+      accessibilityWidgetState.toggle.focus();
+    }
+  });
+}
+
+function renderAccessibilityWidget() {
+  const mount = document.getElementById('accessibilityWidgetMount');
+  if (!mount || mount.dataset.initialized === 'true') {
+    return;
+  }
+
+  mount.innerHTML = `
+    <div class="site-accessibility-widget" data-accessibility-widget>
+      <button
+        class="site-accessibility-widget__toggle"
+        type="button"
+        aria-label="Open accessibility tools"
+        aria-expanded="false"
+        data-accessibility-toggle
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">accessibility_new</span>
+      </button>
+
+      <div
+        class="site-accessibility-widget__panel"
+        data-accessibility-panel
+        aria-hidden="true"
+      >
+        <div class="site-accessibility-widget__panel-header">
+          <span class="material-symbols-outlined" aria-hidden="true">accessibility_new</span>
+          <h2>Accessibility Tools</h2>
+        </div>
+
+        <ul class="site-accessibility-widget__list">
+          <li><button type="button" data-accessibility-action="increase-text"><span class="material-symbols-outlined" aria-hidden="true">zoom_in</span> Increase Text</button></li>
+          <li><button type="button" data-accessibility-action="decrease-text"><span class="material-symbols-outlined" aria-hidden="true">zoom_out</span> Decrease Text</button></li>
+          <li><button type="button" data-accessibility-action="grayscale"><span class="material-symbols-outlined" aria-hidden="true">gradient</span> Grayscale</button></li>
+          <li><button type="button" data-accessibility-action="high-contrast"><span class="material-symbols-outlined" aria-hidden="true">contrast</span> High Contrast</button></li>
+          <li><button type="button" data-accessibility-action="negative-contrast"><span class="material-symbols-outlined" aria-hidden="true">visibility</span> Negative Contrast</button></li>
+          <li><button type="button" data-accessibility-action="light-background"><span class="material-symbols-outlined" aria-hidden="true">lightbulb</span> Light Background</button></li>
+          <li><button type="button" data-accessibility-action="underline-links"><span class="material-symbols-outlined" aria-hidden="true">link</span> Links Underline</button></li>
+          <li><button type="button" data-accessibility-action="readable-font"><span class="material-symbols-outlined" aria-hidden="true">text_fields</span> Readable Font</button></li>
+          <li><button type="button" data-accessibility-action="reset"><span class="material-symbols-outlined" aria-hidden="true">restart_alt</span> Reset</button></li>
+        </ul>
+      </div>
+    </div>
+  `;
+
+  mount.dataset.initialized = 'true';
+  initAccessibilityWidget();
+}
+
+function initHeaderConceptC() {
+  const headerMount = document.getElementById('headerMount');
+  if (!headerMount) {
+    headerConceptCSearchState = null;
+    return;
+  }
+
+  const header = headerMount.querySelector('header');
+  const headerSearch = header ? header.querySelector('[data-header-search]') : null;
+  const searchForm = headerSearch ? headerSearch.querySelector('form') : null;
+  const searchInput = headerSearch ? headerSearch.querySelector('.header-search__input') : null;
+  const searchToggle = headerSearch ? headerSearch.querySelector('.header-search__toggle') : null;
+
+  if (!headerSearch || !searchForm || !searchInput || !searchToggle) {
+    headerConceptCSearchState = null;
+    return;
+  }
+
+  headerConceptCSearchState = {
+    headerSearch,
+    searchInput,
+    searchToggle
+  };
+
+  if (headerSearch.dataset.initialized === 'true') {
+    return;
+  }
+
+  headerSearch.dataset.initialized = 'true';
+
+  searchToggle.addEventListener('click', (event) => {
+    event.preventDefault();
+    setHeaderConceptCSearchOpen(!headerSearch.classList.contains('is-open'));
+  });
+
+  searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+}
+
+function loadHeaderConceptC() {
+  const headerMount = document.getElementById('headerMount');
+  if (!headerMount) {
+    return;
+  }
+
+  const requestId = ++headerLoadRequestId;
+
+  fetchHeaderConceptC(getHeaderConceptCPaths())
+    .then(({ html, headerPath }) => {
+      if (requestId !== headerLoadRequestId) {
+        return;
+      }
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const header = doc.querySelector('header');
+
+      if (!header) {
+        throw new Error(`No header element found in ${headerPath}`);
+      }
+
+      headerMount.innerHTML = normaliseHeaderConceptCMarkup(header).outerHTML;
+      headerMount.dataset.loadedHeaderPath = headerPath;
+      initHeaderConceptC();
+    })
+    .catch((error) => {
+      if (requestId !== headerLoadRequestId) {
+        return;
+      }
+
+      console.error('[headerMount] Header failed to load:', error);
+      headerMount.innerHTML = `
+        <header class="bg-mcast-blue text-white p-6">
+          <p class="font-bold">Header could not load</p>
+          <p>Open this project using VS Code Live Server.</p>
+        </header>
+      `;
+      delete headerMount.dataset.loadedHeaderPath;
+      headerConceptCSearchState = null;
+    });
 }
 
 function getResponsiveFooterPaths(isDesktop) {
@@ -247,6 +668,26 @@ function loadResponsiveFooter() {
     });
 }
 
+function loadMainSection() {
+  loadInclude('mainBodyMount', './code_main_section.html', 'Main section', `
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-grid-margin">
+        <div class="border border-red-300 bg-red-50 p-6 text-red-800">
+          <h2 class="font-bold text-xl mb-2">Main section could not load</h2>
+          <p>Open this project using VS Code Live Server. Loading an external HTML partial usually does not work with a direct file:// browser path.</p>
+        </div>
+      </div>
+    </section>
+  `);
+}
+
+function scrollMainContentIntoView() {
+  const mainContent = document.getElementById('mainBodyMount');
+  if (mainContent) {
+    mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 function loadContactPage() {
   ensurePageStylesheet('./contact/contact.css');
   ensurePageScript('./contact/contact.js');
@@ -262,10 +703,7 @@ function loadContactPage() {
     </section>
   `);
 
-  const mainContent = document.getElementById('mainBodyMount');
-  if (mainContent) {
-    mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  scrollMainContentIntoView();
 }
 
 function loadCataloguePage() {
@@ -283,27 +721,14 @@ function loadCataloguePage() {
     </section>
   `);
 
-  const mainContent = document.getElementById('mainBodyMount');
-  if (mainContent) {
-    mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  scrollMainContentIntoView();
 }
 
 // Site interactions
 document.addEventListener('DOMContentLoaded', () => {
-  // Load the page partials from the external HTML files.
-  // Use VS Code Live Server, because fetch() may fail from a direct file:// path.
-  loadInclude('mainBodyMount', './code_main_section.html', 'Main section', `
-    <section class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-grid-margin">
-        <div class="border border-red-300 bg-red-50 p-6 text-red-800">
-          <h2 class="font-bold text-xl mb-2">Main section could not load</h2>
-          <p>Open this project using VS Code Live Server. Loading an external HTML partial usually does not work with a direct file:// browser path.</p>
-        </div>
-      </div>
-    </section>
-  `);
-
+  loadHeaderConceptC();
+  renderAccessibilityWidget();
+  loadMainSection();
   loadResponsiveFooter();
 
   const footerMediaQuery = window.matchMedia(FOOTER_BREAKPOINT);
@@ -315,231 +740,44 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('click', (event) => {
-    const catalogueTrigger = event.target.closest('[data-page-target="catalogue"]');
-    if (!catalogueTrigger) {
+    const contactTrigger = event.target.closest('[data-page-target="contact"]');
+    if (contactTrigger) {
+      event.preventDefault();
+      loadContactPage();
       return;
     }
 
-    event.preventDefault();
-    loadCataloguePage();
-  });
+    const catalogueTrigger = event.target.closest('[data-page-target="catalogue"]');
+    if (catalogueTrigger) {
+      event.preventDefault();
+      loadCataloguePage();
+      return;
+    }
 
+    const homeTrigger = event.target.closest('[data-page-target="home"]');
+    if (homeTrigger) {
+      event.preventDefault();
+      loadMainSection();
+      scrollMainContentIntoView();
+      return;
+    }
 
-  // Navigation interaction logic
-          const navLinks = document.querySelectorAll('nav > div ul > li > a');
-          navLinks.forEach(link => {
-              link.addEventListener('click', (e) => {
-                  if (link.textContent.trim() === 'Support') {
-                      e.preventDefault();
-                      loadContactPage();
-                  }
-
-                  navLinks.forEach(l => {
-                      l.classList.remove('text-white', 'border-b-2', 'border-royal-gold');
-                      l.classList.add('text-white/80');
-                  });
-                  link.classList.remove('text-white/80');
-                  link.classList.add('text-white', 'border-b-2', 'border-royal-gold');
-              });
-          });
-
-          const dropdownMenus = {
-              Study: [
-                  'Academic Calendar',
-                  'Apply Online',
-                  'Late Applications',
-                  'Full-Time Courses Important Dates 2025/2026',
-                  'Full-time courses',
-                  'Part-time courses',
-                  'Master Courses',
-                  'Doctoral Programme DRes',
-                  'Online Learning',
-                  'Continuous Professional Development',
-                  'International Students'
-              ],
-              Services: [
-                  'Apprenticeships',
-                  'Career Guidance',
-                  'Chaplaincy',
-                  'Childcare Centre',
-                  'Community Social Responsibility (CSR)',
-                  'CLE',
-                  'ERASMUS+ Projects & Mobility Office',
-                  'Grievance Office',
-                  'Hair and Beauty Salon',
-                  'IEU',
-                  'Sports and Fitness',
-                  'Stipends Office',
-                  'Student Liaison',
-                  'Wellbeing Hub',
-                  'Youth Hub'
-              ],
-              Research: [
-                  'Applied Research Journal',
-                  'Research Themes',
-                  'Postdoctoral Fellowship',
-                  'MCAST Monograph Series',
-                  'Library',
-                  'Research Fellowship Scheme',
-                  'Research Framework',
-                  'Research Conferences',
-                  'Research Procedures',
-                  'Innovation'
-              ],
-              About: [
-                  'Mission Statement',
-                  'MCAST Act',
-                  'Board of Governors',
-                  "Principal's Office",
-                  'Corporate Services',
-                  'Institutes',
-                  'Regulatory Services',
-                  'Research and Student Academic Management',
-                  'Student Experience',
-                  'IT Systems and Data Securities',
-                  'Publications',
-                  'Statutory Meetings',
-                  'Graduation Pass Rates'
-              ]
-          };
-
-          navLinks.forEach(link => {
-              const menuItems = dropdownMenus[link.textContent.trim()];
-              if (!menuItems) {
-                  return;
-              }
-
-              const navItem = link.closest('li');
-              if (!navItem) {
-                  return;
-              }
-
-              navItem.classList.add('nav-item-has-dropdown');
-              link.setAttribute('aria-haspopup', 'true');
-              link.setAttribute('aria-expanded', 'false');
-
-              const dropdown = document.createElement('div');
-              dropdown.className = 'nav-dropdown';
-              dropdown.setAttribute('aria-hidden', 'true');
-
-              const dropdownList = document.createElement('ul');
-              dropdownList.className = 'nav-dropdown-list';
-
-              menuItems.forEach(itemText => {
-                  const item = document.createElement('li');
-                  const itemLink = document.createElement('a');
-                  itemLink.className = 'nav-dropdown-link';
-                  itemLink.href = '#';
-                  itemLink.textContent = itemText;
-
-                  if (link.textContent.trim() === 'Study' && itemText === 'Full-time courses') {
-                      itemLink.addEventListener('click', (event) => {
-                          event.preventDefault();
-                          loadCataloguePage();
-                          hideDropdown();
-                      });
-                  }
-
-                  item.appendChild(itemLink);
-                  dropdownList.appendChild(item);
-              });
-
-              dropdown.appendChild(dropdownList);
-              navItem.appendChild(dropdown);
-
-              const showDropdown = () => {
-                  dropdown.classList.add('is-open');
-                  dropdown.setAttribute('aria-hidden', 'false');
-                  link.setAttribute('aria-expanded', 'true');
-              };
-
-              const hideDropdown = () => {
-                  dropdown.classList.remove('is-open');
-                  dropdown.setAttribute('aria-hidden', 'true');
-                  link.setAttribute('aria-expanded', 'false');
-              };
-
-              navItem.addEventListener('mouseenter', showDropdown);
-              navItem.addEventListener('mouseleave', hideDropdown);
-              navItem.addEventListener('focusin', showDropdown);
-              navItem.addEventListener('focusout', (event) => {
-                  if (!navItem.contains(event.relatedTarget)) {
-                      hideDropdown();
-                  }
-              });
-          });
-
-          // Sticky header shadow logic
-          window.addEventListener('scroll', () => {
-              const headerContainer = document.querySelector('.fixed.top-0');
-              if (window.scrollY > 10) {
-                  headerContainer.classList.add('shadow-xl');
-              } else {
-                  headerContainer.classList.remove('shadow-xl');
-              }
-          });
-
-          // Search and Accessibility panel toggle logic
-          // Header search and accessibility panels
-  const searchToggle = document.getElementById('searchToggle');
-  const searchPanel = document.getElementById('searchPanel');
-  const accessibilityToggle = document.getElementById('accessibilityToggle');
-  const accessibilityPanel = document.getElementById('accessibilityPanel');
-  const siteSearch = document.getElementById('siteSearch');
-
-  function closeHeaderPanels() {
-    searchPanel.classList.add('hidden');
-    accessibilityPanel.classList.add('hidden');
-
-    searchToggle.setAttribute('aria-expanded', 'false');
-    accessibilityToggle.setAttribute('aria-expanded', 'false');
-
-    // Show the original search icon again when the search box is closed
-    searchToggle.classList.remove('opacity-0', 'pointer-events-none');
-  }
-
-  searchToggle.addEventListener('click', (event) => {
-    event.stopPropagation();
-
-    const isClosed = searchPanel.classList.contains('hidden');
-    closeHeaderPanels();
-
-    if (isClosed) {
-      searchPanel.classList.remove('hidden');
-      searchToggle.setAttribute('aria-expanded', 'true');
-
-      // Hide the original search icon while the search box is open
-      searchToggle.classList.add('opacity-0', 'pointer-events-none');
-
-      siteSearch.focus();
+    if (
+      headerConceptCSearchState &&
+      !headerConceptCSearchState.headerSearch.contains(event.target)
+    ) {
+      setHeaderConceptCSearchOpen(false);
     }
   });
-
-  accessibilityToggle.addEventListener('click', (event) => {
-    event.stopPropagation();
-
-    const isClosed = accessibilityPanel.classList.contains('hidden');
-    closeHeaderPanels();
-
-    if (isClosed) {
-      accessibilityPanel.classList.remove('hidden');
-      accessibilityToggle.setAttribute('aria-expanded', 'true');
-    }
-  });
-
-  searchPanel.addEventListener('click', (event) => {
-    event.stopPropagation();
-  });
-
-  accessibilityPanel.addEventListener('click', (event) => {
-    event.stopPropagation();
-  });
-
-  document.addEventListener('click', closeHeaderPanels);
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeHeaderPanels();
+    if (
+      event.key === 'Escape' &&
+      headerConceptCSearchState &&
+      headerConceptCSearchState.headerSearch.classList.contains('is-open')
+    ) {
+      setHeaderConceptCSearchOpen(false);
+      headerConceptCSearchState.searchToggle.focus();
     }
   });
 });
