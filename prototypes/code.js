@@ -71,6 +71,8 @@ tailwind.config = {
             "spacing": {
                     "stack-lg": "2rem",
                     "grid-margin": "2rem",
+                    "margin-desktop": "80px",
+                    "margin-mobile": "20px",
                     "gutter": "1.5rem",
                     "stack-md": "1rem",
                     "stack-sm": "0.5rem",
@@ -79,6 +81,8 @@ tailwind.config = {
             "fontFamily": {
                     "display-lg-mobile": ["Montserrat"],
                     "body-md": ["Montserrat"],
+                    "label-lg": ["Montserrat"],
+                    "label-sm": ["Montserrat"],
                     "title-lg": ["Montserrat"],
                     "label-md": ["Montserrat"],
                     "display-lg": ["Montserrat"],
@@ -90,6 +94,8 @@ tailwind.config = {
             "fontSize": {
                     "display-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
                     "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
                     "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
                     "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
                     "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
@@ -101,6 +107,9 @@ tailwind.config = {
           },
         },
       }
+
+const FOOTER_BREAKPOINT = '(min-width: 768px)';
+let footerLoadRequestId = 0;
 
 function loadInclude(mountId, includePath, errorLabel, fallbackHtml) {
   const mount = document.getElementById(mountId);
@@ -144,6 +153,98 @@ function ensurePageScript(src) {
   script.src = src;
   script.defer = true;
   document.head.appendChild(script);
+}
+
+function getResponsiveFooterPaths(isDesktop) {
+  const footerFile = isDesktop ? 'footer_a.html' : 'footer_a_mobile.html';
+  const isPrototypePage = window.location.pathname.includes('/prototypes/');
+
+  if (isPrototypePage) {
+    return [`./footers/${footerFile}`, `./prototypes/footers/${footerFile}`];
+  }
+
+  return [`./prototypes/footers/${footerFile}`, `./footers/${footerFile}`];
+}
+
+function fetchResponsiveFooter(paths) {
+  let currentIndex = 0;
+  let lastError = null;
+
+  function tryNextPath() {
+    if (currentIndex >= paths.length) {
+      return Promise.reject(lastError || new Error('Unable to load responsive footer.'));
+    }
+
+    const footerPath = paths[currentIndex];
+    currentIndex += 1;
+
+    return fetch(footerPath)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Unable to load ${footerPath}: ${response.status}`);
+        }
+
+        return response.text().then((html) => ({ html, footerPath }));
+      })
+      .catch((error) => {
+        lastError = error;
+        return tryNextPath();
+      });
+  }
+
+  return tryNextPath();
+}
+
+function loadResponsiveFooter() {
+  const footerMount = document.getElementById('footerMount');
+  if (!footerMount) {
+    return;
+  }
+
+  const isDesktop = window.matchMedia(FOOTER_BREAKPOINT).matches;
+  const footerKey = isDesktop ? 'desktop' : 'mobile';
+
+  if (footerMount.dataset.loadedFooter === footerKey) {
+    return;
+  }
+
+  const requestId = ++footerLoadRequestId;
+
+  fetchResponsiveFooter(getResponsiveFooterPaths(isDesktop))
+    .then(({ html, footerPath }) => {
+      if (requestId !== footerLoadRequestId) {
+        return;
+      }
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const footer = doc.querySelector('footer');
+
+      if (!footer) {
+        throw new Error(`No footer element found in ${footerPath}`);
+      }
+
+      footerMount.innerHTML = footer.outerHTML;
+      footerMount.dataset.loadedFooter = footerKey;
+      footerMount.dataset.loadedFooterPath = footerPath;
+    })
+    .catch((error) => {
+      if (requestId !== footerLoadRequestId) {
+        return;
+      }
+
+      console.error('[footerMount] Responsive footer failed to load:', error);
+      footerMount.innerHTML = `
+        <footer class="bg-mcast-blue text-white py-section-gap">
+          <div class="max-w-7xl mx-auto px-grid-margin">
+            <p class="font-bold">Footer could not load</p>
+            <p>Open this project using VS Code Live Server. Loading external HTML partials usually does not work with a direct file:// browser path.</p>
+          </div>
+        </footer>
+      `;
+      delete footerMount.dataset.loadedFooter;
+      delete footerMount.dataset.loadedFooterPath;
+    });
 }
 
 function loadContactPage() {
@@ -203,14 +304,15 @@ document.addEventListener('DOMContentLoaded', () => {
     </section>
   `);
 
-  loadInclude('footerMount', './code_footer.html', 'Footer', `
-    <footer class="bg-inverse-surface dark:bg-surface-container-high full-width py-section-gap mt-section-gap">
-      <div class="max-w-7xl mx-auto px-grid-margin text-white">
-        <p class="font-bold">Footer could not load</p>
-        <p>Open this project using VS Code Live Server. Loading an external HTML partial usually does not work with a direct file:// browser path.</p>
-      </div>
-    </footer>
-  `);
+  loadResponsiveFooter();
+
+  const footerMediaQuery = window.matchMedia(FOOTER_BREAKPOINT);
+
+  if (footerMediaQuery.addEventListener) {
+    footerMediaQuery.addEventListener('change', loadResponsiveFooter);
+  } else {
+    footerMediaQuery.addListener(loadResponsiveFooter);
+  }
 
   document.addEventListener('click', (event) => {
     const catalogueTrigger = event.target.closest('[data-page-target="catalogue"]');
