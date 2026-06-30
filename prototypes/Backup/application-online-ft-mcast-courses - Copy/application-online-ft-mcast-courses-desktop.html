@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MCAST Admissions Time Windows 2026/2027</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Shared Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#464650",
+                    "surface-tint": "#555996",
+                    "tertiary-container": "#3a0a05",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#ffdf9c",
+                    "primary-fixed": "#e0e0ff",
+                    "surface-bright": "#f9f9f9",
+                    "on-tertiary-container": "#bc6f63",
+                    "deep-blue-light": "#1A1A56",
+                    "surface-container": "#eeeeee",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#0f134f",
+                    "on-background": "#1a1c1c",
+                    "surface-container-highest": "#e2e2e2",
+                    "surface-dim": "#dadada",
+                    "on-secondary-fixed-variant": "#5b4300",
+                    "surface-variant": "#e2e2e2",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary-fixed-variant": "#3d417d",
+                    "inverse-primary": "#bfc2ff",
+                    "on-primary-fixed": "#0f134f",
+                    "surface-container-low": "#f3f3f3",
+                    "surface": "#f9f9f9",
+                    "primary-fixed-dim": "#bfc2ff",
+                    "on-secondary-container": "#755700",
+                    "gold-hover": "#C29B3F",
+                    "tertiary-fixed": "#ffdad4",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c7c5d1",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1a1c1c",
+                    "inverse-on-surface": "#f1f1f1",
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "secondary": "#785a00",
+                    "white": "#FFFFFF",
+                    "background": "#f9f9f9",
+                    "outline": "#777681",
+                    "secondary-fixed-dim": "#edc058",
+                    "on-secondary": "#ffffff",
+                    "primary": "#000000",
+                    "on-tertiary-fixed-variant": "#72342b",
+                    "on-secondary-fixed": "#251a00",
+                    "secondary-container": "#fdce65",
+                    "on-primary-container": "#7a7ebf",
+                    "tertiary": "#000000",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#3a0a05"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-margin": "2rem",
+                    "section-gap": "5rem",
+                    "stack-sm": "0.5rem",
+                    "gutter": "1.5rem",
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem"
+            },
+            "fontFamily": {
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "caption": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "title-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "label-md": ["Montserrat"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .swiss-grid-line {
+            position: relative;
+        }
+        .swiss-grid-line::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 100%;
+            height: 1px;
+            background-color: #E0E0E0;
+        }
+        .bento-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 4px 20px rgba(0, 0, 67, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<main class="max-w-[1280px] mx-auto px-grid-margin py-stack-lg">
+<!-- HERO SECTION -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-section-gap items-center border-b border-outline-variant pb-stack-lg">
+<div class="md:col-span-7">
+<h1 class="font-display-lg text-display-lg text-deep-blue-light mb-stack-md uppercase tracking-tight">
+                    Application Time Windows <br/>2026/2027
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Check the official MCAST application windows for Full-Time Prospectus Courses by applicant category, including international applications, Main Call, transfers, late applications, and other admissions routes.
+                </p>
+</div>
+<div class="md:col-span-5">
+<div class="bg-deep-blue-light text-white p-stack-lg rounded-lg shadow-sm">
+<div class="space-y-stack-md">
+<div class="flex justify-between border-b border-white/10 pb-2">
+<span class="font-label-md text-label-md opacity-70 uppercase">Academic Year</span>
+<span class="font-label-md text-label-md font-bold">2026/2027</span>
+</div>
+<div class="flex justify-between border-b border-white/10 pb-2">
+<span class="font-label-md text-label-md opacity-70 uppercase">Course Type</span>
+<span class="font-label-md text-label-md font-bold">Full-Time Prospectus Courses</span>
+</div>
+<div class="pt-2">
+<span class="font-label-md text-label-md opacity-70 uppercase block mb-1">Main Call Window</span>
+<div class="text-secondary-fixed font-headline-sm text-headline-sm font-bold leading-tight">Monday 13 July 2026 at 0800h to<br/>Friday 14 August 2026 at 1400h</div>
+</div>
+<div class="flex items-center gap-2 pt-2 text-white/90">
+<span class="material-symbols-outlined text-[18px]">language</span>
+<span class="font-body-md text-body-md">Online or in person depending on category</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FULL SCHEDULE TIMELINE -->
+<section class="mb-section-gap">
+<h2 class="font-headline-sm text-headline-sm text-deep-blue-light mb-stack-lg uppercase tracking-wider">Academic Timeline Summary</h2>
+<div class="relative pt-8 pb-12">
+<!-- Timeline Line -->
+<div class="absolute top-[52px] left-0 w-full h-[2px] bg-outline-variant"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter relative">
+<!-- Phase 1 -->
+<div class="flex flex-col items-center md:items-start">
+<div class="w-10 h-10 rounded-full bg-deep-blue-light flex items-center justify-center text-white font-bold z-10 mb-4 ring-8 ring-surface">01</div>
+<div class="text-center md:text-left">
+<p class="font-label-md text-label-md text-secondary uppercase font-bold">02 February &ndash; 30 June 2026</p>
+<p class="font-title-lg text-title-lg text-deep-blue-light">International non-EU applicants</p>
+<p class="font-caption text-caption text-on-surface-variant mt-2 max-w-[240px]">For third-country non-EU nationals not yet residing in Malta by 30 June 2026 and not entitled to active and valid Maltese EID credentials.</p>
+<p class="font-caption text-caption text-on-surface-variant mt-2"><strong>BSc (Hons) Nursing:</strong> Thursday 30 April 2026.</p>
+</div>
+</div>
+<!-- Phase 2 -->
+<div class="flex flex-col items-center md:items-start">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-deep-blue-light font-bold z-10 mb-4 ring-8 ring-surface">02</div>
+<div class="text-center md:text-left">
+<p class="font-label-md text-label-md text-secondary uppercase font-bold">13 July 2026, 0800h &ndash; 14 August 2026, 1400h</p>
+<p class="font-title-lg text-title-lg text-deep-blue-light">Main Call</p>
+<p class="font-caption text-caption text-on-surface-variant mt-2 max-w-[240px]">Main application window for eligible applicants using active and valid EID credentials where applicable.</p>
+</div>
+</div>
+<!-- Phase 3 -->
+<div class="flex flex-col items-center md:items-start">
+<div class="w-10 h-10 rounded-full bg-deep-blue-light flex items-center justify-center text-white font-bold z-10 mb-4 ring-8 ring-surface">03</div>
+<div class="text-center md:text-left">
+<p class="font-label-md text-label-md text-secondary uppercase font-bold">24 September 2026, 0800h &ndash; 30 October 2026, 1700h</p>
+<p class="font-title-lg text-title-lg text-deep-blue-light">Transfer / Change of Course</p>
+<p class="font-caption text-caption text-on-surface-variant mt-2 max-w-[240px]">Only for students already registered at MCAST after a complete and successful Main Call application.</p>
+</div>
+</div>
+<!-- Phase 4 -->
+<div class="flex flex-col items-center md:items-start">
+<div class="w-10 h-10 rounded-full bg-deep-blue-light flex items-center justify-center text-white font-bold z-10 mb-4 ring-8 ring-surface">04</div>
+<div class="text-center md:text-left">
+<p class="font-label-md text-label-md text-secondary uppercase font-bold">24, 25, 28, 29 and 30 September 2026</p>
+<p class="font-title-lg text-title-lg text-deep-blue-light">Late Applications</p>
+<p class="font-caption text-caption text-on-surface-variant mt-2 max-w-[240px]">0900h to noon and 1300h to 1600h. In person only at MCAST Paola Main Campus and only in exceptional circumstances.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DETAIL CARDS -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg mb-section-gap">
+<!-- International Non-EU Card -->
+<div class="bento-card bg-white border border-outline-variant p-stack-lg rounded-lg flex flex-col h-full">
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-1 text-[10px] font-bold uppercase rounded mb-2 inline-block">Category A</span>
+<h3 class="font-headline-sm text-headline-sm text-deep-blue-light uppercase">International non-EU applicants</h3>
+</div>
+<span class="material-symbols-outlined text-deep-blue-light">public</span>
+</div>
+<div class="mb-stack-md border-l-4 border-secondary pl-4 py-2">
+<p class="font-label-md text-label-md text-on-surface-variant">Application Window</p>
+<p class="font-title-lg text-title-lg font-bold leading-tight">Monday 02 February 2026 to Tuesday 30 June 2026</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4"><strong>Who this is for:</strong> Third-country non-EU nationals not yet residing in Malta by 30 June 2026 and not entitled to active and valid Maltese EID credentials.</p>
+<div class="mb-4">
+<h4 class="font-label-md text-label-md text-deep-blue-light uppercase mb-2 font-bold">Required Uploads</h4>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span> MQRIC statement/s for non-Maltese qualifications
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span> Certificates and official transcripts/results for successfully completed qualifications
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span> English proficiency certificates
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span> Apostilled translations where required
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span> Other required documentation
+                        </li>
+</ul>
+</div>
+<div class="mb-4">
+<h4 class="font-label-md text-label-md text-deep-blue-light uppercase mb-2 font-bold">Other Conditions</h4>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span> Eligibility may depend on an online suitability interview.
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span> Communication is sent to the personal email used in the application.
+                        </li>
+<li class="flex items-start gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span> Missing or incomplete documentation can stop the application from being processed.
+                        </li>
+</ul>
+</div>
+<div class="bg-error-container/30 border border-error p-stack-sm rounded mb-4 flex gap-3">
+<span class="material-symbols-outlined text-error">warning</span>
+<p class="font-label-md text-label-md text-on-error-container"><strong>Warning:</strong> BSc (Hons) Nursing deadline: Thursday 30 April 2026.</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4"><strong>Contact:</strong> <a class="font-semibold text-deep-blue-light hover:text-secondary transition-colors" href="mailto:applyinternational@mcast.edu.mt">applyinternational@mcast.edu.mt</a></p>
+<!-- Existing international application URL not present in source file -->
+<a class="mt-auto inline-flex w-full items-center justify-center rounded-md border border-deep-blue-light px-4 py-3 font-label-md text-label-md font-bold text-deep-blue-light transition-colors hover:bg-surface-container-low" href="#">International Application</a>
+</div>
+<!-- Main Call Card -->
+<div class="bento-card bg-white border border-outline-variant p-stack-lg rounded-lg flex flex-col h-full ring-2 ring-deep-blue-light ring-offset-2">
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<span class="bg-secondary text-deep-blue-light px-2 py-1 text-[10px] font-bold uppercase rounded mb-2 inline-block">Primary Call</span>
+<h3 class="font-headline-sm text-headline-sm text-deep-blue-light uppercase">Main Call 2026</h3>
+</div>
+<span class="material-symbols-outlined text-secondary">stars</span>
+</div>
+<div class="mb-stack-md border-l-4 border-deep-blue-light pl-4 py-2">
+<p class="font-label-md text-label-md text-on-surface-variant">Application Window</p>
+<p class="font-title-lg text-title-lg font-bold">13 July 2026, 0800h &mdash; 14 August 2026, 1400h</p>
+</div>
+<div class="mt-auto">
+<h4 class="font-label-md text-label-md text-deep-blue-light uppercase mb-2 font-bold">Main Call Information</h4>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 p-2 bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-deep-blue-light mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md">Applications are received online.</span>
+</li>
+<li class="flex items-start gap-3 p-2 bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-deep-blue-light">fingerprint</span>
+<span class="font-body-md text-body-md">Applicants must use active and valid EID credentials where required.</span>
+</li>
+<li class="flex items-start gap-3 p-2 bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-deep-blue-light">person</span>
+<span class="font-body-md text-body-md">Applicants must create an MCAST CMIS Student Profile.</span>
+</li>
+<li class="flex items-start gap-3 p-2 bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-deep-blue-light">description</span>
+<span class="font-body-md text-body-md">Applicants must upload all required documentation.</span>
+</li>
+<li class="flex items-start gap-3 p-2 bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-deep-blue-light mt-0.5">warning</span>
+<span class="font-body-md text-body-md">Applications submitted with missing or incomplete uploads/documentation by the deadline cannot be processed.</span>
+</li>
+<li class="flex items-start gap-3 p-2 bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-deep-blue-light mt-0.5">schedule</span>
+<span class="font-body-md text-body-md">Applicants for MSc Veterinary Medicine must apply by 5pm, Friday 31 July 2026.</span>
+</li>
+<li class="flex items-start gap-3 p-2 bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-deep-blue-light mt-0.5">inventory_2</span>
+<span class="font-body-md text-body-md">Maturity Clause applications must be submitted complete by Friday 14 August 2026 at 1400h.</span>
+</li>
+<li class="flex items-start gap-3 p-2 bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-deep-blue-light mt-0.5">history_edu</span>
+<span class="font-body-md text-body-md">Returning MCAST applicants must submit during the Main Call.</span>
+</li>
+</ul>
+<a class="mt-4 inline-flex w-full items-center justify-center rounded-md bg-deep-blue-light px-4 py-3 font-label-md text-label-md font-bold text-white transition-colors hover:bg-primary-container" href="/application-online-ft-mcast-courses/">Read Main Call Information</a>
+</div>
+</div>
+<!-- Transfer/Change Card -->
+<div class="bento-card bg-white border border-outline-variant p-stack-lg rounded-lg flex flex-col h-full">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-deep-blue-light uppercase">Transfer / Change of Course</h3>
+<span class="bg-deep-blue-light text-white px-2 py-1 text-[10px] font-bold uppercase rounded">Internal only</span>
+</div>
+<div class="space-y-stack-sm">
+<div class="flex justify-between items-center py-2 border-b border-surface-container-highest">
+<span class="font-label-md text-label-md">Start</span>
+<span class="font-body-md text-body-md font-bold">Thursday 24 September 2026 at 0800h</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="font-label-md text-label-md">End</span>
+<span class="font-body-md text-body-md font-bold">Friday 30 October 2026 at 1700h</span>
+</div>
+</div>
+<ul class="mt-4 space-y-2 text-on-surface-variant">
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Only for students already registered at MCAST for academic year 2026/2027 after a complete and successful Main Call application.</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Transfer requests can only be considered if spaces are still available.</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Eligibility is checked again for the new course.</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Students may need to upload new results, such as MATSEC / SEC result slips.</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>This is not a route for new applications outside the Main Call.</li>
+</ul>
+<!-- Existing transfer link not present in source file -->
+<a class="mt-6 inline-flex w-full items-center justify-center rounded-md border border-deep-blue-light px-4 py-3 font-label-md text-label-md font-bold text-deep-blue-light transition-colors hover:bg-surface-container-low" href="#">Read Transfer Conditions</a>
+</div>
+<!-- Late Applications Card -->
+<div class="bento-card bg-white border border-outline-variant p-stack-lg rounded-lg flex flex-col h-full">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-deep-blue-light uppercase">Late Applications</h3>
+<span class="bg-error text-white px-2 py-1 text-[10px] font-bold uppercase rounded">Limited route</span>
+</div>
+<div class="grid grid-cols-5 gap-2 mt-4">
+<div class="bg-surface-container text-center py-2 rounded border border-outline-variant">
+<p class="font-caption text-caption opacity-60">SEPT</p>
+<p class="font-label-md text-label-md font-bold">24</p>
+</div>
+<div class="bg-surface-container text-center py-2 rounded border border-outline-variant">
+<p class="font-caption text-caption opacity-60">SEPT</p>
+<p class="font-label-md text-label-md font-bold">25</p>
+</div>
+<div class="bg-surface-container text-center py-2 rounded border border-outline-variant">
+<p class="font-caption text-caption opacity-60">SEPT</p>
+<p class="font-label-md text-label-md font-bold">28</p>
+</div>
+<div class="bg-surface-container text-center py-2 rounded border border-outline-variant">
+<p class="font-caption text-caption opacity-60">SEPT</p>
+<p class="font-label-md text-label-md font-bold">29</p>
+</div>
+<div class="bg-surface-container text-center py-2 rounded border border-outline-variant">
+<p class="font-caption text-caption opacity-60">SEPT</p>
+<p class="font-label-md text-label-md font-bold">30</p>
+</div>
+</div>
+<p class="mt-4 font-body-md text-body-md text-on-surface-variant">
+                    0900h to noon and 1300h to 1600h at MCAST Paola Main Campus.
+                </p>
+<ul class="mt-4 space-y-2 text-on-surface-variant">
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>In person only</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Exceptional circumstances only</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Active and valid EID credentials required where applicable</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Applicants must bring original ID and original/copy certificates</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Entry requirements must be available by 30 September 2026</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Late applications are the final chance to apply for a Full-Time programme</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Oversubscribed courses may not be available</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Late applications are not available for returning former MCAST students who should have applied during the Main Call</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Maturity Clause applications are not processed during the late call</li>
+<li class="flex items-start gap-2 font-body-md text-body-md"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Medical clearance forms must be provided where applicable</li>
+</ul>
+<!-- Existing late call link not present in source file -->
+<a class="mt-6 inline-flex w-full items-center justify-center rounded-md bg-deep-blue-light px-4 py-3 font-label-md text-label-md font-bold text-white transition-colors hover:bg-primary-container" href="#">Read Late Call Conditions</a>
+</div>
+</section>
+<!-- OTHER CATEGORIES BENTO GRID -->
+<section class="mb-section-gap">
+<h2 class="font-headline-sm text-headline-sm text-deep-blue-light mb-stack-lg uppercase tracking-wider">Other Admissions Categories</h2>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter">
+<!-- Form B -->
+<div class="bento-card bg-surface-container-low p-stack-md rounded border border-outline-variant">
+<div class="w-10 h-10 bg-deep-blue-light text-white flex items-center justify-center font-bold rounded mb-stack-sm">B</div>
+<h4 class="font-label-md text-label-md text-deep-blue-light font-bold">Progressing</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Progressing from one level of study in 2025/2026 to the next level in 2026/2027.</p>
+</div>
+<!-- Form C -->
+<div class="bento-card bg-surface-container-low p-stack-md rounded border border-outline-variant">
+<div class="w-10 h-10 bg-deep-blue-light text-white flex items-center justify-center font-bold rounded mb-stack-sm">C</div>
+<h4 class="font-label-md text-label-md text-deep-blue-light font-bold">Continuing</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Continuing from one year of studies in 2025/2026 to the next year in 2026/2027.</p>
+</div>
+<!-- Form D -->
+<div class="bento-card bg-surface-container-low p-stack-md rounded border border-outline-variant">
+<div class="w-10 h-10 bg-deep-blue-light text-white flex items-center justify-center font-bold rounded mb-stack-sm">D</div>
+<h4 class="font-label-md text-label-md text-deep-blue-light font-bold">Repeating</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Repeating units of study by attendance and assessment where programme regulations allow this.</p>
+</div>
+<!-- Form R -->
+<div class="bento-card bg-surface-container-low p-stack-md rounded border border-outline-variant">
+<div class="w-10 h-10 bg-deep-blue-light text-white flex items-center justify-center font-bold rounded mb-stack-sm">R</div>
+<h4 class="font-label-md text-label-md text-deep-blue-light font-bold">Returning on same course</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Returning on the same course after leaving MCAST in previous years.</p>
+</div>
+<!-- Form RC -->
+<div class="bento-card bg-surface-container-low p-stack-md rounded border border-outline-variant">
+<div class="w-10 h-10 bg-deep-blue-light text-white flex items-center justify-center font-bold rounded mb-stack-sm">RC</div>
+<h4 class="font-label-md text-label-md text-deep-blue-light font-bold">Returning onto a different course</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Returning to MCAST onto a different course.</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-stack-md">Forms B, C, and D are normally guided by Institute communication after final or annual results are issued. The deadline is Thursday 14 August 2026 at 1400h. Later submissions will not be considered unless exceptions are clearly communicated by the Institute.</p>
+</section>
+<!-- PREPARE BEFORE APPLYING -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-section-gap bg-white p-stack-lg rounded-xl border border-outline-variant">
+<div class="md:col-span-4 border-r border-outline-variant pr-stack-lg">
+<h2 class="font-headline-sm text-headline-sm text-deep-blue-light uppercase leading-tight mb-stack-md">Prepare Before <br/>Applying</h2>
+<div class="w-16 h-1 bg-secondary mb-stack-md"></div>
+<p class="font-body-md text-body-md text-on-surface-variant">Prepare the correct credentials and documentation before starting your application. Missing or incomplete uploads may stop the application from being processed.</p>
+</div>
+<div class="md:col-span-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-md">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">Active and valid EID credentials where required</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">MCAST CMIS Student Profile</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">Course choice</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">Required certificates and transcripts</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">MQRIC statement/s where applicable</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">English proficiency evidence where applicable</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">Medical clearance forms where applicable</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">Personal email address</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-deep-blue-light mt-1">task_alt</span>
+<div>
+<p class="font-label-md text-label-md font-bold">Original ID and certificates for in-person late applications</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SUPPORT SECTION -->
+<section class="bg-deep-blue-light rounded-xl overflow-hidden shadow-lg">
+<div class="p-stack-lg md:px-stack-xl flex flex-col md:flex-row justify-between items-center gap-stack-lg">
+<div class="text-white text-center md:text-left">
+<h3 class="font-title-lg text-title-lg mb-1 uppercase">Need help understanding your application window?</h3>
+<p class="font-body-md text-body-md opacity-80">Contact the relevant admissions team for guidance on your application route and required documentation.</p>
+<div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+<a class="inline-flex items-center justify-center rounded-md bg-white px-4 py-3 font-label-md text-label-md font-bold text-deep-blue-light transition-colors hover:bg-surface-container-low" href="mailto:mcast7888@mcast.edu.mt">Contact Admissions Support</a>
+<a class="inline-flex items-center justify-center rounded-md border border-white/30 px-4 py-3 font-label-md text-label-md font-bold text-white transition-colors hover:bg-white/10" href="/how-to-apply-online-2/">Back to How to Apply</a>
+<a class="inline-flex items-center justify-center rounded-md border border-white/30 px-4 py-3 font-label-md text-label-md font-bold text-white transition-colors hover:bg-white/10" href="/important-information/">Read Important Information</a>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-6 items-center">
+<div class="flex items-center gap-3 text-white">
+<div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed">call</span>
+</div>
+<div>
+<p class="font-caption text-caption opacity-60 uppercase">Phone</p>
+<p class="font-label-md text-label-md font-bold">+356 2398 7888</p>
+</div>
+</div>
+<div class="flex items-center gap-3 text-white">
+<div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed">mail</span>
+</div>
+<div>
+<p class="font-caption text-caption opacity-60 uppercase">General admissions support</p>
+<a class="font-label-md text-label-md font-bold hover:text-secondary-fixed transition-colors" href="mailto:mcast7888@mcast.edu.mt">mcast7888@mcast.edu.mt</a>
+</div>
+</div>
+<div class="flex items-center gap-3 text-white">
+<div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed">public</span>
+</div>
+<div>
+<p class="font-caption text-caption opacity-60 uppercase">International admissions</p>
+<a class="font-label-md text-label-md font-bold hover:text-secondary-fixed transition-colors" href="mailto:applyinternational@mcast.edu.mt">applyinternational@mcast.edu.mt</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Accent Bar -->
+<div class="h-2 bg-secondary w-full"></div>
+</section>
+</main>
+<script>
+        // Micro-interactions for hover effects on timeline nodes
+        document.querySelectorAll('.flex-col.items-center.md\\:items-start').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const dot = item.querySelector('.z-10');
+                dot.style.transform = 'scale(1.1)';
+                dot.style.transition = 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+            item.addEventListener('mouseleave', () => {
+                const dot = item.querySelector('.z-10');
+                dot.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>
