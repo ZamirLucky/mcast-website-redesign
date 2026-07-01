@@ -65,6 +65,9 @@
         .bento-card { transition: transform 0.2s ease, box-shadow 0.2s ease; border: 1px solid #E0E0E0; }
         .bento-card:hover { transform: translateY(-4px); box-shadow: 0px 4px 20px rgba(0, 0, 67, 0.05); }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .accordion-title { transition: color 0.2s ease; }
+        details > summary:hover .accordion-title,
+        details[open] > summary .accordion-title { color: #D7AC46; }
     </style>
 </head>
 <body class="bg-background text-on-surface">
@@ -275,12 +278,13 @@
 </div>
 </section>
 <section class="mb-section-gap max-w-4xl mx-auto">
-<h2 class="font-headline-md text-headline-md text-primary mb-stack-lg text-center">FAQ and Resources</h2>
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md text-center">Resources and Support</h2>
+<p class="font-body-md text-body-md text-outline mb-stack-lg text-center">Use these support resources for password reset, international applications, application documents, online support, and WBL-related guidance.</p>
 <div class="space-y-stack-md">
 <details class="group bg-white border border-surface-container rounded-lg">
 <summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
 <div>
-<p class="font-title-lg text-primary">Requesting a Password Reset</p>
+<p class="accordion-title font-title-lg text-primary">Requesting a Password Reset</p>
 <p class="text-sm text-outline mt-1">For registered MCAST students who already have an assigned MCAST email account and need new password credentials.</p>
 </div>
 <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
@@ -295,7 +299,7 @@
 <details class="group bg-white border border-surface-container rounded-lg">
 <summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
 <div>
-<p class="font-title-lg text-primary">International Non-EU Applicants Not Yet Residing in Malta</p>
+<p class="accordion-title font-title-lg text-primary">International Non-EU Applicants Not Yet Residing in Malta</p>
 <p class="text-sm text-outline mt-1">Guidance for third-country applicants not yet residing in Malta and not entitled to active Maltese EID credentials.</p>
 </div>
 <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
@@ -319,7 +323,7 @@
 <details class="group bg-white border border-surface-container rounded-lg">
 <summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
 <div>
-<p class="font-title-lg text-primary">Useful Resources</p>
+<p class="accordion-title font-title-lg text-primary">Useful Resources</p>
 <p class="text-sm text-outline mt-1">Application guides, offer acceptance help, online application resources, and supporting documents.</p>
 </div>
 <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
@@ -332,20 +336,7 @@
 <details class="group bg-white border border-surface-container rounded-lg">
 <summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
 <div>
-<p class="font-title-lg text-primary">Frequently Asked Questions</p>
-<p class="text-sm text-outline mt-1">Common questions about Form A, online applications, EID, uploaded documents, course availability, transfers, offer acceptance, and admissions processing.</p>
-</div>
-<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="p-stack-md border-t border-surface-container font-body-md text-outline">
-<p class="mb-stack-md">Review the official FAQ content for guidance on form completion, transfers, document uploads, offer acceptance, and admissions processing timelines.</p>
-<a class="text-primary font-label-md hover:underline" href="https://mcast.edu.mt/faqs-3/" rel="noopener" target="_blank">Open Frequently Asked Questions</a>
-</div>
-</details>
-<details class="group bg-white border border-surface-container rounded-lg">
-<summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
-<div>
-<p class="font-title-lg text-primary">Contact Information and Online Assistance</p>
+<p class="accordion-title font-title-lg text-primary">Contact Information and Online Assistance</p>
 <p class="text-sm text-outline mt-1">Admissions help by email, phone, appointment, and online assistance where needed.</p>
 </div>
 <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
@@ -358,7 +349,13 @@
 <p class="mb-stack-md">When emailing, clearly identify yourself by including your full name, surname, ID number, and enough details for the admissions team to understand what assistance is required. Communication may be in English or Maltese.</p>
 <p class="mb-stack-md">Applicants are encouraged to apply online. If in-person assistance is needed, email <a class="text-primary hover:underline" href="mailto:mcast7888@mcast.edu.mt">mcast7888@mcast.edu.mt</a> first to request an appointment.</p>
 <p class="mb-stack-sm"><strong class="text-primary">Phone:</strong> <a class="text-primary hover:underline" href="tel:+35623987888">+356 2398 7888</a></p>
-<p><strong class="text-primary">Call hours:</strong> Monday to Friday, 8am to 2pm.</p>
+<p class="mb-stack-md"><strong class="text-primary">Call hours:</strong> Monday to Friday, 8am to 2pm.</p>
+<div class="mt-stack-sm">
+<p class="mb-stack-sm font-body-md text-outline">View full online assistance:</p>
+<a class="inline-flex items-center justify-center rounded border border-primary px-5 py-3 font-label-md text-primary transition-colors hover:bg-primary hover:text-white" href="https://mcast.edu.mt/online-support/" rel="noopener" target="_blank">
+    Online Assistance
+  </a>
+</div>
 </div>
 <div class="bg-surface rounded border border-surface-container p-stack-md">
 <p class="mb-stack-md"><strong class="text-primary">Online remote support:</strong> Where needed, support staff may assist online through AnyDesk during a phone call.</p>
@@ -374,7 +371,7 @@
 <details class="group bg-white border border-surface-container rounded-lg">
 <summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
 <div>
-<p class="font-title-lg text-primary">Attention: Third Country Nationals on WBL Courses</p>
+<p class="accordion-title font-title-lg text-primary">Attention: Third Country Nationals on WBL Courses</p>
 <p class="text-sm text-outline mt-1">Important guidance for TCN applicants considering courses with Work-Based Learning, placements, apprenticeships, or internships.</p>
 </div>
 <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
@@ -384,6 +381,66 @@
 <p class="mb-stack-md">This verification should include any legal or employment-related requirements, including necessary employment licensing fees, signing the MCAST Work-Based Learning Training Agreement, and registration with JobsPlus where applicable.</p>
 <p class="mb-stack-md"><strong class="text-primary">Warning:</strong> MCAST will not be held liable for financial repercussions arising from failing to complete the preparatory process of determining eligibility for any applicable WBL commitments related to the selected course.</p>
 <a class="text-primary font-label-md hover:underline" href="https://mcast.edu.mt/full-time-courses/" rel="noopener" target="_blank">Check MCAST course / prospectus information</a>
+</div>
+</details>
+</div>
+</section>
+<section class="mb-section-gap max-w-4xl mx-auto">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md text-center">Frequently Asked Questions</h2>
+<p class="font-body-md text-body-md text-outline mb-stack-lg text-center">Quick answers to common admissions questions about eID access, applying without active eID, course information, and guidance support.</p>
+<div class="space-y-stack-md">
+<details class="group bg-white border border-surface-container rounded-lg">
+<summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
+<div>
+<p class="accordion-title font-title-lg text-primary">What if I have a Maltese ID Number, but forgot the related eID credentials?</p>
+</div>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-stack-md border-t border-surface-container font-body-md text-outline">
+<p class="mb-stack-md">If you forgot your eID credentials, contact Identita Malta for assistance. You may also contact servizz.gov by calling <a class="text-primary hover:underline" href="tel:153">153</a>.</p>
+<p class="mb-stack-sm"><strong class="text-primary">Identita helpline:</strong> <a class="text-primary hover:underline" href="tel:+35625904300">+356 2590 4300</a></p>
+<p class="mb-stack-sm"><strong class="text-primary">servizz.gov:</strong> <a class="text-primary hover:underline" href="tel:153">153</a></p>
+<p class="mb-stack-md"><strong class="text-primary">Email:</strong> <a class="text-primary hover:underline" href="mailto:infoeid.identita@gov.mt">infoeid.identita@gov.mt</a></p>
+<p><strong class="text-primary">Note:</strong> If requesting a new password through the eID section, you may need to provide your ID Number and the ID Document Number found at the back of your ID Card.</p>
+</div>
+</details>
+<details class="group bg-white border border-surface-container rounded-lg">
+<summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
+<div>
+<p class="accordion-title font-title-lg text-primary">How can I apply for a Full-Time course if I do not have an active and valid eID?</p>
+</div>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-stack-md border-t border-surface-container font-body-md text-outline">
+<p class="mb-stack-md">Applicants who do not have an active and valid Maltese eID should follow the relevant application route shown in the Application Time Windows section. The route depends on whether the applicant is an EU national, a third-country national already residing in Malta, or an international non-EU applicant not yet residing in Malta.</p>
+<p class="mb-stack-md">For cases that need admissions guidance, email <a class="text-primary hover:underline" href="mailto:mcast7888@mcast.edu.mt">mcast7888@mcast.edu.mt</a> and explain your situation clearly.</p>
+<a class="text-primary font-label-md hover:underline" href="application_time_windows_2026_2027/application-online-ft-mcast-courses-desktop.html">View Application Time Windows</a>
+</div>
+</details>
+<details class="group bg-white border border-surface-container rounded-lg">
+<summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
+<div>
+<p class="accordion-title font-title-lg text-primary">From where do I get information about MCAST full-time courses?</p>
+</div>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-stack-md border-t border-surface-container font-body-md text-outline">
+<p class="mb-stack-md">Use the MCAST full-time courses area to review available courses and institute information. Course pages normally provide the exact course title, entry requirements, course description, duration, and other details needed before applying.</p>
+<p class="mb-stack-md">Use the current MCAST full-time courses information and confirm the course details before submitting your application.</p>
+<a class="text-primary font-label-md hover:underline" href="https://mcast.edu.mt/full-time-courses/" rel="noopener" target="_blank">View Full-Time Courses</a>
+</div>
+</details>
+<details class="group bg-white border border-surface-container rounded-lg">
+<summary class="flex justify-between items-start gap-4 p-stack-md cursor-pointer list-none">
+<div>
+<p class="accordion-title font-title-lg text-primary">I want to ask for advice about a course I am interested in. What can I do?</p>
+</div>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-stack-md border-t border-surface-container font-body-md text-outline">
+<p class="mb-stack-md">MCAST Career Guidance can help applicants who need advice about choosing a course.</p>
+<p class="mb-stack-sm"><strong class="text-primary">Email:</strong> <a class="text-primary hover:underline" href="mailto:careerguidance@mcast.edu.mt">careerguidance@mcast.edu.mt</a></p>
+<p><strong class="text-primary">Phone:</strong> <a class="text-primary hover:underline" href="tel:+35623987135">+356 2398 7135</a> and <a class="text-primary hover:underline" href="tel:+35623987136">+356 2398 7136</a></p>
 </div>
 </details>
 </div>

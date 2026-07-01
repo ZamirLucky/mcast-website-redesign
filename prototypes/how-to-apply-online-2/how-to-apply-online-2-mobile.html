@@ -75,6 +75,12 @@
     body {
       min-height: max(884px, 100dvh);
     }
+    .accordion-title {
+      transition: color 0.2s ease;
+    }
+    .accordion-item.is-open .accordion-title {
+      color: #D7AC46;
+    }
   </style>
 </head>
 <body class="text-on-surface bg-background antialiased">
@@ -260,11 +266,12 @@
 </section>
 <section class="py-12 border-t border-outline">
 <div class="px-grid-margin">
-<h2 class="font-display text-headline-sm uppercase mb-6">FAQ and Resources</h2>
-<div class="flex flex-col border-b border-outline">
-<button class="flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<h2 class="font-display text-headline-sm uppercase mb-3">Resources and Support</h2>
+<p class="text-sm font-body opacity-70 mb-6">Use these support resources for password reset, international applications, application documents, online support, and WBL-related guidance.</p>
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
 <div class="pr-4">
-<span class="font-bold text-sm uppercase group-hover:text-secondary transition-colors block">Requesting a Password Reset</span>
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">Requesting a Password Reset</span>
 <p class="text-xs opacity-60 mt-1 normal-case">For registered MCAST students who already have an assigned MCAST email account and need new password credentials.</p>
 </div>
 <span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
@@ -276,10 +283,10 @@
                     <div class="mt-3"><a class="text-primary font-bold text-xs uppercase tracking-wider" href="https://forms.office.com/e/wgRC1AkzW1" rel="noopener" target="_blank">Password Reset Form</a></div>
                 </div>
 </div>
-<div class="flex flex-col border-b border-outline">
-<button class="flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
 <div class="pr-4">
-<span class="font-bold text-sm uppercase group-hover:text-secondary transition-colors block">International Non-EU Applicants Not Yet Residing in Malta</span>
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">International Non-EU Applicants Not Yet Residing in Malta</span>
 <p class="text-xs opacity-60 mt-1 normal-case">Guidance for third-country applicants not yet residing in Malta and not entitled to active Maltese EID credentials.</p>
 </div>
 <span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
@@ -300,10 +307,10 @@
                     <div class="mt-3"><a class="text-primary font-bold text-xs uppercase tracking-wider" href="https://mcastapplyinternational.zohocreatorportal.eu/signup" rel="noopener" target="_blank">Apply Now</a></div>
                 </div>
 </div>
-<div class="flex flex-col border-b border-outline">
-<button class="flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
 <div class="pr-4">
-<span class="font-bold text-sm uppercase group-hover:text-secondary transition-colors block">Useful Resources</span>
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">Useful Resources</span>
 <p class="text-xs opacity-60 mt-1 normal-case">Application guides, offer acceptance help, online application resources, and supporting documents.</p>
 </div>
 <span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
@@ -313,23 +320,10 @@
                     <div class="mt-3"><a class="text-primary font-bold text-xs uppercase tracking-wider" href="https://mcast.edu.mt/resources/" rel="noopener" target="_blank">Open Useful Resources</a></div>
                 </div>
 </div>
-<div class="flex flex-col border-b border-outline">
-<button class="flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
 <div class="pr-4">
-<span class="font-bold text-sm uppercase group-hover:text-secondary transition-colors block">Frequently Asked Questions</span>
-<p class="text-xs opacity-60 mt-1 normal-case">Common questions about Form A, online applications, EID, uploaded documents, course availability, transfers, offer acceptance, and admissions processing.</p>
-</div>
-<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
-</button>
-<div class="hidden pb-5 text-sm font-body opacity-70">
-                    Review the official FAQ content for guidance on form completion, transfers, document uploads, offer acceptance, and admissions processing timelines.
-                    <div class="mt-3"><a class="text-primary font-bold text-xs uppercase tracking-wider" href="https://mcast.edu.mt/faqs-3/" rel="noopener" target="_blank">Open Frequently Asked Questions</a></div>
-                </div>
-</div>
-<div class="flex flex-col border-b border-outline">
-<button class="flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
-<div class="pr-4">
-<span class="font-bold text-sm uppercase group-hover:text-secondary transition-colors block">Contact Information and Online Assistance</span>
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">Contact Information and Online Assistance</span>
 <p class="text-xs opacity-60 mt-1 normal-case">Admissions help by email, phone, appointment, and online assistance where needed.</p>
 </div>
 <span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
@@ -343,6 +337,12 @@
                     <p class="mb-4">When emailing, clearly identify yourself by including your full name, surname, ID number, and enough details for the admissions team to understand what assistance is required. Communication may be in English or Maltese.</p>
                     <p class="mb-4">Applicants are encouraged to apply online. If in-person assistance is needed, email <a class="text-primary hover:underline" href="mailto:mcast7888@mcast.edu.mt">mcast7888@mcast.edu.mt</a> first to request an appointment.</p>
                     <p class="mb-4"><strong class="text-primary">Call hours:</strong> Monday to Friday, 8am to 2pm.</p>
+                    <div class="mb-4">
+  <p class="mb-3">View full online assistance:</p>
+  <a class="block bg-primary text-white py-3 px-4 text-center font-bold text-xs uppercase tracking-wider" href="https://mcast.edu.mt/online-support/" rel="noopener" target="_blank">
+    Online Assistance
+  </a>
+</div>
                     <p class="mb-3">Where needed, support staff may assist online through AnyDesk during a phone call.</p>
                     <div class="flex flex-col gap-3 mb-4">
 <a class="text-primary font-bold text-xs uppercase tracking-wider" href="https://anydesk.com/en/downloads/windows" rel="noopener" target="_blank">AnyDesk for Windows</a>
@@ -351,10 +351,10 @@
                     <img alt="AnyDesk download example for remote support" class="w-full rounded border border-outline" src="../images/AnyDesk.png"/>
                 </div>
 </div>
-<div class="flex flex-col border-b border-outline">
-<button class="flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
 <div class="pr-4">
-<span class="font-bold text-sm uppercase group-hover:text-secondary transition-colors block">Attention: Third Country Nationals on WBL Courses</span>
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">Attention: Third Country Nationals on WBL Courses</span>
 <p class="text-xs opacity-60 mt-1 normal-case">Important guidance for TCN applicants considering courses with Work-Based Learning, placements, apprenticeships, or internships.</p>
 </div>
 <span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
@@ -364,6 +364,71 @@
                     <p class="mb-4">This verification should include any legal or employment-related requirements, including necessary employment licensing fees, signing the MCAST Work-Based Learning Training Agreement, and registration with JobsPlus where applicable.</p>
                     <p class="mb-4"><strong class="text-primary">Warning:</strong> MCAST will not be held liable for financial repercussions arising from failing to complete the preparatory process of determining eligibility for any applicable WBL commitments related to the selected course.</p>
                     <div class="mt-3"><a class="text-primary font-bold text-xs uppercase tracking-wider" href="https://mcast.edu.mt/full-time-courses/" rel="noopener" target="_blank">Check MCAST course / prospectus information</a></div>
+                </div>
+</div>
+</div>
+</section>
+<section class="py-12 border-t border-outline">
+<div class="px-grid-margin">
+<h2 class="font-display text-headline-sm uppercase mb-3">Frequently Asked Questions</h2>
+<p class="text-sm font-body opacity-70 mb-6">Quick answers to common admissions questions about eID access, applying without active eID, course information, and guidance support.</p>
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<div class="pr-4">
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">What if I have a Maltese ID Number, but forgot the related eID credentials?</span>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+</button>
+<div class="hidden pb-5 text-sm font-body opacity-70">
+                    <p class="mb-4">If you forgot your eID credentials, contact Identita Malta for assistance. You may also contact servizz.gov by calling <a class="text-primary hover:underline" href="tel:153">153</a>.</p>
+                    <div class="flex flex-col gap-2 mb-4">
+<a class="block py-2 text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4" href="tel:+35625904300">Identita helpline: +356 2590 4300</a>
+<a class="block py-2 text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4" href="tel:153">servizz.gov: 153</a>
+<a class="block py-2 text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4" href="mailto:infoeid.identita@gov.mt">infoeid.identita@gov.mt</a>
+</div>
+                    <p><strong class="text-primary">Note:</strong> If requesting a new password through the eID section, you may need to provide your ID Number and the ID Document Number found at the back of your ID Card.</p>
+                </div>
+</div>
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<div class="pr-4">
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">How can I apply for a Full-Time course if I do not have an active and valid eID?</span>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+</button>
+<div class="hidden pb-5 text-sm font-body opacity-70">
+                    <p class="mb-4">Applicants who do not have an active and valid Maltese eID should follow the relevant application route shown in the Application Time Windows section. The route depends on whether the applicant is an EU national, a third-country national already residing in Malta, or an international non-EU applicant not yet residing in Malta.</p>
+                    <p class="mb-4">For cases that need admissions guidance, email <a class="text-primary hover:underline" href="mailto:mcast7888@mcast.edu.mt">mcast7888@mcast.edu.mt</a> and explain your situation clearly.</p>
+                    <div class="mt-3"><a class="text-primary font-bold text-xs uppercase tracking-wider" href="application_time_windows_2026_2027/application-online-ft-mcast-courses-mobile.html">View Application Time Windows</a></div>
+                </div>
+</div>
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<div class="pr-4">
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">From where do I get information about MCAST full-time courses?</span>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+</button>
+<div class="hidden pb-5 text-sm font-body opacity-70">
+                    <p class="mb-4">Use the MCAST full-time courses area to review available courses and institute information. Course pages normally provide the exact course title, entry requirements, course description, duration, and other details needed before applying.</p>
+                    <p class="mb-4">Use the current MCAST full-time courses information and confirm the course details before submitting your application.</p>
+                    <div class="mt-3"><a class="text-primary font-bold text-xs uppercase tracking-wider" href="https://mcast.edu.mt/full-time-courses/" rel="noopener" target="_blank">View Full-Time Courses</a></div>
+                </div>
+</div>
+<div class="accordion-item flex flex-col border-b border-outline">
+<button aria-expanded="false" class="accordion-trigger flex justify-between items-start py-5 text-left w-full group gap-4" onclick="toggleFaq(this)">
+<div class="pr-4">
+<span class="accordion-title font-bold text-sm uppercase transition-colors block">I want to ask for advice about a course I am interested in. What can I do?</span>
+</div>
+<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+</button>
+<div class="hidden pb-5 text-sm font-body opacity-70">
+                    <p class="mb-4">MCAST Career Guidance can help applicants who need advice about choosing a course.</p>
+                    <div class="flex flex-col gap-2">
+<a class="block py-2 text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4" href="mailto:careerguidance@mcast.edu.mt">careerguidance@mcast.edu.mt</a>
+<a class="block py-2 text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4" href="tel:+35623987135">+356 2398 7135</a>
+<a class="block py-2 text-primary font-bold underline decoration-secondary decoration-2 underline-offset-4" href="tel:+35623987136">+356 2398 7136</a>
+</div>
                 </div>
 </div>
 </div>
@@ -390,13 +455,19 @@
         function toggleFaq(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('.material-symbols-outlined');
+            const item = button.closest('.accordion-item') || button.parentElement;
+            const isOpening = content.classList.contains('hidden');
 
-            if (content.classList.contains('hidden')) {
+            if (isOpening) {
                 content.classList.remove('hidden');
                 icon.style.transform = 'rotate(180deg)';
+                item.classList.add('is-open');
+                button.setAttribute('aria-expanded', 'true');
             } else {
                 content.classList.add('hidden');
                 icon.style.transform = 'rotate(0deg)';
+                item.classList.remove('is-open');
+                button.setAttribute('aria-expanded', 'false');
             }
         }
     </script>
