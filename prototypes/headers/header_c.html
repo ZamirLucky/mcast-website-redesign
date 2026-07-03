@@ -29,6 +29,12 @@
     };
   </script>
   <style>
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     .material-symbols-outlined {
       font-variation-settings: "FILL" 0, "wght" 450, "GRAD" 0, "opsz" 24;
     }
@@ -143,8 +149,8 @@
     .nav-dropdown__trigger { display: flex; align-items: center; }
     .nav-dropdown__panel {
       position: absolute; top: 100%; left: 0; z-index: 30; width: 320px; padding: 8px 0;
-      border: 1px solid rgba(0, 0, 67, 0.16); border-top: 3px solid #D7AC46;
-      background: #FFFFFF; box-shadow: 0 8px 18px rgba(0, 0, 67, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18); border-top: 3px solid #D7AC46;
+      background: #000043; box-shadow: 0 8px 18px rgba(0, 0, 67, 0.12);
       opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(6px);
       transition: opacity 150ms ease, transform 150ms ease, visibility 0s linear 150ms;
     }
@@ -156,13 +162,192 @@
       opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s;
     }
     .nav-dropdown__link {
-      display: block; padding: 10px 16px; border-left: 3px solid transparent; color: #000043;
+      display: block; padding: 10px 16px; border-left: 3px solid transparent; color: #FFFFFF;
       font-size: 12px; font-weight: 600; line-height: 1.35; text-transform: none; letter-spacing: 0.01em;
       transition: border-color 150ms ease, color 150ms ease, background-color 150ms ease;
     }
     .nav-dropdown__link:hover,
     .nav-dropdown__link:focus {
-      border-left-color: #D7AC46; background: rgba(215, 172, 70, 0.08); color: #D7AC46; outline: none;
+      border-left-color: #D7AC46; background: rgba(215, 172, 70, 0.14); color: #D7AC46; outline: none;
+    }
+
+    .header-mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      justify-content: flex-end;
+      background: rgba(0, 0, 67, 0.34);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 180ms ease, visibility 0s linear 180ms;
+    }
+
+    .header-mobile-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    .header-mobile-menu__backdrop {
+      position: absolute;
+      inset: 0;
+    }
+
+    .header-mobile-menu__panel {
+      position: relative;
+      z-index: 1;
+      width: min(100vw, 560px);
+      min-height: 100dvh;
+      max-height: 100dvh;
+      overflow-y: auto;
+      background: #000043;
+      color: #FFFFFF;
+      padding: 28px 28px 36px;
+      box-shadow: -18px 0 40px rgba(0, 0, 67, 0.34);
+      transform: translateX(100%);
+      transition: transform 220ms ease;
+    }
+
+    .header-mobile-menu.is-open .header-mobile-menu__panel {
+      transform: translateX(0);
+    }
+
+    .header-mobile-menu__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .header-mobile-menu__logo {
+      width: 210px;
+      height: auto;
+      max-width: 70%;
+      filter: brightness(0) invert(1);
+    }
+
+    .header-mobile-menu__close {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.36);
+      color: #FFFFFF;
+    }
+
+    .header-mobile-menu__close:hover,
+    .header-mobile-menu__close:focus {
+      color: #D7AC46;
+      outline: 2px solid #D7AC46;
+      outline-offset: 2px;
+    }
+
+    .header-mobile-menu__nav {
+      padding-top: 24px;
+    }
+
+    .header-mobile-menu__section {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .header-mobile-menu__section-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 0;
+      color: #FFFFFF;
+      font-family: Montserrat, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .header-mobile-menu__section-toggle:hover,
+    .header-mobile-menu__section-toggle:focus,
+    .header-mobile-menu__section-toggle[aria-expanded="true"] {
+      color: #D7AC46;
+      outline: none;
+    }
+
+    .header-mobile-menu__section-toggle .material-symbols-outlined {
+      transition: transform 180ms ease;
+    }
+
+    .header-mobile-menu__section-toggle[aria-expanded="true"] .material-symbols-outlined {
+      transform: rotate(180deg);
+    }
+
+    .header-mobile-menu__section-panel {
+      padding: 0 0 16px 18px;
+    }
+
+    .header-mobile-menu__section-panel a,
+    .header-mobile-menu__direct-link {
+      display: block;
+      padding: 9px 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 14px;
+      line-height: 1.45;
+      text-decoration: none;
+    }
+
+    .header-mobile-menu__section-panel a:hover,
+    .header-mobile-menu__section-panel a:focus,
+    .header-mobile-menu__direct-link:hover,
+    .header-mobile-menu__direct-link:focus {
+      color: #D7AC46;
+      outline: none;
+    }
+
+    .header-mobile-menu__direct-link {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      font-weight: 700;
+      padding: 16px 0;
+    }
+
+    .header-mobile-menu__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      margin-top: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 999px;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .header-mobile-menu__cta:hover,
+    .header-mobile-menu__cta:focus {
+      border-color: #D7AC46;
+      color: #D7AC46;
+      outline: none;
+    }
+
+    body.is-mobile-menu-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 767px) {
+      .header-mobile-menu__panel {
+        width: 100vw;
+        padding: 24px 24px 34px;
+      }
+
+      .header-mobile-menu__logo {
+        width: 190px;
+      }
     }
   </style>
 </head>
@@ -217,7 +402,7 @@
           </nav>
 
           <a class="flex w-[230px] shrink-0 items-center justify-start lg:w-[340px] lg:justify-center" href="#" aria-label="MCAST home">
-            <img class="h-24 w-auto max-w-[230px] object-contain md:h-28 md:max-w-[340px]" src="../mcast_logo.png" alt="MCAST logo" />
+            <img class="h-24 w-auto max-w-[230px] object-contain md:h-28 md:max-w-[340px]" src="../images/mcast_logo.png" alt="MCAST logo" />
           </a>
 
           <nav class="hidden flex-1 items-center justify-start gap-7 pl-8 lg:flex" aria-label="Primary navigation right">
@@ -227,12 +412,133 @@
           </nav>
 
           <div class="flex items-center gap-1 lg:hidden">
-            <button class="grid h-10 w-10 place-items-center rounded-sm text-white" type="button" aria-label="Open menu">
+            <button
+              class="grid h-10 w-10 place-items-center rounded-sm text-white transition hover:text-mcastGold focus:text-mcastGold focus:outline-none focus:ring-1 focus:ring-mcastGold/70 focus:ring-offset-2 focus:ring-offset-mcastBlue"
+              type="button"
+              aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="headerMobileMenu"
+              data-mobile-menu-toggle
+            >
               <span class="material-symbols-outlined">menu</span>
             </button>
           </div>
           </div>
         </div>
+      </div>
+      <div
+        id="headerMobileMenu"
+        class="header-mobile-menu"
+        data-mobile-menu
+        aria-hidden="true"
+      >
+        <div class="header-mobile-menu__backdrop" data-mobile-menu-close></div>
+
+        <aside class="header-mobile-menu__panel" aria-label="Mobile navigation">
+          <div class="header-mobile-menu__top">
+            <img class="header-mobile-menu__logo" src="../images/mcast_logo.png" alt="MCAST logo" />
+            <button
+              class="header-mobile-menu__close"
+              type="button"
+              aria-label="Close menu"
+              data-mobile-menu-close
+            >
+              <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+          </div>
+
+          <nav class="header-mobile-menu__nav" aria-label="Mobile primary navigation">
+            <div class="header-mobile-menu__section">
+              <button class="header-mobile-menu__section-toggle" type="button" aria-expanded="false">
+                <span>Study</span>
+                <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+              </button>
+              <div class="header-mobile-menu__section-panel" hidden>
+                <a href="#">Academic Calendar</a>
+                <a href="#">Apply Online</a>
+                <a href="#">Late Applications</a>
+                <a href="#">Full-Time Courses Important Dates 2025/2026</a>
+                <a href="#" data-page-target="catalogue">Full-time courses</a>
+                <a href="#">Part-time courses</a>
+                <a href="#">Master Courses</a>
+                <a href="#">Doctoral Programme DRes</a>
+                <a href="#">Online Learning</a>
+                <a href="#">Continuous Professional Development</a>
+                <a href="#">International Students</a>
+              </div>
+            </div>
+
+            <div class="header-mobile-menu__section">
+              <button class="header-mobile-menu__section-toggle" type="button" aria-expanded="false">
+                <span>Services</span>
+                <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+              </button>
+              <div class="header-mobile-menu__section-panel" hidden>
+                <a href="#">Apprenticeships</a>
+                <a href="#">Career Guidance</a>
+                <a href="#">Chaplaincy</a>
+                <a href="#">Childcare Centre</a>
+                <a href="#">Community Social Responsibility (CSR)</a>
+                <a href="#">CLE</a>
+                <a href="#">ERASMUS+ Projects &amp; Mobility Office</a>
+                <a href="#">Grievance Office</a>
+                <a href="#">Hair and Beauty Salon</a>
+                <a href="#">IEU</a>
+                <a href="#">Sports and Fitness</a>
+                <a href="#">Stipends Office</a>
+                <a href="#">Student Liaison</a>
+                <a href="#">Wellbeing Hub</a>
+                <a href="#">Youth Hub</a>
+              </div>
+            </div>
+
+            <div class="header-mobile-menu__section">
+              <button class="header-mobile-menu__section-toggle" type="button" aria-expanded="false">
+                <span>Research</span>
+                <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+              </button>
+              <div class="header-mobile-menu__section-panel" hidden>
+                <a href="#">Applied Research Journal</a>
+                <a href="#">Research Themes</a>
+                <a href="#">Postdoctoral Fellowship</a>
+                <a href="#">MCAST Monograph Series</a>
+                <a href="#">Library</a>
+                <a href="#">Research Fellowship Scheme</a>
+                <a href="#">Research Framework</a>
+                <a href="#">Research Conferences</a>
+                <a href="#">Research Procedures</a>
+                <a href="#">Innovation</a>
+              </div>
+            </div>
+
+            <div class="header-mobile-menu__section">
+              <button class="header-mobile-menu__section-toggle" type="button" aria-expanded="false">
+                <span>About</span>
+                <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+              </button>
+              <div class="header-mobile-menu__section-panel" hidden>
+                <a href="#">Mission Statement</a>
+                <a href="#">MCAST Act</a>
+                <a href="#">Board of Governors</a>
+                <a href="#">Principal's Office</a>
+                <a href="#">Corporate Services</a>
+                <a href="#">Institutes</a>
+                <a href="#">Regulatory Services</a>
+                <a href="#">Research and Student Academic Management</a>
+                <a href="#">Student Experience</a>
+                <a href="#">IT Systems and Data Securities</a>
+                <a href="#">Publications</a>
+                <a href="#">Statutory Meetings</a>
+                <a href="#">Graduation Pass Rates</a>
+              </div>
+            </div>
+
+            <a class="header-mobile-menu__direct-link" href="#" data-page-target="contact">Support</a>
+            <a class="header-mobile-menu__direct-link" href="#">Students' Info Page</a>
+          </nav>
+
+          <a class="header-mobile-menu__cta" href="#" data-page-target="catalogue">Find the right course</a>
+        </aside>
       </div>
       <div class="h-[4px] bg-mcastGold"></div>
     </header>
@@ -278,6 +584,69 @@
       document.addEventListener("click", (event) => {
         if (!headerSearch.contains(event.target)) {
           setSearchOpen(false);
+        }
+      });
+    }
+
+    const mobileMenu = document.querySelector("[data-mobile-menu]");
+    const mobileMenuToggle = document.querySelector("[data-mobile-menu-toggle]");
+    const mobileMenuCloseButtons = [...document.querySelectorAll("[data-mobile-menu-close]")];
+    const mobileMenuSectionToggles = [...document.querySelectorAll(".header-mobile-menu__section-toggle")];
+
+    if (mobileMenu && mobileMenuToggle) {
+      const setMobileMenuOpen = (isOpen) => {
+        mobileMenu.classList.toggle("is-open", isOpen);
+        mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+        mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+        document.body.classList.toggle("is-mobile-menu-open", isOpen);
+
+        if (isOpen) {
+          window.requestAnimationFrame(() => {
+            const firstFocusable = mobileMenu.querySelector("button, a");
+            if (firstFocusable) {
+              firstFocusable.focus();
+            }
+          });
+        } else {
+          mobileMenuToggle.focus();
+        }
+      };
+
+      mobileMenuToggle.addEventListener("click", (event) => {
+        event.preventDefault();
+        setMobileMenuOpen(!mobileMenu.classList.contains("is-open"));
+      });
+
+      mobileMenuCloseButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+          setMobileMenuOpen(false);
+        });
+      });
+
+      mobileMenuSectionToggles.forEach((sectionToggle) => {
+        const panel = sectionToggle.nextElementSibling;
+
+        sectionToggle.addEventListener("click", () => {
+          const isOpen = sectionToggle.getAttribute("aria-expanded") === "true";
+          sectionToggle.setAttribute("aria-expanded", String(!isOpen));
+
+          if (panel) {
+            panel.hidden = isOpen;
+          }
+        });
+      });
+
+      mobileMenu.addEventListener("click", (event) => {
+        const link = event.target.closest("a");
+        if (link) {
+          setMobileMenuOpen(false);
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && mobileMenu.classList.contains("is-open")) {
+          setMobileMenuOpen(false);
         }
       });
     }
