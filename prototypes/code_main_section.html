@@ -102,10 +102,13 @@
 <!-- Section 3: Explore our Institutes (Bento Layout) -->
 <section class="py-20 bg-mcast-white">
 <div class="max-w-7xl mx-auto px-grid-margin">
-<h2 class="text-4xl font-bold text-mcast-blue mb-12">Explore our Institutes</h2>
-<div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[650px]">
+<div class="mb-12">
+<h2 class="text-4xl font-bold text-mcast-blue">Explore our Institutes</h2>
+<p class="mt-3 text-sm font-semibold uppercase tracking-wider text-mcast-gold md:hidden">Swipe to explore institutes</p>
+</div>
+<div class="institutes-carousel grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-2 gap-6 h-auto xl:h-[650px]">
 <!-- ICT Feature -->
-<div class="md:col-span-2 md:row-span-2 relative group overflow-hidden border border-mcast-border bg-mcast-blue">
+<div class="md:col-span-1 xl:col-span-2 xl:row-span-2 min-h-[420px] md:min-h-[480px] xl:min-h-0 relative group overflow-hidden border border-mcast-border bg-mcast-blue">
 <img alt="ICT Institute" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" src="./images/image_from_https_mcast.edu.mt_wp_content_uploads_mct_5783_768x463.png"/>
 <div class="absolute inset-0 bg-gradient-to-t from-mcast-blue/90 via-mcast-blue/20 to-transparent"></div>
 <div class="absolute bottom-0 left-0 p-10">
@@ -115,7 +118,7 @@
 </div>
 </div>
 <!-- Engineering -->
-<div class="md:col-span-2 bg-mcast-grey p-10 border border-mcast-border flex flex-col justify-between group hover:bg-white transition-colors duration-300">
+<div class="md:col-span-1 xl:col-span-2 min-h-[280px] md:min-h-[320px] xl:min-h-0 bg-mcast-grey p-8 xl:p-10 border border-mcast-border flex flex-col justify-between group hover:bg-white transition-colors duration-300">
 <div>
 <h3 class="text-2xl font-bold text-mcast-blue mb-4">Engineering &amp; Transport</h3>
 <p class="text-mcast-text-dim leading-relaxed">Technical excellence in aviation, maritime, and mechanical engineering fields.</p>
@@ -125,18 +128,18 @@
 </div>
 </div>
 <!-- Creative Arts -->
-<div class="md:col-span-1 bg-mcast-blue p-10 flex flex-col justify-between group">
+<div class="md:col-span-1 min-h-[240px] md:min-h-[280px] xl:min-h-0 bg-mcast-blue p-8 xl:p-10 flex flex-col justify-between group">
 <h3 class="text-xl font-bold text-white">Creative Arts</h3>
 <span class="material-symbols-outlined text-mcast-gold text-5xl">palette</span>
 </div>
 <!-- Business -->
-<div class="md:col-span-1 border border-mcast-border bg-mcast-white p-10 flex flex-col justify-between group hover:bg-mcast-gold transition-all duration-300">
+<div class="md:col-span-1 min-h-[240px] md:min-h-[280px] xl:min-h-0 border border-mcast-border bg-mcast-white p-8 xl:p-10 flex flex-col justify-between group hover:bg-mcast-gold transition-all duration-300">
 <h3 class="text-xl font-bold text-mcast-blue group-hover:text-white transition-colors">Business &amp; Management</h3>
 <span class="material-symbols-outlined text-mcast-blue group-hover:text-white transition-colors text-3xl">trending_up</span>
 </div>
 </div>
 <!-- Secondary Institutes List -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+<div class="institutes-secondary-carousel grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
 <div class="p-6 border border-mcast-border flex items-center gap-4 hover:border-mcast-gold transition-colors">
 <span class="material-symbols-outlined text-mcast-gold">science</span>
 <span class="font-bold text-xs uppercase tracking-widest">Applied Sciences</span>
@@ -212,12 +215,13 @@
 <div>
 <h2 class="text-4xl font-bold text-mcast-blue">News &amp; Events</h2>
 <div class="w-12 h-1 bg-mcast-gold mt-4"></div>
+<p class="mt-3 text-sm font-semibold uppercase tracking-wider text-mcast-gold md:hidden">Swipe to view latest updates</p>
 </div>
 <a class="mt-8 md:mt-0 font-bold text-xs uppercase tracking-[0.2em] flex items-center text-mcast-blue hover:text-mcast-gold transition-colors" href="#">
                     View All News <span class="material-symbols-outlined ml-2 text-base">arrow_forward</span>
 </a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="news-carousel grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
 <!-- News Card 1 -->
 <article class="flex flex-col border border-mcast-border shadow-sm h-full hover:border-mcast-blue transition-colors">
 <div class="h-56 bg-mcast-grey relative overflow-hidden">
@@ -264,6 +268,23 @@
 <div class="text-[10px] font-bold text-mcast-gold uppercase tracking-[0.15em] mb-4">01 October 2024</div>
 <h4 class="text-xl font-bold text-mcast-blue mb-4 leading-snug">Strategic Partnership Signed with Malta Aviation Sector</h4>
 <p class="text-sm text-mcast-text-dim mb-8 line-clamp-3 leading-relaxed">Securing internship placements and curriculum development for engineering and transport students.</p>
+<div class="mt-auto">
+<a class="text-xs font-bold text-mcast-blue border-b-2 border-mcast-gold pb-1 hover:text-mcast-gold transition-colors" href="#">READ MORE</a>
+</div>
+</div>
+</article>
+<!-- News Card 4 -->
+<article class="flex flex-col border border-mcast-border shadow-sm h-full hover:border-mcast-blue transition-colors">
+<div class="h-56 bg-mcast-grey relative overflow-hidden">
+<div class="absolute top-4 left-4 bg-mcast-gold text-mcast-blue text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 z-10">Students</div>
+<div class="w-full h-full flex items-center justify-center opacity-10">
+<span class="material-symbols-outlined text-8xl">support</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<div class="text-[10px] font-bold text-mcast-gold uppercase tracking-[0.15em] mb-4">15 October 2024</div>
+<h4 class="text-xl font-bold text-mcast-blue mb-4 leading-snug">MCAST Expands Student Support Services</h4>
+<p class="text-sm text-mcast-text-dim mb-8 line-clamp-3 leading-relaxed">New support initiatives strengthen access to guidance, wellbeing, and student services across MCAST campuses.</p>
 <div class="mt-auto">
 <a class="text-xs font-bold text-mcast-blue border-b-2 border-mcast-gold pb-1 hover:text-mcast-gold transition-colors" href="#">READ MORE</a>
 </div>

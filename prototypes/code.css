@@ -541,6 +541,93 @@ main,
             font-size: calc(100% - 0.08rem) !important;
         }
 
+        /* Mobile-only horizontal card carousels */
+        @media (max-width: 767px) {
+            main .institutes-carousel,
+            main .news-carousel,
+            main .institutes-secondary-carousel {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                align-items: stretch;
+                gap: 1rem;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                scroll-snap-type: x mandatory;
+                scroll-padding-left: 0;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            main .institutes-carousel,
+            main .news-carousel {
+                margin-right: -2rem;
+                padding-right: 2rem;
+                padding-bottom: 0.75rem;
+            }
+
+            main .institutes-secondary-carousel {
+                margin-right: -2rem;
+                padding-right: 2rem;
+                padding-bottom: 0.5rem;
+            }
+
+            main .institutes-carousel::-webkit-scrollbar,
+            main .news-carousel::-webkit-scrollbar,
+            main .institutes-secondary-carousel::-webkit-scrollbar {
+                display: none;
+            }
+
+            main .institutes-carousel > *,
+            main .news-carousel > * {
+                flex: 0 0 86% !important;
+                width: 86% !important;
+                max-width: 86% !important;
+                min-width: 0;
+                scroll-snap-align: start;
+            }
+
+            main .institutes-secondary-carousel > * {
+                flex: 0 0 78% !important;
+                width: 78% !important;
+                max-width: 78% !important;
+                min-width: 0;
+                scroll-snap-align: start;
+            }
+
+            main .institutes-carousel > * {
+                min-height: 360px;
+            }
+
+            main .institutes-carousel > *:first-child {
+                min-height: 420px;
+            }
+
+            main .institutes-carousel .absolute.bottom-0.left-0 {
+                padding: 1.5rem;
+            }
+
+            main .institutes-carousel h3 {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            main .institutes-carousel p {
+                font-size: 0.9rem;
+                line-height: 1.45;
+            }
+
+            main .news-carousel > article {
+                min-height: 100%;
+            }
+
+            main .news-carousel > article > div:first-child {
+                height: 12rem;
+            }
+        }
+
         @media (max-width: 767px) {
             .header-mobile-menu__panel {
                 width: 100vw;
