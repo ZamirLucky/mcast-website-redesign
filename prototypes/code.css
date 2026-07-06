@@ -543,9 +543,8 @@ main,
 
         /* Mobile-only horizontal card carousels */
         @media (max-width: 767px) {
-            main .institutes-carousel,
-            main .news-carousel,
-            main .institutes-secondary-carousel {
+            main .institutes-mobile-carousel,
+            main .news-carousel {
                 display: flex !important;
                 flex-direction: row !important;
                 flex-wrap: nowrap !important;
@@ -553,6 +552,9 @@ main,
                 gap: 1rem;
                 width: 100%;
                 max-width: 100%;
+                margin-right: -2rem;
+                padding-right: 2rem;
+                padding-bottom: 0.75rem;
                 overflow-x: auto !important;
                 overflow-y: hidden !important;
                 scroll-snap-type: x mandatory;
@@ -561,26 +563,12 @@ main,
                 scrollbar-width: none;
             }
 
-            main .institutes-carousel,
-            main .news-carousel {
-                margin-right: -2rem;
-                padding-right: 2rem;
-                padding-bottom: 0.75rem;
-            }
-
-            main .institutes-secondary-carousel {
-                margin-right: -2rem;
-                padding-right: 2rem;
-                padding-bottom: 0.5rem;
-            }
-
-            main .institutes-carousel::-webkit-scrollbar,
-            main .news-carousel::-webkit-scrollbar,
-            main .institutes-secondary-carousel::-webkit-scrollbar {
+            main .institutes-mobile-carousel::-webkit-scrollbar,
+            main .news-carousel::-webkit-scrollbar {
                 display: none;
             }
 
-            main .institutes-carousel > *,
+            main .institutes-mobile-carousel > *,
             main .news-carousel > * {
                 flex: 0 0 86% !important;
                 width: 86% !important;
@@ -589,32 +577,28 @@ main,
                 scroll-snap-align: start;
             }
 
-            main .institutes-secondary-carousel > * {
-                flex: 0 0 78% !important;
-                width: 78% !important;
-                max-width: 78% !important;
-                min-width: 0;
-                scroll-snap-align: start;
+            main .institute-mobile-card {
+                min-height: 340px;
             }
 
-            main .institutes-carousel > * {
-                min-height: 360px;
-            }
-
-            main .institutes-carousel > *:first-child {
+            main .institute-mobile-card--feature {
                 min-height: 420px;
             }
 
-            main .institutes-carousel .absolute.bottom-0.left-0 {
+            main .institute-mobile-card--compact {
+                min-height: 150px;
+            }
+
+            main .institute-mobile-card--feature .absolute.bottom-0.left-0 {
                 padding: 1.5rem;
             }
 
-            main .institutes-carousel h3 {
+            main .institute-mobile-card h3 {
                 font-size: 1.5rem;
                 line-height: 2rem;
             }
 
-            main .institutes-carousel p {
+            main .institute-mobile-card p {
                 font-size: 0.9rem;
                 line-height: 1.45;
             }

@@ -106,7 +106,47 @@
 <h2 class="text-4xl font-bold text-mcast-blue">Explore our Institutes</h2>
 <p class="mt-3 text-sm font-semibold uppercase tracking-wider text-mcast-gold md:hidden">Swipe to explore institutes</p>
 </div>
-<div class="institutes-carousel grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-2 gap-6 h-auto xl:h-[650px]">
+<div class="institutes-mobile-carousel md:hidden" aria-label="Explore our institutes carousel">
+<div class="institute-mobile-card institute-mobile-card--feature relative overflow-hidden border border-mcast-border bg-mcast-blue">
+<img alt="ICT Institute" class="absolute inset-0 w-full h-full object-cover opacity-60" src="./images/image_from_https_mcast.edu.mt_wp_content_uploads_mct_5783_768x463.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-mcast-blue/90 via-mcast-blue/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0">
+<h3 class="text-3xl font-bold text-white mb-4">Institute of ICT</h3>
+<p class="text-white/80 text-base max-w-sm font-medium">Driving innovation in software development, networks, and multimedia.</p>
+<a class="inline-flex items-center mt-6 text-mcast-gold font-bold text-sm" href="#">LEARN MORE <span class="material-symbols-outlined ml-2">chevron_right</span></a>
+</div>
+</div>
+<div class="institute-mobile-card border border-mcast-border bg-mcast-grey p-8 flex flex-col justify-between">
+<div>
+<h3 class="text-2xl font-bold text-mcast-blue mb-4">Engineering &amp; Transport</h3>
+<p class="text-mcast-text-dim leading-relaxed">Technical excellence in aviation, maritime, and mechanical engineering fields.</p>
+</div>
+<div class="flex justify-end">
+<span class="material-symbols-outlined text-4xl text-mcast-blue/20">settings</span>
+</div>
+</div>
+<div class="institute-mobile-card border border-mcast-border bg-mcast-blue p-8 flex flex-col justify-between">
+<h3 class="text-xl font-bold text-white">Creative Arts</h3>
+<span class="material-symbols-outlined text-mcast-gold text-5xl">palette</span>
+</div>
+<div class="institute-mobile-card border border-mcast-border bg-mcast-white p-8 flex flex-col justify-between">
+<h3 class="text-xl font-bold text-mcast-blue">Business &amp; Management</h3>
+<span class="material-symbols-outlined text-mcast-blue text-3xl">trending_up</span>
+</div>
+<div class="institute-mobile-card institute-mobile-card--compact border border-mcast-border bg-mcast-white p-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-mcast-gold">science</span>
+<span class="font-bold text-xs uppercase tracking-widest">Applied Sciences</span>
+</div>
+<div class="institute-mobile-card institute-mobile-card--compact border border-mcast-border bg-mcast-white p-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-mcast-gold">groups</span>
+<span class="font-bold text-xs uppercase tracking-widest">Community Services</span>
+</div>
+<div class="institute-mobile-card institute-mobile-card--compact border border-mcast-border bg-mcast-white p-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-mcast-gold">location_on</span>
+<span class="font-bold text-xs uppercase tracking-widest">Gozo Campus</span>
+</div>
+</div>
+<div class="hidden md:grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-2 gap-6 h-auto xl:h-[650px]">
 <!-- ICT Feature -->
 <div class="md:col-span-1 xl:col-span-2 xl:row-span-2 min-h-[420px] md:min-h-[480px] xl:min-h-0 relative group overflow-hidden border border-mcast-border bg-mcast-blue">
 <img alt="ICT Institute" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" src="./images/image_from_https_mcast.edu.mt_wp_content_uploads_mct_5783_768x463.png"/>
@@ -139,7 +179,7 @@
 </div>
 </div>
 <!-- Secondary Institutes List -->
-<div class="institutes-secondary-carousel grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+<div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
 <div class="p-6 border border-mcast-border flex items-center gap-4 hover:border-mcast-gold transition-colors">
 <span class="material-symbols-outlined text-mcast-gold">science</span>
 <span class="font-bold text-xs uppercase tracking-widest">Applied Sciences</span>
@@ -217,7 +257,7 @@
 <div class="w-12 h-1 bg-mcast-gold mt-4"></div>
 <p class="mt-3 text-sm font-semibold uppercase tracking-wider text-mcast-gold md:hidden">Swipe to view latest updates</p>
 </div>
-<a class="mt-8 md:mt-0 font-bold text-xs uppercase tracking-[0.2em] flex items-center text-mcast-blue hover:text-mcast-gold transition-colors" href="#">
+<a class="hidden md:flex mt-8 md:mt-0 font-bold text-xs uppercase tracking-[0.2em] items-center text-mcast-blue hover:text-mcast-gold transition-colors" href="#">
                     View All News <span class="material-symbols-outlined ml-2 text-base">arrow_forward</span>
 </a>
 </div>
@@ -290,6 +330,11 @@
 </div>
 </div>
 </article>
+</div>
+<div class="mt-8 flex justify-end md:hidden">
+<a class="inline-flex items-center font-bold text-xs uppercase tracking-[0.2em] text-mcast-blue hover:text-mcast-gold transition-colors" href="#">
+                    View All News <span class="material-symbols-outlined ml-2 text-base">arrow_forward</span>
+</a>
 </div>
 </div>
 </section>
