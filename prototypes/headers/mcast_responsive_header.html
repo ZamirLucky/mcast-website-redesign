@@ -111,7 +111,10 @@
         .transition-menu {
             transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
         }
-    </style>
+        .transition-submenu {
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+        }
+</style>
 </head>
 <body class="bg-background text-on-background font-body-md min-h-screen">
 <header class="header-bg text-white relative z-50">
@@ -140,10 +143,62 @@
 </div>
 <!-- Desktop Nav Links -->
 <nav class="hidden md:flex items-center space-x-8">
-<a class="font-nav-link text-nav-link hover:text-primary transition-all duration-200 tracking-wider" href="#">Study</a>
+<div class="relative group">
+<a aria-haspopup="true" class="block font-nav-link text-nav-link hover:text-primary focus:text-primary focus:outline-none transition-all duration-200 tracking-wider py-3" href="#">Study</a>
+<div class="absolute left-0 top-full hidden group-hover:block group-focus-within:block w-72 header-bg border border-white/10" role="menu">
+<div class="flex flex-col divide-y divide-white/10 py-1 text-sm">
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Academic Calendar</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Apply Online</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Late Applications</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Full-Time Courses Important Dates 2025/2026</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Full-time courses</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Part-time courses</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Master Courses</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Doctoral Programme DRes</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Online Learning</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Continuous Professional Development</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">International Students</a>
+</div>
+</div>
+</div>
 <a class="font-nav-link text-nav-link hover:text-primary transition-all duration-200 tracking-wider" href="#">Student life</a>
-<a class="font-nav-link text-nav-link hover:text-primary transition-all duration-200 tracking-wider" href="#">Research</a>
-<a class="font-nav-link text-nav-link hover:text-primary transition-all duration-200 tracking-wider" href="#">About</a>
+<div class="relative group">
+<a aria-haspopup="true" class="block font-nav-link text-nav-link hover:text-primary focus:text-primary focus:outline-none transition-all duration-200 tracking-wider py-3" href="#">Research</a>
+<div class="absolute left-0 top-full hidden group-hover:block group-focus-within:block w-64 header-bg border border-white/10" role="menu">
+<div class="flex flex-col divide-y divide-white/10 py-1 text-sm">
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Applied Research Journal</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Research Portfolio</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Postdoctoral Fellowship</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">MCAST Monograph Series</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Library</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Research Fellowship Scheme</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Research Framework</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Research Conferences</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Research Procedures</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Innovation</a>
+</div>
+</div>
+</div>
+<div class="relative group">
+<a aria-haspopup="true" class="block font-nav-link text-nav-link hover:text-primary focus:text-primary focus:outline-none transition-all duration-200 tracking-wider py-3" href="#">About</a>
+<div class="absolute right-0 top-full hidden group-hover:block group-focus-within:block w-72 header-bg border border-white/10" role="menu">
+<div class="flex flex-col divide-y divide-white/10 py-1 text-sm">
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Mission Statement</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">MCAST Act</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Board of Governors</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Principal’s Office</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Corporate Services</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Institutes</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Regulatory Services</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Research and Student Academic Management</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Student Experience</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">IT Systems and Data Securities</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Publications</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Statutory Meetings</a>
+<a class="px-4 py-2 hover:text-primary focus:text-primary focus:outline-none" href="#">Graduation Pass Rates</a>
+</div>
+</div>
+</div>
 <a class="font-nav-link text-nav-link bg-white text-primary-container px-6 py-3 font-bold hover:bg-opacity-90 transition-all active:scale-95 tracking-widest text-xs" href="#">Apply now</a>
 </nav>
 <!-- Mobile Menu Button -->
@@ -154,21 +209,83 @@
 </div>
 </div>
 <!-- Mobile Dropdown Menu -->
-<div aria-hidden="true" class="md:hidden absolute top-full left-0 w-full header-bg border-t border-white/10 max-h-0 opacity-0 overflow-hidden transition-menu" id="mobile-menu"><div class="px-margin-mobile py-8 flex flex-col space-y-6"><nav class="flex flex-col space-y-6">
-<a class="text-xl font-semibold hover:text-primary transition-colors pl-4 text-white" href="#">Study</a>
-<a class="text-xl font-semibold hover:text-primary transition-colors pl-4 text-white" href="#">Student life</a>
-<a class="text-xl font-semibold hover:text-primary transition-colors pl-4 text-white" href="#">Research</a>
-<a class="text-xl font-semibold hover:text-primary transition-colors pl-4 text-white" href="#">About</a>
-<a class="bg-white text-primary-container text-center py-4 font-bold tracking-widest uppercase active:bg-slate-200 transition-colors w-full" href="#">APPLY NOW</a>
-</nav>
-<div class="h-[1px] bg-white/10 w-full"></div>
-<div class="grid grid-cols-2 gap-y-4 gap-x-8 text-sm text-white/70">
-<a class="hover:text-white" href="#">Accessibility</a>
-<a class="hover:text-white" href="#">Contact</a>
-<a class="hover:text-white" href="#">International</a>
-<a class="hover:text-white" href="#">Staff Intranet</a>
-<a class="hover:text-white" href="#">Student Portal</a>
-</div></div></div>
+<div aria-hidden="true" class="md:hidden absolute top-full left-0 w-full header-bg border-t border-white/10 max-h-0 opacity-0 overflow-hidden transition-menu" id="mobile-menu">
+    <div class="px-margin-mobile py-8 flex flex-col space-y-6">
+    <nav class="flex flex-col space-y-6">
+        <div>
+            <button aria-controls="mobile-study-submenu" aria-expanded="false" class="mobile-accordion-toggle w-full flex items-center justify-between text-xl font-semibold hover:text-primary focus:text-primary focus:outline-none transition-colors px-4 py-2 text-white" type="button">
+                <span>Study</span><span class="material-symbols-outlined text-xl transition-transform" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="mobile-submenu max-h-0 opacity-0 overflow-hidden transition-submenu" id="mobile-study-submenu">
+                <div class="flex flex-col gap-3 px-6 pt-3 text-[15px] leading-snug border-t border-white/10">
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">Apply Online</a>
+                    <a href="#">Late Applications</a>
+                    <a href="#">Full-Time Courses Important Dates 2025/2026</a>
+                    <a href="#">Full-time courses</a>
+                    <a href="#">Part-time courses</a>
+                    <a href="#">Master Courses</a>
+                    <a href="#">Doctoral Programme DRes</a>
+                    <a href="#">Online Learning</a>
+                    <a href="#">Continuous Professional Development</a>
+                    <a href="#">International Students</a>
+                </div>
+            </div>
+        </div>
+        <a class="text-xl font-semibold hover:text-primary transition-colors pl-4 text-white" href="#">Student life</a>
+        <div>
+            <button aria-controls="mobile-research-submenu" aria-expanded="false" class="mobile-accordion-toggle w-full flex items-center justify-between text-xl font-semibold hover:text-primary focus:text-primary focus:outline-none transition-colors px-4 py-2 text-white" type="button">
+                <span>Research</span><span class="material-symbols-outlined text-xl transition-transform" aria-hidden="true">expand_more</span>
+            </button>
+            <div class="mobile-submenu max-h-0 opacity-0 overflow-hidden transition-submenu" id="mobile-research-submenu">
+                <div class="flex flex-col gap-3 px-6 pt-3 text-[15px] leading-snug border-t border-white/10">
+                    <a href="#">Applied Research Journal</a>
+                    <a href="#">Research Portfolio</a>
+                    <a href="#">Postdoctoral Fellowship</a>
+                    <a href="#">MCAST Monograph Series</a>
+                    <a href="#">Library</a>
+                    <a href="#">Research Fellowship Scheme</a>
+                    <a href="#">Research Framework</a>
+                    <a href="#">Research Conferences</a>
+                    <a href="#">Research Procedures</a>
+                    <a href="#">Innovation</a>
+                </div>
+            </div>
+        </div>
+        <div>
+                <button aria-controls="mobile-about-submenu" aria-expanded="false" class="mobile-accordion-toggle w-full flex items-center justify-between text-xl font-semibold hover:text-primary focus:text-primary focus:outline-none transition-colors px-4 py-2 text-white" type="button">
+                    <span>About</span><span class="material-symbols-outlined text-xl transition-transform" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="mobile-submenu max-h-0 opacity-0 overflow-hidden transition-submenu" id="mobile-about-submenu">
+                    <div class="flex flex-col gap-3 px-6 pt-3 text-[15px] leading-snug border-t border-white/10">
+                        <a href="#">Mission Statement</a>
+                        <a href="#">MCAST Act</a>
+                        <a href="#">Board of Governors</a>
+                        <a href="#">Principal’s Office</a>
+                        <a href="#">Corporate Services</a>
+                        <a href="#">Institutes</a>
+                        <a href="#">Regulatory Services</a>
+                        <a href="#">Research and Student Academic Management</a>
+                        <a href="#">Student Experience</a>
+                        <a href="#">IT Systems and Data Securities</a>
+                        <a href="#">Publications</a>
+                        <a href="#">Statutory Meetings</a>
+                        <a href="#">Graduation Pass Rates</a>
+                    </div>
+                </div>
+        </div>
+        <a class="bg-white text-primary-container text-center py-4 font-bold tracking-widest uppercase active:bg-slate-200 transition-colors w-full" href="#">APPLY NOW</a>
+    </nav>
+    <div class="h-[1px] bg-white/10 w-full"></div>
+    <div class="grid grid-cols-2 gap-y-4 gap-x-8 text-sm text-white/70">
+    <a class="hover:text-white" href="#">Accessibility</a>
+    <a class="hover:text-white" href="#">Contact</a>
+    <a class="hover:text-white" href="#">International</a>
+    <a class="hover:text-white" href="#">Staff Intranet</a>
+    <a class="hover:text-white" href="#">Student Portal</a>
+    </div>
+    </div>
+</div>
 </header>
 
 <script>
@@ -176,7 +293,15 @@
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = document.getElementById('menu-icon');
+            const accordionToggles = mobileMenu.querySelectorAll('.mobile-accordion-toggle');
             let isMenuOpen = false;
+
+            const updateMenuHeight = () => {
+                if (isMenuOpen) {
+                    const availableHeight = window.innerHeight - mobileMenu.getBoundingClientRect().top;
+                    mobileMenu.style.maxHeight = `${Math.min(mobileMenu.scrollHeight, availableHeight)}px`;
+                }
+            };
 
             const toggleMenu = () => {
                 isMenuOpen = !isMenuOpen;
@@ -187,20 +312,37 @@
 
                 if (isMenuOpen) {
                     // Open state
-                    mobileMenu.style.maxHeight = '500px'; // Arbitrary large enough height
+                    updateMenuHeight();
                     mobileMenu.style.opacity = '1';
+                    mobileMenu.style.overflowY = 'auto';
                     menuIcon.textContent = 'close';
                     document.body.style.overflow = 'hidden'; // Prevent scroll
                 } else {
                     // Closed state
                     mobileMenu.style.maxHeight = '0';
                     mobileMenu.style.opacity = '0';
+                    mobileMenu.style.overflowY = 'hidden';
                     menuIcon.textContent = 'menu';
                     document.body.style.overflow = ''; // Restore scroll
                 }
             };
 
             menuToggle.addEventListener('click', toggleMenu);
+
+            accordionToggles.forEach(button => {
+                button.addEventListener('click', () => {
+                    const submenu = document.getElementById(button.getAttribute('aria-controls'));
+                    const chevron = button.querySelector('.material-symbols-outlined');
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                    button.setAttribute('aria-expanded', String(!isExpanded));
+                    submenu.style.maxHeight = isExpanded ? '0' : `${submenu.scrollHeight}px`;
+                    submenu.style.opacity = isExpanded ? '0' : '1';
+                    chevron.classList.toggle('rotate-180', !isExpanded);
+                    requestAnimationFrame(updateMenuHeight);
+                    submenu.addEventListener('transitionend', updateMenuHeight, { once: true });
+                });
+            });
 
             // Close menu when clicking on a link
             const mobileLinks = mobileMenu.querySelectorAll('a');
@@ -214,6 +356,8 @@
             window.addEventListener('resize', () => {
                 if (window.innerWidth >= 768 && isMenuOpen) {
                     toggleMenu();
+                } else {
+                    updateMenuHeight();
                 }
             });
         });
