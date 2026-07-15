@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MCAST - Responsive Footer</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -104,35 +105,36 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         body { font-family: 'Montserrat', sans-serif; }
-        .bento-container {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 16px;
-        }
-        @media (max-width: 768px) {
-            .bento-container {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
         .focus-ring:focus-visible {
             outline: 2px solid #ffffff;
             outline-offset: 4px;
+        }
+        .footer-nav-group > summary::-webkit-details-marker {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .footer-nav-group > .footer-nav-list {
+                display: block !important;
+            }
+            .footer-nav-group > summary {
+                pointer-events: none;
+            }
         }
     </style>
 </head>
 <body class="bg-surface text-on-surface m-0">
 <footer class="w-full bg-[#000043] text-white">
-<div class="mx-auto flex max-w-7xl flex-col gap-8 px-margin-mobile py-12">
-<div>
-<details class="group">
-<summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-[18px] text-[14px] font-extrabold uppercase tracking-[0.05em] text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white transition-colors duration-200 hover:text-white">
+<div class="mx-auto max-w-7xl px-margin-mobile py-12 md:px-margin-desktop md:py-16">
+<div class="grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-gutter md:gap-y-14 lg:grid-cols-4 lg:gap-y-12">
+<details class="footer-nav-group group md:order-1 md:block">
+<summary class="footer-nav-summary flex cursor-pointer list-none items-center justify-between gap-4 py-[18px] text-[14px] font-extrabold uppercase tracking-[0.05em] text-white transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:pointer-events-none md:mb-6 md:cursor-default md:py-0">
 <span>Learn With Us</span>
-<span aria-hidden="true" class="relative inline-flex h-6 w-6 items-center justify-center text-xl leading-none text-white">
+<span aria-hidden="true" class="footer-accordion-icon relative inline-flex h-6 w-6 items-center justify-center text-xl leading-none text-white md:hidden">
 <span class="group-open:hidden">+</span>
 <span class="hidden group-open:inline">−</span>
 </span>
 </summary>
-<ul class="pb-5">
+<ul class="footer-nav-list pb-5 md:block md:pb-0">
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Apply Now</a></li>
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Institutes</a></li>
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">International Students</a></li>
@@ -144,15 +146,15 @@
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Prospectus 2025-2026</a></li>
 </ul>
 </details>
-<details class="group">
-<summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-[18px] text-[14px] font-extrabold uppercase tracking-[0.05em] text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white transition-colors duration-200 hover:text-white">
+<details class="footer-nav-group group md:order-3 md:block lg:order-2">
+<summary class="footer-nav-summary flex cursor-pointer list-none items-center justify-between gap-4 py-[18px] text-[14px] font-extrabold uppercase tracking-[0.05em] text-white transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:pointer-events-none md:mb-6 md:cursor-default md:py-0">
 <span>About MCAST</span>
-<span aria-hidden="true" class="relative inline-flex h-6 w-6 items-center justify-center text-xl leading-none text-white">
+<span aria-hidden="true" class="footer-accordion-icon relative inline-flex h-6 w-6 items-center justify-center text-xl leading-none text-white md:hidden">
 <span class="group-open:hidden">+</span>
 <span class="hidden group-open:inline">−</span>
 </span>
 </summary>
-<ul class="pb-5">
+<ul class="footer-nav-list pb-5 md:block md:pb-0">
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">MCAST Act</a></li>
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Strategic Plan</a></li>
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Annual Report</a></li>
@@ -168,15 +170,15 @@
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Equality at the College</a></li>
 </ul>
 </details>
-<details class="group">
-<summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-[18px] text-[14px] font-extrabold uppercase tracking-[0.05em] text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white transition-colors duration-200 hover:text-white">
+<details class="footer-nav-group group md:order-2 md:block lg:order-3">
+<summary class="footer-nav-summary flex cursor-pointer list-none items-center justify-between gap-4 py-[18px] text-[14px] font-extrabold uppercase tracking-[0.05em] text-white transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:pointer-events-none md:mb-6 md:cursor-default md:py-0">
 <span>Know More</span>
-<span aria-hidden="true" class="relative inline-flex h-6 w-6 items-center justify-center text-xl leading-none text-white">
+<span aria-hidden="true" class="footer-accordion-icon relative inline-flex h-6 w-6 items-center justify-center text-xl leading-none text-white md:hidden">
 <span class="group-open:hidden">+</span>
 <span class="hidden group-open:inline">−</span>
 </span>
 </summary>
-<ul class="pb-5">
+<ul class="footer-nav-list pb-5 md:block md:pb-0">
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Careers</a></li>
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">MCAST Link</a></li>
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">News</a></li>
@@ -186,8 +188,7 @@
 <li><a class="block py-2 text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">FOI</a></li>
 </ul>
 </details>
-</div>
-<section class="pt-8">
+<section class="pt-8 md:order-4 md:pt-0">
 <h4 class="mb-5 text-[14px] font-extrabold uppercase tracking-[0.05em] text-white">Campuses and Contact</h4>
 <ul class="flex flex-col gap-5">
 <li class="flex gap-3">
@@ -230,7 +231,8 @@
 </a>
 </div>
 </section>
-<section class="pt-8">
+</div>
+<section class="mt-8 pt-8 md:mt-14 md:pt-0">
 <h4 class="mb-5 text-[14px] font-extrabold uppercase tracking-[0.05em] text-white">Follow Us</h4>
 <div class="flex flex-wrap gap-3">
 <a class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors duration-200 hover:border-white/60 hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">
@@ -255,11 +257,11 @@
 </a>
 </div>
 </section>
-<div class="border-t border-white/10 pt-8">
+<div class="mt-8 border-t border-white/10 pt-8 md:mt-12 md:flex md:items-start md:justify-between md:gap-8">
 <p class="text-sm leading-6 text-white/60">
                     &copy; 2024 MCAST - Malta College of Arts, Science and Technology. All Rights Reserved.
                 </p>
-<div class="mt-5 flex flex-col gap-3">
+<div class="mt-5 flex flex-col gap-3 md:mt-0 md:flex-row md:gap-6">
 <a class="text-sm leading-6 text-white/70 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Privacy Policy</a>
 <a class="text-sm leading-6 text-white/70 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Terms of Use</a>
 <a class="text-sm leading-6 text-white/70 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href="#">Accessibility Statement</a>
