@@ -1,8 +1,27 @@
 (function () {
+  const catalogueScriptUrl =
+    document.currentScript && document.currentScript.src
+      ? document.currentScript.src
+      : null;
+
+  const catalogueImageBaseUrl = catalogueScriptUrl
+    ? new URL('../images/', catalogueScriptUrl)
+    : new URL(
+        window.location.pathname.includes('/full-catalogue/')
+          ? '../images/'
+          : './images/',
+        window.location.href
+      );
+
+  function getCatalogueImageUrl(filename) {
+    return new URL(filename, catalogueImageBaseUrl).href;
+  }
+
   const courseAreas = [
     {
       title: 'Technology and ICT',
-      imageLabel: 'ICT lab image',
+      imageFile: 'mcast ICT lab image.jpg',
+      imageAlt: 'Students working in an MCAST ICT learning environment',
       description: 'Software, networks, data, digital systems and applied computing.',
       courses: 17,
       tags: ['ict', 'full-time', 'part-time', 'international'],
@@ -11,7 +30,8 @@
     },
     {
       title: 'Engineering and Transport',
-      imageLabel: 'Engineering workshop image',
+      imageFile: 'mcast Engineering workshop image.jpg',
+      imageAlt: 'Students working in an MCAST engineering workshop',
       description: 'Workshops, vehicles, aviation, maritime and engineering practice.',
       courses: 64,
       tags: ['iet', 'full-time', 'apprenticeship'],
@@ -20,7 +40,8 @@
     },
     {
       title: 'Applied Sciences',
-      imageLabel: 'Science lab image',
+      imageFile: 'mcast Science lab image.jpg',
+      imageAlt: 'Students working in an MCAST science laboratory',
       description: 'Laboratories, health science, sustainability and applied research.',
       courses: 37,
       tags: ['ias', 'full-time', 'international'],
@@ -29,7 +50,8 @@
     },
     {
       title: 'Business and Management',
-      imageLabel: 'Business learning image',
+      imageFile: 'mcast Business learning image.jpg',
+      imageAlt: 'Students in an MCAST business learning environment',
       description: 'Commerce, finance, operations, marketing and enterprise skills.',
       courses: 13,
       tags: ['ibmc', 'full-time', 'part-time', 'short'],
@@ -38,7 +60,8 @@
     },
     {
       title: 'Creative Arts',
-      imageLabel: 'Creative studio image',
+      imageFile: 'mcast Creative studio image.jpg',
+      imageAlt: 'Students working in an MCAST creative studio',
       description: 'Design, media, performance, visual communication and production.',
       courses: 32,
       tags: ['ica', 'full-time', 'part-time', 'international'],
@@ -47,7 +70,8 @@
     },
     {
       title: 'Community Services',
-      imageLabel: 'Campus learning image',
+      imageFile: 'mcast Campus learning image.jpg',
+      imageAlt: 'Students learning together on an MCAST campus',
       description: 'Care, education, social support and community-focused practice.',
       courses: 29,
       tags: ['ics', 'full-time', 'part-time'],
@@ -189,8 +213,14 @@
 
     grid.innerHTML = courseAreas.map((area) => `
       <article class="course-card" data-title="${area.title}">
-        <div class="course-card__media" aria-hidden="true">
-          <span class="course-card__label">${area.imageLabel}</span>
+        <div class="course-card__media">
+          <img
+            class="course-card__image"
+            src="${getCatalogueImageUrl(area.imageFile)}"
+            alt="${area.imageAlt}"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div class="course-card__body">
           <h3>${area.title}</h3>

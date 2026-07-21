@@ -1,5 +1,6 @@
 :root {
   --mcast-blue: #000043;
+  --mcast-primary-blue: #0000A8;
   --mcast-gold: #d7ac46;
   --mcast-ink: #11124a;
   --mcast-text: #646773;
@@ -74,6 +75,14 @@ select {
   color: var(--mcast-gold);
 }
 
+.snapshot-card .catalogue-kicker {
+  color: var(--mcast-primary-blue);
+}
+
+.snapshot-card .catalogue-kicker::before {
+  background: var(--mcast-primary-blue);
+}
+
 .catalogue-hero h1,
 .section-heading h2,
 .catalogue-search h2,
@@ -103,7 +112,7 @@ select {
 .snapshot-card {
   margin-top: 0;
   border: 1px solid var(--mcast-line);
-  border-top: 4px solid var(--mcast-blue);
+  border-top: 4px solid var(--mcast-primary-blue);
   border-radius: 6px;
   padding: 28px 36px 22px;
   background: var(--mcast-white);
@@ -144,7 +153,7 @@ select {
 }
 
 .catalogue-search {
-  border-top: 4px solid var(--mcast-gold);
+  border-top: 4px solid var(--mcast-primary-blue);
   border-radius: 0 0 6px 6px;
   padding: 28px;
   background: var(--mcast-white);
@@ -296,46 +305,17 @@ select {
 
 .course-card__media {
   position: relative;
-  min-height: 118px;
+  aspect-ratio: 16 / 9;
   background: #dde3ea;
   overflow: hidden;
 }
 
-.course-card__media::before,
-.course-card__media::after {
-  content: "";
-  position: absolute;
-  background: #cfd7e0;
-}
-
-.course-card__media::before {
-  top: 20px;
-  left: 16px;
-  width: 118px;
-  height: 42px;
-  border-radius: 3px;
-  box-shadow: inset 0 3px 0 var(--mcast-gold);
-}
-
-.course-card__media::after {
-  right: 22px;
-  top: 28px;
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-}
-
-.course-card__label {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  min-height: 30px;
-  padding: 9px 16px;
-  background: var(--mcast-blue);
-  color: var(--mcast-white);
-  font-size: 11px;
-  font-weight: 800;
+.course-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .course-card__body {
@@ -348,7 +328,7 @@ select {
   width: 34px;
   height: 3px;
   margin-bottom: 14px;
-  background: var(--mcast-gold);
+  background: var(--mcast-primary-blue);
 }
 
 .course-card h3 {
@@ -598,7 +578,7 @@ select {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   column-gap: 24px;
-  border-left: 4px solid var(--mcast-gold);
+  border-left: 4px solid var(--mcast-primary-blue);
 }
 
 .tool-eyebrow {
@@ -665,7 +645,7 @@ select {
   align-items: center;
   justify-content: space-between;
   margin-top: 1px;
-  border-left: 4px solid var(--mcast-gold);
+  border-left: 4px solid var(--mcast-primary-blue);
   padding: 26px 42px 26px 32px;
 }
 
