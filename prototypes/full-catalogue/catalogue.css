@@ -266,6 +266,23 @@ select {
   margin-top: 86px;
 }
 
+.catalogue-section--institutes {
+  position: relative;
+  isolation: isolate;
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+.catalogue-section--institutes::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--mcast-white);
+  box-shadow: 0 0 0 100vmax var(--mcast-white);
+  clip-path: inset(0 -100vmax);
+}
+
 .section-heading {
   margin-bottom: 34px;
 }
@@ -716,6 +733,11 @@ select {
 
   .catalogue-section + .catalogue-section {
     margin-top: 62px;
+  }
+
+  .catalogue-section--institutes {
+    padding-top: 56px;
+    padding-bottom: 56px;
   }
 
   .institute-feature-grid,
