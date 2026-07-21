@@ -409,11 +409,12 @@ select {
   align-content: start;
   gap: 16px;
   padding: 24px;
-  border-top: 4px solid var(--mcast-gold);
+  border-top: 4px solid var(--institute-accent, var(--mcast-gold));
 }
 
 .institute-feature-card--deep {
   border-color: var(--mcast-blue);
+  border-top-color: var(--institute-accent, var(--mcast-gold));
   background: var(--mcast-blue);
   color: var(--mcast-white);
 }
@@ -435,21 +436,22 @@ select {
   min-height: 34px;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e1d9c3;
+  border: 1px solid var(--institute-accent, var(--mcast-gold));
   border-radius: 4px;
-  background: #fbf9f2;
-  color: var(--mcast-gold);
+  background: #ffffff;
+  color: var(--institute-accent, var(--mcast-gold));
   font-size: 11px;
   font-weight: 800;
 }
 
 .institute-feature-card--deep .institute-badge {
-  border-color: rgba(215, 172, 70, 0.48);
+  border-color: var(--institute-accent, var(--mcast-gold));
   background: rgba(255, 255, 255, 0.08);
+  color: var(--institute-accent, var(--mcast-gold));
 }
 
 .institute-feature-card__arrow {
-  color: var(--mcast-gold);
+  color: var(--institute-accent, var(--mcast-gold));
   font-size: 18px;
   font-weight: 800;
 }
@@ -485,7 +487,7 @@ select {
   min-height: 30px;
   align-items: center;
   gap: 5px;
-  border: 1px solid rgba(215, 172, 70, 0.4);
+  border: 1px solid var(--institute-accent, var(--mcast-gold));
   border-radius: 999px;
   padding: 0 11px;
   color: var(--mcast-text);
@@ -498,9 +500,12 @@ select {
   font-size: 13px;
 }
 
+.institute-feature-card .text-link {
+  color: var(--institute-accent, var(--mcast-blue));
+}
+
 .institute-feature-card--deep .institute-feature-card__meta span,
-.institute-feature-card--deep .institute-feature-card__meta strong,
-.institute-feature-card--deep .text-link {
+.institute-feature-card--deep .institute-feature-card__meta strong {
   color: var(--mcast-white);
 }
 
@@ -532,8 +537,9 @@ select {
   display: grid;
   grid-template-columns: 10px minmax(0, 1fr);
   gap: 11px;
-  padding: 18px 0;
+  padding: 18px 0 18px 12px;
   border-bottom: 1px solid var(--mcast-line);
+  box-shadow: inset 3px 0 0 var(--institute-accent, var(--mcast-gold));
 }
 
 .institute-directory-item:last-child {
@@ -546,7 +552,7 @@ select {
   height: 7px;
   margin-top: 7px;
   border-radius: 999px;
-  background: var(--mcast-gold);
+  background: var(--institute-accent, var(--mcast-gold));
 }
 
 .institute-directory-item h4 {
@@ -568,9 +574,13 @@ select {
   font-size: 12px;
 }
 
+.institute-directory-item .text-link {
+  color: var(--institute-accent, var(--mcast-blue));
+}
+
 .text-link--micro::after {
   content: " ->";
-  color: var(--mcast-gold);
+  color: var(--institute-accent, var(--mcast-gold));
 }
 
 .tools-grid {

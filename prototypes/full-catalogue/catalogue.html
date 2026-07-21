@@ -1,147 +1,175 @@
 <section class="catalogue-page" aria-labelledby="catalogue-page-title">
-    <section class="catalogue-hero">
-      <div class="catalogue-container catalogue-hero__inner">
-        <div class="catalogue-hero__copy">
-          <p class="catalogue-kicker catalogue-kicker--light">Course Catalogue</p>
-          <h1 id="catalogue-page-title">Full Course Catalogue</h1>
-          <p class="catalogue-hero__lead">Search and browse MCAST full-time courses by keyword, MQF level, institute, and campus.</p>
+  <section class="catalogue-hero">
+    <div class="catalogue-container catalogue-hero__inner">
+      <div class="catalogue-hero__copy">
+        <p class="catalogue-kicker catalogue-kicker--light">Course Catalogue</p>
+        <h1 id="catalogue-page-title">Full Courses</h1>
+        <p class="catalogue-hero__lead">
+          Search and browse MCAST full-time courses by keyword, MQF level,
+          institute, and campus.
+        </p>
+      </div>
+
+      <aside class="snapshot-card" aria-label="Catalogue snapshot">
+        <p class="catalogue-kicker catalogue-kicker--light">
+          Catalogue Snapshot
+        </p>
+        <dl>
+          <div>
+            <dt>234</dt>
+            <dd>courses</dd>
+          </div>
+          <div>
+            <dt>10</dt>
+            <dd>institutes and centres</dd>
+          </div>
+          <div>
+            <dt>Multiple</dt>
+            <dd>MQF levels</dd>
+          </div>
+          <div>
+            <dt>Malta + Gozo</dt>
+            <dd>campuses</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section
+    class="catalogue-search-wrap"
+    aria-labelledby="catalogue-search-title"
+  >
+    <div class="catalogue-container">
+      <form class="catalogue-search" id="catalogueSearch" action="#">
+        <div class="catalogue-search__heading">
+          <div>
+            <h2 id="catalogue-search-title">Search the catalogue</h2>
+            <p>
+              Use a keyword first, then refine by level, institute, or campus.
+            </p>
+          </div>
+          <button class="primary-button" type="submit">Search</button>
         </div>
 
-        <aside class="snapshot-card" aria-label="Catalogue snapshot">
-          <p class="catalogue-kicker catalogue-kicker--light">Catalogue Snapshot</p>
-          <dl>
-            <div>
-              <dt>226</dt>
-              <dd>courses</dd>
+        <div class="catalogue-search__grid">
+          <label class="field field--wide" for="catalogueKeyword">
+            <span>Keyword</span>
+            <input
+              id="catalogueKeyword"
+              name="keyword"
+              type="search"
+              placeholder="Search by course, career, subject, skill, or job"
+            />
+          </label>
+
+          <label class="field" for="catalogueLevel">
+            <span>MQF Level</span>
+            <select id="catalogueLevel" name="level">
+              <option value="">All MQF Levels</option>
+              <option value="1-3">MQF 1-3</option>
+              <option value="4-5">MQF 4-5</option>
+              <option value="6">MQF 6</option>
+              <option value="7">MQF 7</option>
+              <option value="8">MQF 8</option>
+            </select>
+          </label>
+
+          <label class="field" for="catalogueInstitute">
+            <span>Institute</span>
+            <select id="catalogueInstitute" name="institute">
+              <option value="">All Institutes</option>
+              <option value="ict">ICT</option>
+              <option value="iet">Engineering and Transport</option>
+              <option value="ias">Applied Sciences</option>
+              <option value="ibmc">Business</option>
+              <option value="ica">Creative Arts</option>
+              <option value="ics">Community Services</option>
+            </select>
+          </label>
+
+          <label class="field" for="catalogueCampus">
+            <span>Campus</span>
+            <select id="catalogueCampus" name="campus">
+              <option value="">Campus</option>
+              <option value="malta">Malta</option>
+              <option value="gozo">Gozo</option>
+            </select>
+          </label>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="catalogue-content">
+    <div class="catalogue-container">
+      <section class="catalogue-section" aria-labelledby="course-areas-title">
+        <p class="catalogue-kicker">Browse Course Areas</p>
+        <div class="section-heading">
+          <h2 id="course-areas-title">Browse course areas</h2>
+          <p>
+            Start with a subject area, then refine by institute, MQF level, or
+            campus.
+          </p>
+        </div>
+
+        <div class="course-area-grid" id="courseAreaGrid"></div>
+      </section>
+
+      <section class="catalogue-section" aria-labelledby="institutes-title">
+        <p class="catalogue-kicker">Institutes and Centres</p>
+        <div class="section-heading">
+          <h2 id="institutes-title">Browse by institute and centre</h2>
+          <p>Explore courses by MCAST institutes, centres, and campuses.</p>
+        </div>
+
+        <div class="institute-card-area" id="instituteGrid"></div>
+      </section>
+
+      <section class="catalogue-section" aria-labelledby="tools-title">
+        <p class="catalogue-kicker">Catalogue Tools</p>
+        <div class="tools-grid">
+          <article class="tool-card tool-card--pdf">
+            <p class="tool-eyebrow">Printable Catalogue</p>
+            <h2 id="tools-title">Course Catalogue PDF</h2>
+            <p>
+              Download a PDF containing the public information shown on every
+              course page.
+            </p>
+            <div class="tool-card__action">
+              <button class="primary-button" type="button">Download PDF</button>
+              <span>226 courses</span>
             </div>
-            <div>
-              <dt>10</dt>
-              <dd>institutes and centres</dd>
-            </div>
-            <div>
-              <dt>Multiple</dt>
-              <dd>MQF levels</dd>
-            </div>
-            <div>
-              <dt>Malta + Gozo</dt>
-              <dd>campuses</dd>
-            </div>
-          </dl>
-        </aside>
-      </div>
-    </section>
-
-    <section class="catalogue-search-wrap" aria-labelledby="catalogue-search-title">
-      <div class="catalogue-container">
-        <form class="catalogue-search" id="catalogueSearch" action="#">
-          <div class="catalogue-search__heading">
-            <div>
-              <h2 id="catalogue-search-title">Search the catalogue</h2>
-              <p>Use a keyword first, then refine by level, institute, or campus.</p>
-            </div>
-            <button class="primary-button" type="submit">Search</button>
-          </div>
-
-          <div class="catalogue-search__grid">
-            <label class="field field--wide" for="catalogueKeyword">
-              <span>Keyword</span>
-              <input id="catalogueKeyword" name="keyword" type="search" placeholder="Search by course, career, subject, skill, or job" />
-            </label>
-
-            <label class="field" for="catalogueLevel">
-              <span>MQF Level</span>
-              <select id="catalogueLevel" name="level">
-                <option value="">All MQF Levels</option>
-                <option value="1-3">MQF 1-3</option>
-                <option value="4-5">MQF 4-5</option>
-                <option value="6">MQF 6</option>
-                <option value="7">MQF 7</option>
-                <option value="8">MQF 8</option>
-              </select>
-            </label>
-
-            <label class="field" for="catalogueInstitute">
-              <span>Institute</span>
-              <select id="catalogueInstitute" name="institute">
-                <option value="">All Institutes</option>
-                <option value="ict">ICT</option>
-                <option value="iet">Engineering and Transport</option>
-                <option value="ias">Applied Sciences</option>
-                <option value="ibmc">Business</option>
-                <option value="ica">Creative Arts</option>
-                <option value="ics">Community Services</option>
-              </select>
-            </label>
-
-            <label class="field" for="catalogueCampus">
-              <span>Campus</span>
-              <select id="catalogueCampus" name="campus">
-                <option value="">Campus</option>
-                <option value="malta">Malta</option>
-                <option value="gozo">Gozo</option>
-              </select>
-            </label>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section class="catalogue-content">
-      <div class="catalogue-container">
-        <section class="catalogue-section" aria-labelledby="course-areas-title">
-          <p class="catalogue-kicker">Browse Course Areas</p>
-          <div class="section-heading">
-            <h2 id="course-areas-title">Browse course areas</h2>
-            <p>Start with a subject area, then refine by institute, MQF level, or campus.</p>
-          </div>
-
-          <div class="course-area-grid" id="courseAreaGrid"></div>
-        </section>
-
-        <section class="catalogue-section" aria-labelledby="institutes-title">
-          <p class="catalogue-kicker">Institutes and Centres</p>
-          <div class="section-heading">
-            <h2 id="institutes-title">Browse by institute and centre</h2>
-            <p>Explore courses by MCAST institutes, centres, and campuses.</p>
-          </div>
-
-          <div class="institute-card-area" id="instituteGrid"></div>
-        </section>
-
-        <section class="catalogue-section" aria-labelledby="tools-title">
-          <p class="catalogue-kicker">Catalogue Tools</p>
-          <div class="tools-grid">
-            <article class="tool-card tool-card--pdf">
-              <p class="tool-eyebrow">Printable Catalogue</p>
-              <h2 id="tools-title">Course Catalogue PDF</h2>
-              <p>Download a PDF containing the public information shown on every course page.</p>
-              <div class="tool-card__action">
-                <button class="primary-button" type="button">Download PDF</button>
-                <span>226 courses</span>
-              </div>
-            </article>
-
-            <article class="tool-card tool-card--levels">
-              <h2>Understand MQF levels</h2>
-              <p>Use this guide to identify the qualification level that fits your current stage.</p>
-              <div class="mqf-list" aria-label="MQF level guide">
-                <span><strong>MQF 1-3</strong>Foundation</span>
-                <span><strong>MQF 4-5</strong>Certificate / Diploma</span>
-                <span><strong>MQF 6</strong>Degree</span>
-                <span><strong>MQF 7</strong>Master</span>
-                <span><strong>MQF 8</strong>Doctoral</span>
-              </div>
-            </article>
-          </div>
-
-          <article class="help-strip">
-            <div>
-              <h2>Need help choosing a course?</h2>
-              <p>Book a guidance appointment and speak with the right MCAST team.</p>
-            </div>
-            <button class="primary-button" type="button">Book for a consultation</button>
           </article>
-        </section>
-      </div>
-    </section>
+
+          <article class="tool-card tool-card--levels">
+            <h2>Understand MQF levels</h2>
+            <p>
+              Use this guide to identify the qualification level that fits your
+              current stage.
+            </p>
+            <div class="mqf-list" aria-label="MQF level guide">
+              <span><strong>MQF 1-3</strong>Foundation</span>
+              <span><strong>MQF 4-5</strong>Certificate / Diploma</span>
+              <span><strong>MQF 6</strong>Degree</span>
+              <span><strong>MQF 7</strong>Master</span>
+              <span><strong>MQF 8</strong>Doctoral</span>
+            </div>
+          </article>
+        </div>
+
+        <article class="help-strip">
+          <div>
+            <h2>Need help choosing a course?</h2>
+            <p>
+              Book a guidance appointment and speak with the right MCAST team.
+            </p>
+          </div>
+          <button class="primary-button" type="button">
+            Book for a consultation
+          </button>
+        </article>
+      </section>
+    </div>
+  </section>
 </section>

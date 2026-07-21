@@ -4,7 +4,7 @@
       title: 'Technology and ICT',
       imageLabel: 'ICT lab image',
       description: 'Software, networks, data, digital systems and applied computing.',
-      courses: 18,
+      courses: 17,
       tags: ['ict', 'full-time', 'part-time', 'international'],
       level: '6',
       campus: 'malta'
@@ -13,7 +13,7 @@
       title: 'Engineering and Transport',
       imageLabel: 'Engineering workshop image',
       description: 'Workshops, vehicles, aviation, maritime and engineering practice.',
-      courses: 61,
+      courses: 64,
       tags: ['iet', 'full-time', 'apprenticeship'],
       level: '4-5',
       campus: 'malta'
@@ -22,7 +22,7 @@
       title: 'Applied Sciences',
       imageLabel: 'Science lab image',
       description: 'Laboratories, health science, sustainability and applied research.',
-      courses: 40,
+      courses: 37,
       tags: ['ias', 'full-time', 'international'],
       level: '7',
       campus: 'malta'
@@ -60,34 +60,37 @@
     {
       code: 'IET',
       name: 'Institute of Engineering and Transport',
-      courses: 61,
+      courses: 64,
       departments: 8,
       description: 'Engineering, transport, aviation, maritime and technical workshop pathways.',
       tags: ['iet', 'full-time', 'apprenticeship'],
       campus: 'malta',
       featured: true,
-      theme: 'deep'
+      theme: 'light',
+      accent: '#612D8D'
     },
     {
       code: 'IAS',
       name: 'Institute of Applied Sciences',
-      courses: 40,
+      courses: 37,
       departments: 2,
       description: 'Applied science routes across laboratories, health, sustainability and research.',
       tags: ['ias', 'full-time'],
       campus: 'malta',
       featured: true,
-      theme: 'light'
+      theme: 'light',
+      accent: '#5CB248'
     },
     {
       code: 'ICT',
       name: 'Institute of Information and Communication Technology',
-      courses: 18,
+      courses: 17,
       description: 'Computing, networks, software, cyber, data and digital infrastructure courses.',
       tags: ['ict', 'full-time', 'part-time', 'international'],
       campus: 'malta',
       featured: true,
-      theme: 'light'
+      theme: 'light',
+      accent: '#F36C27'
     },
     {
       code: 'ICA',
@@ -95,7 +98,8 @@
       courses: 32,
       tags: ['ica', 'full-time', 'part-time'],
       campus: 'malta',
-      group: 'Creative and Community'
+      group: 'Creative and Community',
+      accent: '#CB4398'
     },
     {
       code: 'ICS',
@@ -103,7 +107,8 @@
       courses: 29,
       tags: ['ics', 'full-time', 'part-time'],
       campus: 'malta',
-      group: 'Creative and Community'
+      group: 'Creative and Community',
+      accent: '#FBB339'
     },
     {
       code: 'IBMC',
@@ -111,39 +116,44 @@
       courses: 13,
       tags: ['ibmc', 'full-time', 'short'],
       campus: 'malta',
-      group: 'Business and Research'
+      group: 'Business and Research',
+      accent: '#EF3950'
     },
     {
       code: 'ARIC',
       name: 'Applied Research and Innovation Centre',
-      courses: 4,
-      tags: ['international', 'part-time'],
+      courses: 5,
+      tags: ['aric', 'full-time', 'international', 'part-time'],
       campus: 'malta',
-      group: 'Business and Research'
+      group: 'Business and Research',
+      accent: '#D7AC46'
     },
     {
       code: 'GOZO',
       name: 'Gozo Campus',
-      courses: 23,
-      tags: ['full-time', 'part-time', 'short'],
+      courses: 24,
+      tags: ['gozo', 'full-time', 'part-time', 'short'],
       campus: 'gozo',
-      group: 'Campuses and Trades'
+      group: 'Campuses and Trades',
+      accent: '#45C6E6'
     },
     {
       code: 'TRD',
       name: 'Institute for the Trades',
-      courses: 3,
-      tags: ['apprenticeship', 'short'],
+      courses: 8,
+      tags: ['trd', 'full-time', 'apprenticeship', 'short'],
       campus: 'malta',
-      group: 'Campuses and Trades'
+      group: 'Campuses and Trades',
+      accent: '#6F77B9'
     },
     {
       code: 'CLE',
       name: 'Centre for Learning and Employability',
-      courses: 3,
-      tags: ['short', 'part-time'],
+      courses: 5,
+      tags: ['cle', 'full-time', 'short', 'part-time'],
       campus: 'malta',
-      group: 'Access and Employability'
+      group: 'Access and Employability',
+      accent: '#000043'
     }
   ];
 
@@ -200,9 +210,14 @@
 
     const featuredCards = institutes
       .map((institute, index) => ({ ...institute, index }))
-      .filter((institute) => institute.featured && institute.tags.includes('full-time'))
+      .filter((institute) => institute.featured)
       .map((institute) => `
-        <article class="institute-feature-card institute-feature-card--${institute.theme}" data-institute-index="${institute.index}">
+        <article
+          class="institute-feature-card institute-feature-card--${institute.theme}"
+          data-institute-index="${institute.index}"
+          data-institute-code="${institute.code}"
+          style="--institute-accent: ${institute.accent};"
+        >
           <div class="institute-feature-card__top">
             <span class="institute-badge">${institute.code}</span>
             <span class="institute-feature-card__arrow" aria-hidden="true">-&gt;</span>
@@ -220,9 +235,14 @@
     const directoryColumns = instituteGroups.map((group) => {
       const groupItems = institutes
         .map((institute, index) => ({ ...institute, index }))
-        .filter((institute) => institute.group === group && institute.tags.includes('full-time'))
+        .filter((institute) => institute.group === group)
         .map((institute) => `
-          <article class="institute-directory-item" data-institute-index="${institute.index}">
+          <article
+            class="institute-directory-item"
+            data-institute-index="${institute.index}"
+            data-institute-code="${institute.code}"
+            style="--institute-accent: ${institute.accent};"
+          >
             <span class="institute-directory-item__dot" aria-hidden="true"></span>
             <div>
               <h4>${institute.name}</h4>
