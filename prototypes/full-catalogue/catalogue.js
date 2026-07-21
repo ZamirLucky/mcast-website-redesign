@@ -155,24 +155,20 @@
   ];
 
   const state = {
-    filter: 'all',
     keyword: '',
     level: '',
     institute: '',
-    mode: '',
     campus: ''
   };
 
   function matchesFilters(item) {
     const haystack = `${item.title || item.name} ${item.description || ''} ${item.group || ''}`.toLowerCase();
     const keywordMatch = !state.keyword || haystack.includes(state.keyword);
-    const tabMatch = state.filter === 'all' || item.tags.includes(state.filter);
-    const modeMatch = !state.mode || item.tags.includes(state.mode);
     const instituteMatch = !state.institute || item.tags.includes(state.institute);
     const levelMatch = !state.level || !item.level || item.level === state.level;
     const campusMatch = !state.campus || item.campus === state.campus;
 
-    return keywordMatch && tabMatch && modeMatch && instituteMatch && levelMatch && campusMatch;
+    return keywordMatch && instituteMatch && levelMatch && campusMatch;
   }
 
   function renderCourseAreas(page) {
@@ -204,7 +200,7 @@
 
     const featuredCards = institutes
       .map((institute, index) => ({ ...institute, index }))
-      .filter((institute) => institute.featured)
+      .filter((institute) => institute.featured && institute.tags.includes('full-time'))
       .map((institute) => `
         <article class="institute-feature-card institute-feature-card--${institute.theme}" data-institute-index="${institute.index}">
           <div class="institute-feature-card__top">
@@ -224,7 +220,7 @@
     const directoryColumns = instituteGroups.map((group) => {
       const groupItems = institutes
         .map((institute, index) => ({ ...institute, index }))
-        .filter((institute) => institute.group === group)
+        .filter((institute) => institute.group === group && institute.tags.includes('full-time'))
         .map((institute) => `
           <article class="institute-directory-item" data-institute-index="${institute.index}">
             <span class="institute-directory-item__dot" aria-hidden="true"></span>
@@ -275,19 +271,9 @@
     const keyword = page.querySelector('#catalogueKeyword');
     const level = page.querySelector('#catalogueLevel');
     const institute = page.querySelector('#catalogueInstitute');
-    const mode = page.querySelector('#catalogueMode');
     const campus = page.querySelector('#catalogueCampus');
 
-    page.querySelectorAll('.catalogue-tab').forEach((tab) => {
-      tab.addEventListener('click', () => {
-        page.querySelectorAll('.catalogue-tab').forEach((item) => item.classList.remove('is-active'));
-        tab.classList.add('is-active');
-        state.filter = tab.dataset.filter || 'all';
-        applyFilters(page);
-      });
-    });
-
-    [keyword, level, institute, mode, campus].forEach((control) => {
+    [keyword, level, institute, campus].forEach((control) => {
       if (!control) {
         return;
       }
@@ -296,7 +282,6 @@
         state.keyword = keyword.value.trim().toLowerCase();
         state.level = level.value;
         state.institute = institute.value;
-        state.mode = mode.value;
         state.campus = campus.value;
         applyFilters(page);
       });
@@ -311,11 +296,9 @@
   }
 
   function resetState() {
-    state.filter = 'all';
     state.keyword = '';
     state.level = '';
     state.institute = '';
-    state.mode = '';
     state.campus = '';
   }
 

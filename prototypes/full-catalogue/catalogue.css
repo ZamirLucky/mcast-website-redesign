@@ -38,8 +38,8 @@ select {
 .catalogue-hero {
   min-height: 340px;
   padding: 70px 0 72px;
-  background: var(--mcast-blue);
-  color: var(--mcast-white);
+  background: var(--mcast-white);
+  color: var(--mcast-ink);
 }
 
 .catalogue-hero__inner {
@@ -94,7 +94,7 @@ select {
 .catalogue-hero__lead {
   max-width: 610px;
   margin: 28px 0 0;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--mcast-text);
   font-size: clamp(17px, 2vw, 22px);
   line-height: 1.55;
   font-weight: 500;
@@ -102,10 +102,13 @@ select {
 
 .snapshot-card {
   margin-top: 0;
-  border: 1px solid var(--mcast-gold);
+  border: 1px solid var(--mcast-line);
+  border-top: 4px solid var(--mcast-blue);
   border-radius: 6px;
   padding: 28px 36px 22px;
-  color: var(--mcast-white);
+  background: var(--mcast-white);
+  color: var(--mcast-ink);
+  box-shadow: 0 1px 18px rgba(0, 0, 67, 0.06);
 }
 
 .snapshot-card dl {
@@ -129,7 +132,7 @@ select {
 
 .snapshot-card dd {
   margin: 0;
-  color: rgba(255, 255, 255, 0.46);
+  color: var(--mcast-text);
   font-size: 13px;
   font-weight: 700;
 }
@@ -197,7 +200,7 @@ select {
 
 .catalogue-search__grid {
   display: grid;
-  grid-template-columns: minmax(280px, 1.65fr) repeat(4, minmax(125px, 0.55fr));
+  grid-template-columns: minmax(280px, 1.65fr) repeat(3, minmax(125px, 0.55fr));
   gap: 16px;
 }
 
@@ -247,43 +250,7 @@ select {
 }
 
 .catalogue-content {
-  padding: 36px 0 70px;
-}
-
-.catalogue-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 54px;
-}
-
-.catalogue-tab {
-  position: relative;
-  min-height: 38px;
-  border: 1px solid var(--mcast-line);
-  border-radius: 5px;
-  padding: 0 20px;
-  background: var(--mcast-white);
-  color: var(--mcast-ink);
-  font-size: 13px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.catalogue-tab.is-active {
-  border-color: var(--mcast-blue);
-  background: var(--mcast-blue);
-  color: var(--mcast-white);
-}
-
-.catalogue-tab.is-active::after {
-  content: "";
-  position: absolute;
-  right: 12px;
-  bottom: -1px;
-  left: 12px;
-  height: 2px;
-  background: var(--mcast-gold);
+  padding: 42px 0 70px;
 }
 
 .catalogue-section + .catalogue-section {
@@ -755,16 +722,6 @@ select {
 
   .catalogue-content {
     padding-top: 28px;
-  }
-
-  .catalogue-tabs {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-bottom: 44px;
-  }
-
-  .catalogue-tab {
-    padding: 0 10px;
   }
 
   .catalogue-section + .catalogue-section {

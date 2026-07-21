@@ -4,7 +4,7 @@
         <div class="catalogue-hero__copy">
           <p class="catalogue-kicker catalogue-kicker--light">Course Catalogue</p>
           <h1 id="catalogue-page-title">Full Course Catalogue</h1>
-          <p class="catalogue-hero__lead">Search and browse MCAST courses by keyword, MQF level, institute, study mode, and campus.</p>
+          <p class="catalogue-hero__lead">Search and browse MCAST full-time courses by keyword, MQF level, institute, and campus.</p>
         </div>
 
         <aside class="snapshot-card" aria-label="Catalogue snapshot">
@@ -37,7 +37,7 @@
           <div class="catalogue-search__heading">
             <div>
               <h2 id="catalogue-search-title">Search the catalogue</h2>
-              <p>Use a keyword first, then refine by level, institute, study mode, or campus.</p>
+              <p>Use a keyword first, then refine by level, institute, or campus.</p>
             </div>
             <button class="primary-button" type="submit">Search</button>
           </div>
@@ -73,17 +73,6 @@
               </select>
             </label>
 
-            <label class="field" for="catalogueMode">
-              <span>Study Mode</span>
-              <select id="catalogueMode" name="mode">
-                <option value="">Study Mode</option>
-                <option value="full-time">Full-time</option>
-                <option value="part-time">Part-time</option>
-                <option value="apprenticeship">Apprenticeship</option>
-                <option value="short">Short courses</option>
-              </select>
-            </label>
-
             <label class="field" for="catalogueCampus">
               <span>Campus</span>
               <select id="catalogueCampus" name="campus">
@@ -99,20 +88,11 @@
 
     <section class="catalogue-content">
       <div class="catalogue-container">
-        <div class="catalogue-tabs" aria-label="Course filters">
-          <button class="catalogue-tab is-active" type="button" data-filter="all">All courses</button>
-          <button class="catalogue-tab" type="button" data-filter="full-time">Full-time</button>
-          <button class="catalogue-tab" type="button" data-filter="part-time">Part-time</button>
-          <button class="catalogue-tab" type="button" data-filter="apprenticeship">Apprenticeships</button>
-          <button class="catalogue-tab" type="button" data-filter="international">International</button>
-          <button class="catalogue-tab" type="button" data-filter="short">Short courses</button>
-        </div>
-
         <section class="catalogue-section" aria-labelledby="course-areas-title">
           <p class="catalogue-kicker">Browse Course Areas</p>
           <div class="section-heading">
             <h2 id="course-areas-title">Browse course areas</h2>
-            <p>Start with a subject area, then refine by institute, MQF level, study mode, or campus.</p>
+            <p>Start with a subject area, then refine by institute, MQF level, or campus.</p>
           </div>
 
           <div class="course-area-grid" id="courseAreaGrid"></div>
