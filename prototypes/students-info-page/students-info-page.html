@@ -1,0 +1,967 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MCAST Students’ Information Hub</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#edeef0",
+              "on-surface-variant": "#464650",
+              "on-primary-fixed-variant": "#3d417d",
+              "on-primary": "#ffffff",
+              "on-error-container": "#93000a",
+              primary: "#000000",
+              tertiary: "#000000",
+              "surface-container-low": "#f3f3f5",
+              "outline-variant": "#c7c5d1",
+              outline: "#777681",
+              "surface-container-highest": "#e2e2e4",
+              "tertiary-container": "#251a00",
+              "surface-white": "#FFFFFF",
+              "on-secondary-fixed": "#00006e",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#fffbff",
+              "secondary-fixed-dim": "#bfc2ff",
+              "on-tertiary-fixed-variant": "#5b4300",
+              "on-background": "#1a1c1d",
+              "error-container": "#ffdad6",
+              "surface-tint": "#555996",
+              "surface-container-high": "#e8e8ea",
+              error: "#ba1a1a",
+              "inverse-on-surface": "#f0f0f2",
+              "primary-fixed-dim": "#bfc2ff",
+              "secondary-fixed": "#e0e0ff",
+              "on-error": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed": "#0f134f",
+              "secondary-container": "#5c65ed",
+              surface: "#f9f9fb",
+              "on-secondary-fixed-variant": "#2930bd",
+              "tertiary-fixed": "#ffdf9c",
+              "border-subtle": "#E2E2E9",
+              "surface-variant": "#e2e2e4",
+              "surface-dim": "#d9dadc",
+              background: "#f9f9fb",
+              "on-tertiary-fixed": "#251a00",
+              "surface-bright": "#f9f9fb",
+              "on-tertiary": "#ffffff",
+              secondary: "#0000A8" /* Vivid Primary Blue per guidance */,
+              "primary-container": "#0f134f",
+              "inverse-primary": "#bfc2ff",
+              "on-primary-container": "#7a7ebf",
+              "primary-fixed": "#e0e0ff",
+              "tertiary-fixed-dim": "#edc058",
+              "text-body": "#464650",
+              "inverse-surface": "#2f3132",
+              "on-surface": "#1a1c1d",
+              "on-tertiary-container": "#a47e1a",
+            },
+            borderRadius: {
+              DEFAULT: "0px",
+              lg: "0px",
+              xl: "0px",
+              full: "0px",
+            },
+            spacing: {
+              "max-width": "1280px",
+              "stack-gap-sm": "12px",
+              "stack-gap-md": "24px",
+              margin: "32px",
+              gutter: "24px",
+              "stack-gap-lg": "48px",
+              columns: "12",
+            },
+            fontFamily: {
+              "label-caps": ["Montserrat"],
+              "display-lg": ["Montserrat"],
+              "body-md": ["Montserrat"],
+              "headline-md": ["Montserrat"],
+              "body-lg": ["Montserrat"],
+              "headline-sm": ["Montserrat"],
+            },
+            fontSize: {
+              "label-caps": [
+                "12px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+              "display-lg": [
+                "56px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+              "body-md": ["15px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+              "body-lg": ["17px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-sm": ["20px", { lineHeight: "1.4", fontWeight: "600" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      body {
+        background-color: #f7f7f9;
+      }
+      .bento-card {
+        transition: all 0.2s ease-in-out;
+      }
+      .bento-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-on-surface">
+    <main class="w-full">
+      <!-- 1. Hero Section -->
+      <section class="bg-surface-white border-b border-border-subtle py-20">
+        <div
+          class="max-w-max-width mx-auto px-margin grid grid-cols-12 gap-gutter items-center"
+        >
+          <div class="col-span-12 lg:col-span-7 flex flex-col gap-stack-gap-md">
+            <h1 class="font-display-lg text-display-lg text-primary">
+              Students’ Information Hub
+            </h1>
+            <p
+              class="font-body-lg text-body-lg text-on-surface-variant max-w-xl"
+            >
+              Access essential academic information, support services, and
+              digital resources to power your journey at Malta's leading
+              vocational college.
+            </p>
+            <div class="flex flex-wrap items-center gap-4 mt-4">
+              <button
+                class="bg-secondary text-on-primary px-6 py-3 font-label-caps text-label-caps hover:brightness-110 transition-all uppercase"
+              >
+                Students Online System
+              </button>
+              <button
+                class="border border-secondary text-secondary px-6 py-3 font-label-caps text-label-caps hover:bg-secondary/5 transition-all uppercase"
+              >
+                Student Email
+              </button>
+              <a
+                class="text-secondary font-label-caps text-label-caps flex items-center gap-1 hover:underline ml-2 uppercase"
+                href="#"
+              >
+                Academic Calendar
+                <span class="material-symbols-outlined text-[18px]"
+                  >calendar_month</span
+                >
+              </a>
+            </div>
+            <div
+              class="mt-8 flex w-full max-w-2xl bg-surface-container-low border border-border-subtle p-1"
+            >
+              <span
+                class="material-symbols-outlined self-center px-4 text-on-surface-variant"
+                >search</span
+              >
+              <input
+                class="flex-grow bg-transparent border-none focus:ring-0 text-body-md py-3"
+                placeholder="Search for courses, services, or support..."
+                type="text"
+              />
+              <button
+                class="bg-primary text-on-primary px-8 font-label-caps text-label-caps uppercase hover:bg-on-surface-variant transition-colors"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+          <div class="hidden lg:block lg:col-span-5 h-[500px] relative">
+            <img
+              alt="Students collaborating at MCAST"
+              class="w-full h-full object-cover grayscale-[20%] border border-border-subtle"
+              src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+            />
+          </div>
+        </div>
+      </section>
+      <!-- 2. Quick Access -->
+      <section
+        class="bg-surface-container-low py-stack-gap-lg border-b border-border-subtle"
+      >
+        <div class="max-w-max-width mx-auto px-margin">
+          <h2
+            class="font-headline-sm text-headline-sm text-primary mb-8 uppercase tracking-widest"
+          >
+            Student Essentials
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <!-- Cards -->
+            <a
+              class="bg-surface-white border border-border-subtle p-6 flex flex-col items-start gap-4 hover:border-secondary group transition-colors"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >school</span
+              >
+              <div>
+                <h3
+                  class="font-label-caps text-label-caps text-primary mb-1 uppercase"
+                >
+                  Results
+                </h3>
+                <p class="text-xs text-on-surface-variant">
+                  View your transcripts.
+                </p>
+              </div>
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary ml-auto"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              class="bg-surface-white border border-border-subtle p-6 flex flex-col items-start gap-4 hover:border-secondary group transition-colors"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >menu_book</span
+              >
+              <div>
+                <h3
+                  class="font-label-caps text-label-caps text-primary mb-1 uppercase"
+                >
+                  Library
+                </h3>
+                <p class="text-xs text-on-surface-variant">
+                  Access digital journals.
+                </p>
+              </div>
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary ml-auto"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              class="bg-surface-white border border-border-subtle p-6 flex flex-col items-start gap-4 hover:border-secondary group transition-colors"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >schedule</span
+              >
+              <div>
+                <h3
+                  class="font-label-caps text-label-caps text-primary mb-1 uppercase"
+                >
+                  Timetable
+                </h3>
+                <p class="text-xs text-on-surface-variant">
+                  Check your schedule.
+                </p>
+              </div>
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary ml-auto"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              class="bg-surface-white border border-border-subtle p-6 flex flex-col items-start gap-4 hover:border-secondary group transition-colors"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >payments</span
+              >
+              <div>
+                <h3
+                  class="font-label-caps text-label-caps text-primary mb-1 uppercase"
+                >
+                  Stipend Offices
+                </h3>
+                <p class="text-xs text-on-surface-variant">
+                  Grant information.
+                </p>
+              </div>
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary ml-auto"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              class="bg-surface-white border border-border-subtle p-6 flex flex-col items-start gap-4 hover:border-secondary group transition-colors"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >badge</span
+              >
+              <div>
+                <h3
+                  class="font-label-caps text-label-caps text-primary mb-1 uppercase"
+                >
+                  Students E-Card
+                </h3>
+                <p class="text-xs text-on-surface-variant">Campus identity.</p>
+              </div>
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary ml-auto"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              class="bg-surface-white border border-border-subtle p-6 flex flex-col items-start gap-4 hover:border-secondary group transition-colors"
+              href="#"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >map</span
+              >
+              <div>
+                <h3
+                  class="font-label-caps text-label-caps text-primary mb-1 uppercase"
+                >
+                  Parking
+                </h3>
+                <p class="text-xs text-on-surface-variant">
+                  Car Park Application.
+                </p>
+              </div>
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary ml-auto"
+                >arrow_forward</span
+              >
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- 3. Information Directory (Bento Grid) -->
+      <section class="bg-surface-white py-stack-gap-lg">
+        <div class="max-w-max-width mx-auto px-margin">
+          <div class="flex flex-col gap-2 mb-12">
+            <h2
+              class="font-headline-md text-headline-md text-primary uppercase"
+            >
+              Student information and services
+            </h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Bento Cards -->
+            <div
+              class="bento-card border border-border-subtle p-8 flex flex-col gap-6"
+            >
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-2xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >park</span
+                >
+                <h3 class="font-headline-sm text-headline-sm uppercase">
+                  Life on Campus
+                </h3>
+              </div>
+              <ul class="flex flex-col gap-4">
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >How to get to MCAST
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Events
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Sports & Fitness
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Students’ Handbook
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Youth Hub
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bento-card border border-border-subtle p-8 flex flex-col gap-6"
+            >
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-2xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >auto_stories</span
+                >
+                <h3 class="font-headline-sm text-headline-sm uppercase">
+                  Education
+                </h3>
+              </div>
+              <ul class="flex flex-col gap-4">
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >College Forms
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >College Documents
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Graduation Photography 2024
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Graduations Schedule 2025
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >International Students
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bento-card border-2 border-secondary bg-surface-container-low p-8 flex flex-col gap-6"
+            >
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-secondary text-2xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >medical_services</span
+                >
+                <h3
+                  class="font-headline-sm text-headline-sm uppercase text-secondary"
+                >
+                  Student Support
+                </h3>
+              </div>
+              <ul class="flex flex-col gap-4">
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface hover:text-secondary font-bold"
+                    href="#"
+                    >Wellbeing Hub
+                    <span
+                      class="material-symbols-outlined text-sm opacity-100 group-hover:translate-x-1 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface hover:text-secondary font-bold"
+                    href="#"
+                    >Student Liaison Office
+                    <span
+                      class="material-symbols-outlined text-sm opacity-100 group-hover:translate-x-1 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface hover:text-secondary font-bold"
+                    href="#"
+                    >Dissertation Support
+                    <span
+                      class="material-symbols-outlined text-sm opacity-100 group-hover:translate-x-1 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bento-card border border-border-subtle p-8 flex flex-col gap-6"
+            >
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-2xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >trending_up</span
+                >
+                <h3 class="font-headline-sm text-headline-sm uppercase">
+                  Professional Growth
+                </h3>
+              </div>
+              <ul class="flex flex-col gap-4">
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Apprenticeships & Work Based Learning
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Community Social Responsibility
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Erasmus Projects and Mobility Office
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Employability – Learn2Learn Workshops
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bento-card border border-border-subtle p-8 flex flex-col gap-6"
+            >
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-2xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >forum</span
+                >
+                <h3 class="font-headline-sm text-headline-sm uppercase">
+                  Communication
+                </h3>
+              </div>
+              <ul class="flex flex-col gap-4">
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Personal Contacts
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Students’ Handbook
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >MCAST Contact List
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bento-card border border-border-subtle p-8 flex flex-col gap-6"
+            >
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-2xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >all_inclusive</span
+                >
+                <h3 class="font-headline-sm text-headline-sm uppercase">
+                  Lifelong Learning
+                </h3>
+              </div>
+              <ul class="flex flex-col gap-4">
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Part-time Courses
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >Evening Classes
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+                <hr class="border-border-subtle" />
+                <li>
+                  <a
+                    class="flex justify-between items-center group text-on-surface-variant hover:text-secondary font-medium"
+                    href="#"
+                    >College of the Third Age
+                    <span
+                      class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      >chevron_right</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 4. Support -->
+      <section class="bg-surface-container py-stack-gap-lg">
+        <div class="max-w-max-width mx-auto px-margin">
+          <div class="flex justify-between items-end mb-10">
+            <h2
+              class="font-headline-md text-headline-md text-primary uppercase"
+            >
+              Dedicated Support Units
+            </h2>
+            <p class="text-on-surface-variant max-w-sm text-right font-medium">
+              Expert guidance available for every aspect of your student life.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <div
+              class="bg-surface-white border border-border-subtle p-8 hover:bg-surface-container-low transition-colors"
+            >
+              <div
+                class="w-12 h-12 bg-secondary/10 flex items-center justify-center mb-6"
+              >
+                <span class="material-symbols-outlined text-secondary"
+                  >psychology</span
+                >
+              </div>
+              <h4 class="font-headline-sm text-headline-sm mb-3 uppercase">
+                Wellbeing
+              </h4>
+              <p class="text-on-surface-variant mb-6">
+                Professional counseling and emotional support services in a
+                confidential setting.
+              </p>
+              <button
+                class="text-secondary font-label-caps text-label-caps uppercase border-b-2 border-secondary pb-1 hover:text-primary hover:border-primary transition-all"
+              >
+                Get in touch
+              </button>
+            </div>
+            <div
+              class="bg-surface-white border border-border-subtle p-8 hover:bg-surface-container-low transition-colors"
+            >
+              <div
+                class="w-12 h-12 bg-secondary/10 flex items-center justify-center mb-6"
+              >
+                <span class="material-symbols-outlined text-secondary"
+                  >history_edu</span
+                >
+              </div>
+              <h4 class="font-headline-sm text-headline-sm mb-3 uppercase">
+                Extra Support in academic units
+              </h4>
+              <p class="text-on-surface-variant mb-6">
+                Tutorial support and language services to help you excel in your
+                chosen course of study.
+              </p>
+              <button
+                class="text-secondary font-label-caps text-label-caps uppercase border-b-2 border-secondary pb-1 hover:text-primary hover:border-primary transition-all"
+              >
+                Book a session
+              </button>
+            </div>
+            <div
+              class="bg-surface-white border border-border-subtle p-8 hover:bg-surface-container-low transition-colors"
+            >
+              <div
+                class="w-12 h-12 bg-secondary/10 flex items-center justify-center mb-6"
+              >
+                <span class="material-symbols-outlined text-secondary"
+                  >person_search</span
+                >
+              </div>
+              <h4 class="font-headline-sm text-headline-sm mb-3 uppercase">
+                Career Guidance
+              </h4>
+              <p class="text-on-surface-variant mb-6">
+                Career advice and guidance for prospective and current students
+                across all levels.
+              </p>
+              <button
+                class="text-secondary font-label-caps text-label-caps uppercase border-b-2 border-secondary pb-1 hover:text-primary hover:border-primary transition-all"
+              >
+                View services
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 5. Professional Strip -->
+      <section
+        class="bg-[#0f134f] text-on-primary py-16 overflow-hidden relative"
+      >
+        <!-- Subtle background detail -->
+        <div class="absolute inset-0 opacity-10 flex pointer-events-none">
+          <div class="w-1/2 border-r border-on-primary"></div>
+          <div class="w-1/2 border-l border-on-primary"></div>
+        </div>
+        <div
+          class="max-w-max-width mx-auto px-margin relative z-10 flex flex-col md:flex-row justify-between items-center gap-stack-gap-md"
+        >
+          <div class="max-w-2xl text-center md:text-left">
+            <span
+              class="font-label-caps text-label-caps tracking-[0.3em] opacity-80 uppercase mb-4 block"
+              >MCAST Industry Partners</span
+            >
+            <h2
+              class="font-display-lg text-4xl lg:text-5xl uppercase font-bold mb-4"
+            >
+              Elevate your professional career
+            </h2>
+            <p class="text-body-lg opacity-80">
+              Connect with industry leaders, explore apprenticeships, and find
+              job opportunities through our dedicated professional portal.
+            </p>
+          </div>
+          <div class="flex gap-4">
+            <button
+              class="bg-secondary text-white px-8 py-4 font-label-caps text-label-caps uppercase hover:bg-white hover:text-secondary transition-all"
+            >
+              Career Portal
+            </button>
+            <button
+              class="border border-white text-white px-8 py-4 font-label-caps text-label-caps uppercase hover:bg-white/10 transition-all"
+            >
+              Apprenticeships
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- 6. Stay Connected -->
+      <section class="bg-surface-white py-12 border-t border-border-subtle">
+        <div
+          class="max-w-max-width mx-auto px-margin flex flex-wrap justify-between items-center gap-8"
+        >
+          <div class="flex items-center gap-6">
+            <span
+              class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+              >Stay Connected</span
+            >
+            <div class="flex gap-6">
+              <a
+                class="flex items-center gap-2 text-on-surface hover:text-secondary transition-colors"
+                href="#"
+              >
+                <span class="material-symbols-outlined text-xl">face_nod</span>
+                <span class="font-label-caps text-[11px] uppercase"
+                  >Facebook</span
+                >
+              </a>
+              <a
+                class="flex items-center gap-2 text-on-surface hover:text-secondary transition-colors"
+                href="#"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >camera_alt</span
+                >
+                <span class="font-label-caps text-[11px] uppercase"
+                  >Instagram</span
+                >
+              </a>
+              <a
+                class="flex items-center gap-2 text-on-surface hover:text-secondary transition-colors"
+                href="#"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >video_library</span
+                >
+                <span class="font-label-caps text-[11px] uppercase"
+                  >YouTube</span
+                >
+              </a>
+              <a
+                class="flex items-center gap-2 text-on-surface hover:text-secondary transition-colors"
+                href="#"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >alternate_email</span
+                >
+                <span class="font-label-caps text-[11px] uppercase"
+                  >LinkedIn</span
+                >
+              </a>
+            </div>
+          </div>
+          <div class="flex items-center gap-8">
+            <a class="flex items-center gap-2 group" href="tel:+35623987100">
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary"
+                >call</span
+              >
+              <span class="text-sm font-bold">+356 2398 7100</span>
+            </a>
+            <a
+              class="flex items-center gap-2 group"
+              href="mailto:info@mcast.edu.mt"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary"
+                >mail</span
+              >
+              <span class="text-sm font-bold uppercase tracking-tight"
+                >info@mcast.edu.mt</span
+              >
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      // Simple search interaction
+      const searchInput = document.querySelector('input[type="text"]');
+      if (searchInput) {
+        searchInput.addEventListener("focus", () => {
+          searchInput.parentElement.classList.add("border-secondary");
+          searchInput.parentElement.classList.add("ring-1");
+          searchInput.parentElement.classList.add("ring-secondary");
+        });
+        searchInput.addEventListener("blur", () => {
+          searchInput.parentElement.classList.remove("border-secondary");
+          searchInput.parentElement.classList.remove("ring-1");
+          searchInput.parentElement.classList.remove("ring-secondary");
+        });
+      }
+    </script>
+  </body>
+</html>

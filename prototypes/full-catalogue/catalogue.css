@@ -259,7 +259,7 @@ select {
 }
 
 .catalogue-content {
-  padding: 42px 0 70px;
+  padding: 72px 0 70px;
 }
 
 .catalogue-section + .catalogue-section {
@@ -781,7 +781,7 @@ select {
   }
 
   .catalogue-content {
-    padding-top: 28px;
+    padding-top: 48px;
   }
 
   .catalogue-section + .catalogue-section {
@@ -816,6 +816,7 @@ select {
 
   .help-strip {
     display: grid;
+    margin-top: 24px;
     padding: 24px 18px;
   }
 }
